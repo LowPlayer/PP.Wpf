@@ -1,0 +1,785 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PP.Wpf</name>
+    </assembly>
+    <members>
+        <member name="T:PP.Wpf.Controls.Attach.BackgroundElement">
+            <summary>
+            背景元素
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.SelectedBackgroundProperty">
+            <summary>
+            选中时背景颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetSelectedBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取选中时背景颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetSelectedBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置选中时背景颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.HoverBackgroundProperty">
+            <summary>
+            鼠标悬浮时背景颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetHoverBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标悬浮时背景颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetHoverBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标悬浮时背景颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:PP.Wpf.Controls.Attach.ForegroundElement">
+            <summary>
+            字体元素
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.ForegroundElement.HoverForegroundProperty">
+            <summary>
+            鼠标悬浮时字体颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.GetHoverForeground(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标悬浮时字体颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.SetHoverForeground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标悬浮时字体颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.ForegroundElement.PressedForegroundProperty">
+            <summary>
+            鼠标按下时字体颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.GetPressedForeground(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标按下时字体颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.SetPressedForeground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标按下时字体颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:PP.Wpf.Controls.Attach.IconElement">
+            <summary>
+            图标元素
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.GeometryProperty">
+            <summary>
+            矢量图标
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetGeometry(System.Windows.DependencyObject)">
+            <summary>
+            获取矢量图标
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetGeometry(System.Windows.DependencyObject,System.Windows.Media.Geometry)">
+            <summary>
+            设置矢量图标
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.GeometrySelectedProperty">
+            <summary>
+            选择时矢量图标
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetGeometrySelected(System.Windows.DependencyObject)">
+            <summary>
+            获取选择时矢量图标
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetGeometrySelected(System.Windows.DependencyObject,System.Windows.Media.Geometry)">
+            <summary>
+            设置选择时矢量图标
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.ImageProperty">
+            <summary>
+            图像图标
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetImage(System.Windows.DependencyObject,System.Windows.Media.ImageSource)">
+            <summary>
+            设置图像图标
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetImage(System.Windows.DependencyObject)">
+            <summary>
+            获取图像图标
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.ImageSelectedProperty">
+            <summary>
+            选中时图像图标
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetImageSelected(System.Windows.DependencyObject)">
+            <summary>
+            获取选中时图像图标
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetImageSelected(System.Windows.DependencyObject,System.Windows.Media.ImageSource)">
+            <summary>
+            设置选中时图像图标
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.WidthProperty">
+            <summary>
+            图标宽度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetWidth(System.Windows.DependencyObject)">
+            <summary>
+            获取图标宽度
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetWidth(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            设置图标宽度
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.HeightProperty">
+            <summary>
+            图标高度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetHeight(System.Windows.DependencyObject)">
+            <summary>
+            获取图标高度
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetHeight(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            设置图标高度
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:PP.Wpf.Controls.Attach.WindowElement">
+            <summary>
+            窗体元素
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.TitleHeightProperty">
+            <summary>
+            标题栏高度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetTitleHeight(System.Windows.DependencyObject)">
+            <summary>
+            获取标题栏高度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetTitleHeight(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            设置
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.TitleBackgroundProperty">
+            <summary>
+            标题栏背景色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetTitleBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取标题栏背景色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetTitleBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置标题栏背景色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.TitleForegroundProperty">
+            <summary>
+            标题栏前景色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetTitleForeground(System.Windows.DependencyObject)">
+            <summary>
+            获取标题栏前景色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetTitleForeground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置标题栏前景色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.NoActiveTitleBackgroundProperty">
+            <summary>
+            NoActive标题栏背景色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetNoActiveTitleBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取NoActive标题栏背景色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetNoActiveTitleBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置NoActive标题栏背景色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.NoActiveBorderBrushProperty">
+            <summary>
+            NoActive边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetNoActiveBorderBrush(System.Windows.DependencyObject)">
+            <summary>
+            获取NoActive边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetNoActiveBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置NoActive边框颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.WindowButtonWidthProperty">
+            <summary>
+            窗口按钮的宽度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetWindowButtonWidth(System.Windows.DependencyObject)">
+            <summary>
+            获取窗口按钮的宽度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetWindowButtonWidth(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            设置窗口按钮的宽度
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.TitleFontsizeProperty">
+            <summary>
+            标题栏字体大小
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetTitleFontsize(System.Windows.DependencyObject)">
+            <summary>
+            获取标题栏字体大小
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetTitleFontsize(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            设置标题栏字体大小
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.WindowElement.TitlePaddingProperty">
+            <summary>
+            标题栏边距
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.GetTitlePadding(System.Windows.DependencyObject)">
+            <summary>
+            获取标题栏边距
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.WindowElement.SetTitlePadding(System.Windows.DependencyObject,System.Windows.Thickness)">
+            <summary>
+            设置标题栏边距
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:PP.Wpf.Controls.CarouselText">
+            <summary>
+            文字走马灯效果
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.CarouselText.TextProperty">
+            <summary>
+            滚动的文字
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.CarouselText.Text">
+            <summary>
+            滚动的文字
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.CarouselText.SpaceProperty">
+            <summary>
+            间距
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.CarouselText.Space">
+            <summary>
+            间距
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.CarouselText.SpeedProperty">
+            <summary>
+            滚动速度（每秒wpf单位数）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.CarouselText.Speed">
+            <summary>
+            滚动速度（每秒wpf单位数）
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.CarouselText.#ctor">
+            <summary>
+            文字走马灯效果
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.CarouselText.OnApplyTemplate">
+            <summary>
+            应用模板
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.CarouselText.BeginUpdate">
+            <summary>
+            多个事件同时触发时，仅执行一次
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.ChromeWindow">
+            <summary>
+            使用WindowChorme创建的自定义窗体
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ChromeWindow.LayoutMarginPropertyKey">
+            <summary>
+            最大化时，内容要设置的外边距
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ChromeWindow.LayoutMarginProperty">
+            <summary>
+            最大化时，内容要设置的外边距
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ChromeWindow.LayoutMargin">
+            <summary>
+            最大化时，内容要设置的外边距
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ChromeWindow.TitleContentProperty">
+            <summary>
+            标题内容
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ChromeWindow.TitleContent">
+            <summary>
+            标题内容
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ChromeWindow.TitleContentTemplateProperty">
+            <summary>
+            标题内容数据模板
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ChromeWindow.TitleContentTemplate">
+            <summary>
+            标题内容数据模板
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.ChromeWindow.#ctor">
+            <summary>
+            使用WindowChorme创建的自定义窗体
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.ChromeWindow.OnApplyTemplate">
+            <summary>
+            在派生类中重写时，每当应用程序代码或内部进程调用 System.Windows.FrameworkElement.ApplyTemplate，都将调用此方法
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.CornerClip">
+            <summary>
+            圆角裁剪
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.CornerClip.CornerRadiusProperty">
+            <summary>
+            圆角弧度
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.CornerClip.CornerRadius">
+            <summary>
+            圆角弧度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.CornerClip.#ctor">
+            <summary>
+            圆角裁剪
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.SimplePanel">
+            <summary>
+            实现没有网络线的Grid
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.SimplePanel.MeasureOverride(System.Windows.Size)">
+            <summary>
+            在派生类中重写时，测量子元素在布局中所需的大小，并确定由 System.Windows.FrameworkElement 派生的类的大小。
+            </summary>
+            <param name="constraint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.SimplePanel.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            在派生类中重写时，为 System.Windows.FrameworkElement 派生类定位子元素并确定大小。
+            </summary>
+            <param name="arrangeSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PP.Wpf.Converters.BooleanReverseConverter">
+            <summary>
+            BooleanReverseConverter
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Converters.BooleanReverseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定源生成的值</param>
+            <param name="targetType">绑定目标属性的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Converters.BooleanReverseConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定目标生成的值</param>
+            <param name="targetType">要转换为的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanReverseConverter.Instance">
+            <summary>
+            反转Boolean实例
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Converters.BooleanToVisibilityConverter">
+            <summary>
+            BooleanToVisibilityConverter
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Converters.BooleanToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定源生成的值</param>
+            <param name="targetType">绑定目标属性的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Converters.BooleanToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定目标生成的值</param>
+            <param name="targetType">要转换为的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanToVisibilityConverter.FalseValue">
+            <summary>
+            False时Visibility值
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanToVisibilityConverter.TrueValue">
+            <summary>
+            True时Visibility值
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanToVisibilityConverter.FalseToCollapsed">
+            <summary>
+            False时Visibility=Collapsed
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanToVisibilityConverter.FalseToHidden">
+            <summary>
+            False时Visibility=Hidden
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanToVisibilityConverter.TrueToCollapsed">
+            <summary>
+            True时Visibility=Collapsed
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.BooleanToVisibilityConverter.TrueToHidden">
+            <summary>
+            True时Visibility=Hidden
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Converters.GenericTypeConverter">
+            <summary>
+            通用类型转换器
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.GenericTypeConverter.Alias">
+            <summary>
+            正向键值对字典
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.GenericTypeConverter.BackAlias">
+            <summary>
+            反向键值对字典
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Converters.GenericTypeConverter.ParseAliasByStr(System.String)">
+            <summary>
+            解析转换规则
+            </summary>
+            <param name="aliasStr">规则字符串</param>
+        </member>
+        <member name="M:PP.Wpf.Converters.GenericTypeConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定源生成的值</param>
+            <param name="targetType">绑定目标属性的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Converters.GenericTypeConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定目标生成的值</param>
+            <param name="targetType">要转换为的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="T:PP.Wpf.Converters.NullToVisibilityConverter">
+            <summary>
+            NullToVisibilityConverter
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Converters.NullToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定源生成的值</param>
+            <param name="targetType">绑定目标属性的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Converters.NullToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定目标生成的值</param>
+            <param name="targetType">要转换为的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="P:PP.Wpf.Converters.NullToVisibilityConverter.NullToCollapsed">
+            <summary>
+            Null时Visibility=Collapsed
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.NullToVisibilityConverter.NullToHidden">
+            <summary>
+            Null时Visibility=Hidden
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.NullToVisibilityConverter.NullValue">
+            <summary>
+            Null时Visibility值
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Converters.StringToVisibilityConverter">
+            <summary>
+            StringToVisibilityConverter
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Converters.StringToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定源生成的值</param>
+            <param name="targetType">绑定目标属性的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Converters.StringToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定目标生成的值</param>
+            <param name="targetType">要转换为的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.EmptyValue">
+            <summary>
+            空字符串时的Visibility
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.EmptyToCollapsed">
+            <summary>
+            空字符串时设置Visibility=Collapsed
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.EmptyToHidden">
+            <summary>
+            空字符串时设置Visibility=Hidden
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Converters.ThicknessNoTopConverter">
+            <summary>
+            ThicknessNoTopConverter
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Converters.ThicknessNoTopConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定源生成的值</param>
+            <param name="targetType">绑定目标属性的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Converters.ThicknessNoTopConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            转换值
+            </summary>
+            <param name="value">绑定目标生成的值</param>
+            <param name="targetType">要转换为的类型</param>
+            <param name="parameter">要使用的转换器参数</param>
+            <param name="culture">要用在转换器中的区域性</param>
+            <returns></returns>
+        </member>
+        <member name="T:PP.Wpf.Extensions.ObjectExtension">
+            <summary>
+            Object类型的扩展方法
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Extensions.ObjectExtension.TryChangeType``1(System.Object,``0@)">
+            <summary>
+            尝试转换类型，若失败，则返回默认值
+            警告:因包含try catch,且考虑类型多,效率极低
+            </summary>
+            <typeparam name="T">目标类型</typeparam>
+            <param name="obj">转换对象</param>
+            <param name="t">目标对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Extensions.ObjectExtension.ChangeType(System.Object,System.Type)">
+            <summary>
+            转换类型
+            </summary>
+            <param name="obj">转换对象</param>
+            <param name="targetType">目标类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Extensions.ObjectExtension.ChangeType``1(System.Object)">
+            <summary>
+            转换类型
+            </summary>
+            <typeparam name="T">目标类型</typeparam>
+            <param name="obj">转换对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

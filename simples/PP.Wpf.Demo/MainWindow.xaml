@@ -1,0 +1,21 @@
+﻿<pp:ChromeWindow x:Class="PP.Wpf.Demo.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:pp="https://www.cnblogs.com/pumbaa"
+                 xmlns:views="clr-namespace:PP.Wpf.Demo.Views"
+                 mc:Ignorable="d"
+                 Title="PP.Wpf Demo Application" Height="450" Width="800">
+    <pp:ChromeWindow.TitleContent>
+        <TextBlock VerticalAlignment="Center" TextAlignment="Center" IsHitTestVisible="False">支持编辑的标题栏</TextBlock>
+    </pp:ChromeWindow.TitleContent>
+    <TabControl TabStripPlacement="Left">
+        <TabItem Header="CarouselText">
+            <views:CarouselTextView />
+        </TabItem>
+        <TabItem Header="CornerClip">
+            <views:CornerClipView />
+        </TabItem>
+    </TabControl>
+</pp:ChromeWindow>

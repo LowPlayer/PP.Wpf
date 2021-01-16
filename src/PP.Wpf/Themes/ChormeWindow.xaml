@@ -1,0 +1,133 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:PP.Wpf.Controls"
+                    xmlns:attach="clr-namespace:PP.Wpf.Controls.Attach"
+                    xmlns:cvts="clr-namespace:PP.Wpf.Converters">
+
+    <cvts:ThicknessNoTopConverter x:Key="thicknessNoTopConverter" />
+
+
+
+    <ControlTemplate x:Key="ChormeWindow.NoTitle.Template" TargetType="{x:Type ctrls:ChromeWindow}">
+        <Grid>
+            <AdornerDecorator>
+                <Border x:Name="layoutRoot" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                        Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                    <ContentPresenter x:Name="contentPresenter" RecognizesAccessKey="True" Content="{TemplateBinding Content}" 
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Focusable="False" />
+                </Border>
+            </AdornerDecorator>
+            <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsTabStop="False"
+                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}" Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="WindowState" Value="Maximized">
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter TargetName="layoutRoot" Property="Margin" Value="{Binding LayoutMargin,RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                    <Condition Property="WindowState" Value="Normal" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="WindowResizeGrip" Property="Visibility" Value="Visible" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+
+    <ControlTemplate x:Key="ChormeWindow.Template" TargetType="{x:Type ctrls:ChromeWindow}">
+        <Border Background="{TemplateBinding Background}">
+            <Grid x:Name="layoutRoot">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Rectangle x:Name="PART_TitleBackground" Height="{TemplateBinding attach:WindowElement.TitleHeight}" Fill="{TemplateBinding attach:WindowElement.TitleBackground}" />
+                <DockPanel TextElement.Foreground="{TemplateBinding attach:WindowElement.TitleForeground}" TextElement.FontSize="{TemplateBinding attach:WindowElement.TitleFontsize}">
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button x:Name="PART_Min" Style="{DynamicResource PP.Styles.Button.Window.Base}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}"
+                                attach:IconElement.Geometry="{DynamicResource PP.Paths.Window.Minimized}" attach:IconElement.Width="{TemplateBinding attach:IconElement.Width}" />
+                        <Button x:Name="PART_Max" Style="{DynamicResource PP.Styles.Button.Window.Base}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}" 
+                                attach:IconElement.Geometry="{DynamicResource PP.Paths.Window.Maximized}" attach:IconElement.Width="{TemplateBinding attach:IconElement.Width}" />
+                        <Button x:Name="PART_Close" Style="{DynamicResource PP.Styles.Button.Window.Close}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}" 
+                                attach:IconElement.Geometry="{DynamicResource PP.Paths.Window.Close}" attach:IconElement.Width="{TemplateBinding attach:IconElement.Width}" />
+                    </StackPanel>
+                    <TextBlock VerticalAlignment="Center" Text="{TemplateBinding Title}" Margin="{TemplateBinding attach:WindowElement.TitlePadding}" IsHitTestVisible="False"
+                               Visibility="{Binding Text,RelativeSource={RelativeSource Self},Converter={x:Static cvts:StringToVisibilityConverter.EmptyToCollapsed}}" />
+                    <ContentPresenter Content="{TemplateBinding TitleContent}" ContentTemplate="{TemplateBinding TitleContentTemplate}" />
+                </DockPanel>
+                <AdornerDecorator Grid.Row="1">
+                    <Border BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={StaticResource thicknessNoTopConverter}}"
+                            BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter x:Name="contentPresenter" RecognizesAccessKey="True" Content="{TemplateBinding Content}" 
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Focusable="False" />
+                    </Border>
+                </AdornerDecorator>
+                <ResizeGrip x:Name="WindowResizeGrip" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsTabStop="False"
+                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}" Visibility="Collapsed" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="WindowState" Value="Maximized">
+                <Setter TargetName="PART_Max" Property="attach:IconElement.Geometry" Value="{DynamicResource PP.Paths.Window.Normal}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter TargetName="layoutRoot" Property="Margin" Value="{Binding LayoutMargin,RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+            <Trigger Property="ResizeMode" Value="CanMinimize">
+                <Setter TargetName="PART_Max" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                    <Condition Property="WindowState" Value="Normal" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="WindowResizeGrip" Property="Visibility" Value="Visible" />
+            </MultiTrigger>
+            <Trigger Property="ResizeMode" Value="NoResize">
+                <Setter TargetName="PART_Min" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="PART_Max" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+
+    <Style TargetType="{x:Type ctrls:ChromeWindow}">
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:WindowElement.NoActiveBorderBrush" Value="{DynamicResource PP.Brushes.Black60}" />
+        <Setter Property="attach:WindowElement.TitleHeight" Value="30" />
+        <Setter Property="attach:WindowElement.TitleBackground" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:WindowElement.NoActiveTitleBackground" Value="{DynamicResource PP.Brushes.Black60}" />
+        <Setter Property="attach:WindowElement.TitleForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        <Setter Property="attach:WindowElement.WindowButtonWidth" Value="46" />
+        <Setter Property="attach:IconElement.Width" Value="10" />
+        <Setter Property="attach:WindowElement.TitlePadding" Value="12 0" />
+        <Setter Property="attach:WindowElement.TitleFontsize" Value="12" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CornerRadius="0" CaptionHeight="0" GlassFrameThickness="1" UseAeroCaptionButtons="False" ResizeBorderThickness="6" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{StaticResource ChormeWindow.Template}" />
+        <Style.Triggers>
+            <Trigger Property="IsActive" Value="False">
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:WindowElement.NoActiveBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="attach:WindowElement.TitleBackground" Value="{Binding Path=(attach:WindowElement.NoActiveTitleBackground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <Trigger Property="attach:WindowElement.TitleHeight" Value="0">
+                <Setter Property="Template" Value="{StaticResource ChormeWindow.NoTitle.Template}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
