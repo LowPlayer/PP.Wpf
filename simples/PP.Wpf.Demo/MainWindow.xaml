@@ -6,7 +6,8 @@
                  xmlns:pp="https://www.cnblogs.com/pumbaa"
                  xmlns:views="clr-namespace:PP.Wpf.Demo.Views"
                  mc:Ignorable="d"
-                 Title="PP.Wpf Demo Application" Height="450" Width="800">
+                 Title="PP.Wpf Demo Application" Height="450" Width="800"
+                 FontSize="15">
     <pp:ChromeWindow.TitleContent>
         <TextBlock VerticalAlignment="Center" TextAlignment="Center" IsHitTestVisible="False">支持编辑的标题栏</TextBlock>
     </pp:ChromeWindow.TitleContent>
@@ -16,6 +17,9 @@
         </TabItem>
         <TabItem Header="CornerClip">
             <views:CornerClipView />
+        </TabItem>
+        <TabItem Header="ListBoxDragSelectViewer">
+            <views:ListBoxDragSelectViewerView />
         </TabItem>
     </TabControl>
 </pp:ChromeWindow>

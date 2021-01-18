@@ -3,5 +3,7 @@
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Geometry.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/CarouselText.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/ChormeWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/ListBoxDragSelectViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/AutoGridCanvasItem.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

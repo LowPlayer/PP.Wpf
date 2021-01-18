@@ -350,6 +350,69 @@
             <param name="element"></param>
             <param name="value"></param>
         </member>
+        <member name="T:PP.Wpf.Controls.AutoGridCanvas">
+            <summary>
+            自动分栏且子项可拖动
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.Stroke">
+            <summary>
+            网络线颜色
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.StrokeThickness">
+            <summary>
+            网络线宽度
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.Rows">
+            <summary>
+            行数
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.Columns">
+            <summary>
+            列数
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvas.GetRowsAndColumns(System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            根据数量获取行列数
+            </summary>
+            <param name="count"></param>
+            <param name="rows"></param>
+            <param name="columns"></param>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvas.DrawGridLine">
+            <summary>
+            绘制网络线
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvas.UpdateGridLineStroke">
+            <summary>
+            更新网络线颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvas.UpdateGridLineStrokeThickness">
+            <summary>
+            更新网络线宽度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvas.UpdateItemsPosition">
+            <summary>
+            更新位置
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.AutoDock(System.Double@,System.Double@,System.Double@,System.Double@,System.Windows.Size@)">
+            <summary>
+            自动吸附
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvasItem.IsCell">
+            <summary>
+            是否在格子里面
+            </summary>
+        </member>
         <member name="T:PP.Wpf.Controls.CarouselText">
             <summary>
             文字走马灯效果
@@ -447,7 +510,7 @@
         </member>
         <member name="M:PP.Wpf.Controls.ChromeWindow.OnApplyTemplate">
             <summary>
-            在派生类中重写时，每当应用程序代码或内部进程调用 System.Windows.FrameworkElement.ApplyTemplate，都将调用此方法
+            应用模板
             </summary>
         </member>
         <member name="T:PP.Wpf.Controls.CornerClip">
@@ -468,6 +531,81 @@
         <member name="M:PP.Wpf.Controls.CornerClip.#ctor">
             <summary>
             圆角裁剪
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.ListBoxDragSelectViewer">
+            <summary>
+            鼠标拖动选择ListBox选项
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.FillProperty">
+            <summary>
+            拖动区域填充颜色
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ListBoxDragSelectViewer.Fill">
+            <summary>
+            拖动区域填充颜色
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.StrokeThicknessProperty">
+            <summary>
+            拖动区域描边大小
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ListBoxDragSelectViewer.StrokeThickness">
+            <summary>
+            拖动区域描边大小
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.StrokeProperty">
+            <summary>
+            拖动区域描边颜色
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ListBoxDragSelectViewer.Stroke">
+            <summary>
+            拖动区域描边颜色
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.IsDraggingPropertyKey">
+            <summary>
+            控件具有逻辑焦点和捕获鼠标并按下鼠标左键
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.IsDraggingProperty">
+            <summary>
+            控件具有逻辑焦点和捕获鼠标并按下鼠标左键
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ListBoxDragSelectViewer.IsDragging">
+            <summary>
+            控件具有逻辑焦点和捕获鼠标并按下鼠标左键
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.DragRectPropertyKey">
+            <summary>
+            拖动区域
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.ListBoxDragSelectViewer.DragRectProperty">
+            <summary>
+            拖动区域
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.ListBoxDragSelectViewer.DragRect">
+            <summary>
+            拖动区域
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.ListBoxDragSelectViewer.#ctor">
+            <summary>
+            鼠标拖动选择ListBox选项
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.ListBoxDragSelectViewer.OnApplyTemplate">
+            <summary>
+            应用模板
             </summary>
         </member>
         <member name="T:PP.Wpf.Controls.SimplePanel">
@@ -750,36 +888,6 @@
             <typeparam name="T">目标类型</typeparam>
             <param name="obj">转换对象</param>
             <returns></returns>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
-            </summary>
         </member>
     </members>
 </doc>

@@ -9,6 +9,9 @@
 
     <Color x:Key="PP.Colors.Themes">#0090FF</Color>
     <Color x:Key="PP.Colors.Themes80">#CC0090FF</Color>
+    <Color x:Key="PP.Colors.Themes60">#990090FF</Color>
+    <Color x:Key="PP.Colors.Themes40">#660090FF</Color>
+    <Color x:Key="PP.Colors.Themes20">#330090FF</Color>
     <Color x:Key="PP.Colors.Themes.Highlight">#0078D4</Color>
     <Color x:Key="PP.Colors.Themes.Foreground">#FFFFFF</Color>
 
@@ -23,6 +26,9 @@
 
     <SolidColorBrush x:Key="PP.Brushes.Themes" Color="{StaticResource PP.Colors.Themes}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Themes80" Color="{StaticResource PP.Colors.Themes80}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes60" Color="{StaticResource PP.Colors.Themes60}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes40" Color="{StaticResource PP.Colors.Themes40}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes20" Color="{StaticResource PP.Colors.Themes20}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Themes.Highlight" Color="{StaticResource PP.Colors.Themes.Highlight}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Themes.Foreground" Color="{StaticResource PP.Colors.Themes.Foreground}" options:Freeze="True" />
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PP.Wpf.Controls
 {
@@ -61,7 +61,7 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 控件具有逻辑焦点和捕获鼠标并按下鼠标左键
         /// </summary>
-        public Boolean IsDragging { get => (Boolean)GetValue(IsDraggingProperty); protected set => SetValue(IsDraggingProperty, value); }
+        public Boolean IsDragging { get => (Boolean)GetValue(IsDraggingProperty); protected set => SetValue(IsDraggingPropertyKey, value); }
 
 
 
@@ -85,6 +85,15 @@ namespace PP.Wpf.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ListBoxDragSelectViewer), new FrameworkPropertyMetadata(typeof(ListBoxDragSelectViewer)));
         }
 
+        /// <summary>
+        /// 鼠标拖动选择ListBox选项
+        /// </summary>
+        public ListBoxDragSelectViewer()
+        {
+            timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(16) };
+            timer.Tick += OnTick;
+        }
+
         #region Methods
 
         /// <summary>
@@ -94,18 +103,18 @@ namespace PP.Wpf.Controls
         {
             base.OnApplyTemplate();
 
+            if (canvas != null)
+                canvas.MouseLeftButtonDown -= OnCanvasMouseLeftButtonDown;
+
             scrollViewer = this.Template.FindName("PART_ScrollViewer", this) as ScrollViewer;
             canvas = this.Template.FindName("PART_Canvas", this) as Canvas;
+
+            if (canvas != null)
+                canvas.MouseLeftButtonDown += OnCanvasMouseLeftButtonDown;
         }
 
-        /// <summary>
-        /// 鼠标左键按下
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        private void OnCanvasMouseLeftButtonDown(Object sender, MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-
             listbox = this.TemplatedParent as ListBox;
 
             if (listbox == null || listbox.SelectionMode == SelectionMode.Single || canvas == null)
@@ -113,60 +122,109 @@ namespace PP.Wpf.Controls
 
             startPoint = e.GetPosition(canvas);
 
-            if (e.Handled = this.CaptureMouse())
+            if (e.Handled = canvas.CaptureMouse())
             {
                 IsDragging = true;
                 DragRect = new Rect(startPoint, new Size());
+
+                canvas.MouseMove += OnCanvasMouseMove;
+                canvas.MouseLeftButtonUp += OnCanvasMouseLeftButtonUp;
             }
         }
 
-        /// <summary>
-        /// 鼠标移动
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseMove(MouseEventArgs e)
+        private void OnCanvasMouseMove(Object sender, MouseEventArgs e)
         {
-            base.OnMouseMove(e);
-
-            if (!IsDragging)
-                return;
-
             e.Handled = true;
 
             var point = e.GetPosition(canvas);
-            var rect = DragRect = new Rect(startPoint, point);
+            DragRect = new Rect(startPoint, point);
+            SelectItems();
+
+            point = e.GetPosition(scrollViewer);
+
+            if (point.X < 0 || point.Y < 0 || point.X > scrollViewer.ViewportWidth || point.Y > scrollViewer.ViewportHeight)
+            {
+                canvas.MouseMove -= OnCanvasMouseMove;
+                UpdateScrollViewerOffset(point);
+                timer.Start();
+            }
+        }
+
+        private void OnCanvasMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+
+            canvas.MouseMove -= OnCanvasMouseMove;
+            canvas.MouseLeftButtonUp -= OnCanvasMouseLeftButtonUp;
+
+            canvas.ReleaseMouseCapture();
+
+            timer.Stop();
+
+            IsDragging = false;
+            this.ClearValue(DragRectPropertyKey);
+        }
+
+        private void OnTick(Object sender, EventArgs e)
+        {
+            if (!canvas.IsMouseCaptured)
+                return;
+
+            var point = Mouse.GetPosition(canvas);
+            DragRect = new Rect(startPoint, point);
+            SelectItems();
+
+            point = Mouse.GetPosition(scrollViewer);
+
+            if (point.X < 0 || point.Y < 0 || point.X > scrollViewer.ViewportWidth || point.Y > scrollViewer.ViewportHeight)
+                UpdateScrollViewerOffset(point);
+            else
+            {
+                timer.Stop();
+                canvas.MouseMove += OnCanvasMouseMove;
+            }
+        }
+
+        private void UpdateScrollViewerOffset(Point point)
+        {
+            if (point.X < 0)
+            {
+                if (scrollViewer.HorizontalOffset > 0)
+                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - offset);
+            }
+            else if (point.X > scrollViewer.ViewportWidth)
+            {
+                if (scrollViewer.HorizontalOffset < scrollViewer.ScrollableWidth)
+                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset + offset);
+            }
+
+            if (point.Y < 0)
+            {
+                if (scrollViewer.VerticalOffset > 0)
+                    scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - offset);
+            }
+            else if (point.Y > scrollViewer.ViewportHeight)
+            {
+                if (scrollViewer.VerticalOffset < scrollViewer.ScrollableHeight)
+                    scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + offset);
+            }
+        }
+
+        private void SelectItems()
+        {
+            var rect = DragRect;
 
             foreach (var item in listbox.Items)
             {
                 var ele = (ListBoxItem)listbox.ItemContainerGenerator.ContainerFromItem(item);
 
-                var item_rect = new Rect(ele.TranslatePoint(new Point(), this), ele.RenderSize);
+                var item_rect = new Rect(ele.TranslatePoint(new Point(), canvas), ele.RenderSize);
 
                 if (rect.IntersectsWith(item_rect))
                     ele.SetCurrentValue(ListBoxItem.IsSelectedProperty, true);
                 else
                     ele.SetCurrentValue(ListBoxItem.IsSelectedProperty, false);
             }
-
-
-        }
-
-        /// <summary>
-        /// 鼠标左键弹起
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonUp(e);
-
-            if (!IsDragging)
-                return;
-
-            e.Handled = true;
-            this.ReleaseMouseCapture();
-
-            IsDragging = false;
-            this.ClearValue(DragRectProperty);
         }
 
         #endregion
@@ -177,6 +235,8 @@ namespace PP.Wpf.Controls
         private Canvas canvas;
         private ListBox listbox;
         private Point startPoint;
+        private DispatcherTimer timer;
+        private readonly Int32 offset = 10;
 
         #endregion
     }
