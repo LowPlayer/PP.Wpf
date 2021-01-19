@@ -28,6 +28,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDragging" Value="True">
                             <Setter TargetName="path" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_Canvas" Property="Panel.ZIndex" Value="1" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -15,6 +16,7 @@ namespace PP.Wpf.Controls
     /// <summary>
     /// 自动分栏且子项可拖动
     /// </summary>
+    [ContentProperty]
     public class AutoGridCanvas : Canvas
     {
         #region DependencyProperties
@@ -203,6 +205,8 @@ namespace PP.Wpf.Controls
 
         private void OnCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e)
         {
+            count = ItemsSource.Count;
+
             if (!IsLoaded)
                 return;
 
@@ -486,6 +490,7 @@ namespace PP.Wpf.Controls
     [TemplatePart(Name = "PART_ResizeBottom", Type = typeof(UIElement))]
     [TemplatePart(Name = "PART_ResizeBottomLeft", Type = typeof(UIElement))]
     [TemplatePart(Name = "PART_ResizeLeft", Type = typeof(UIElement))]
+    [ContentProperty]
     public sealed class AutoGridCanvasItem : ContentControl
     {
         #region DependencyProperties

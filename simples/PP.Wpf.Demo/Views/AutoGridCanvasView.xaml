@@ -13,7 +13,7 @@
             <TextBox x:Name="input" Width="200"></TextBox>
             <Button x:Name="btn" Margin="6 0 0 0">确定</Button>
         </StackPanel>
-        <pp:AutoGridCanvas x:Name="agc" Margin="5" Background="LightGray" StrokeThickness="3" Stroke="Black">
+        <pp:AutoGridCanvas x:Name="agc" Margin="5" Background="LightGray" StrokeThickness="1" Stroke="Black">
             <pp:AutoGridCanvas.ItemTemplate>
                 <DataTemplate>
                     <Border Background="LightCyan">
