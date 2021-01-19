@@ -21,5 +21,8 @@
         <TabItem Header="ListBoxDragSelectViewer">
             <views:ListBoxDragSelectViewerView />
         </TabItem>
+        <TabItem Header="AutoGridCanvas">
+            <views:AutoGridCanvasView />
+        </TabItem>
     </TabControl>
 </pp:ChromeWindow>

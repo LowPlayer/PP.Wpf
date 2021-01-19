@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -14,60 +15,75 @@ namespace PP.Wpf.Controls
     /// <summary>
     /// 自动分栏且子项可拖动
     /// </summary>
-    public sealed class AutoGridCanvas : SimplePanel
+    public class AutoGridCanvas : Canvas
     {
         #region DependencyProperties
 
         #region ItemsSource
 
+        /// <summary>
+        /// 数据项
+        /// </summary>
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(ICollection), typeof(AutoGridCanvas), new PropertyMetadata(OnItemsSourcePropertyChanged));
-
         private static void OnItemsSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((AutoGridCanvas)d).OnItemsSourceChanged((ICollection)e.OldValue, (ICollection)e.NewValue);
         }
-
+        /// <summary>
+        /// 数据项
+        /// </summary>
         public ICollection ItemsSource { get => (ICollection)GetValue(ItemsSourceProperty); set => SetValue(ItemsSourceProperty, value); }
 
-        public static readonly DependencyProperty ItemTemplateProperty = ListBox.ItemTemplateProperty.AddOwner(typeof(AutoGridCanvas), new PropertyMetadata(OnItemTemplatePropertyChanged));
 
+
+        /// <summary>
+        /// 子项数据模板
+        /// </summary>
+        public static readonly DependencyProperty ItemTemplateProperty = ListBox.ItemTemplateProperty.AddOwner(typeof(AutoGridCanvas), new PropertyMetadata(OnItemTemplatePropertyChanged));
         private static void OnItemTemplatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var gridCanvas = (AutoGridCanvas)d;
+            var children = ((AutoGridCanvas)d).Children;
 
-            foreach (AutoGridCanvasItem item in gridCanvas.canvas.Children)
+            for (var i = children.Count - 1; i > 0; i--)
             {
+                var item = children[i];
                 item.SetCurrentValue(ContentControl.ContentTemplateProperty, e.NewValue);
             }
         }
-
+        /// <summary>
+        /// 子项数据模板
+        /// </summary>
         public DataTemplate ItemTemplate { get => (DataTemplate)GetValue(ItemTemplateProperty); set => SetValue(ItemTemplateProperty, value); }
 
         #endregion
 
         #region GridLine
 
+        /// <summary>
+        /// 网络线颜色
+        /// </summary>
         public static readonly DependencyProperty StrokeProperty = Line.StrokeProperty.AddOwner(typeof(AutoGridCanvas), new PropertyMetadata(OnStrokePropertyChanged));
-
         private static void OnStrokePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((AutoGridCanvas)d).UpdateGridLineStroke();
         }
-
         /// <summary>
         /// 网络线颜色
         /// </summary>
         public Brush Stroke { get => (Brush)GetValue(StrokeProperty); set => SetValue(StrokeProperty, value); }
 
-        public static readonly DependencyProperty StrokeThicknessProperty = Line.StrokeThicknessProperty.AddOwner(typeof(AutoGridCanvas), new PropertyMetadata(OnStrokeThicknessPropertyChanged));
 
+
+        /// <summary>
+        /// 网络线大小
+        /// </summary>
+        public static readonly DependencyProperty StrokeThicknessProperty = Line.StrokeThicknessProperty.AddOwner(typeof(AutoGridCanvas), new PropertyMetadata(OnStrokeThicknessPropertyChanged));
         private static void OnStrokeThicknessPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((AutoGridCanvas)d).UpdateGridLineStrokeThickness();
         }
-
         /// <summary>
-        /// 网络线宽度
+        /// 网络线大小
         /// </summary>
         public Double StrokeThickness { get => (Double)GetValue(StrokeThicknessProperty); set => SetValue(StrokeThicknessProperty, value); }
 
@@ -75,39 +91,64 @@ namespace PP.Wpf.Controls
 
         #region Rows Columns
 
-        public static readonly DependencyPropertyKey RowsProperty = DependencyProperty.RegisterReadOnly("Rows", typeof(Int32), typeof(AutoGridCanvas), new PropertyMetadata(1));
         /// <summary>
         /// 行数
         /// </summary>
-        public Int32 Rows { get => (Int32)GetValue(RowsProperty.DependencyProperty); }
+        public static readonly DependencyPropertyKey RowsPropertyKey = DependencyProperty.RegisterReadOnly("Rows", typeof(Int32), typeof(AutoGridCanvas), new PropertyMetadata(1));
+        /// <summary>
+        /// 行数
+        /// </summary>
+        public static readonly DependencyProperty RowsProperty = RowsPropertyKey.DependencyProperty;
+        /// <summary>
+        /// 行数
+        /// </summary>
+        public Int32 Rows { get => (Int32)GetValue(RowsProperty); protected set => SetValue(RowsPropertyKey, value); }
 
-        public static readonly DependencyPropertyKey ColumnsProperty = DependencyProperty.RegisterReadOnly("Columns", typeof(Int32), typeof(AutoGridCanvas), new PropertyMetadata(1));
+
+
         /// <summary>
         /// 列数
         /// </summary>
-        public Int32 Columns { get => (Int32)GetValue(ColumnsProperty.DependencyProperty); }
+        public static readonly DependencyPropertyKey ColumnsPropertyKey = DependencyProperty.RegisterReadOnly("Columns", typeof(Int32), typeof(AutoGridCanvas), new PropertyMetadata(1));
+        /// <summary>
+        /// 列数
+        /// </summary>
+        public static readonly DependencyProperty ColumnsProperty = ColumnsPropertyKey.DependencyProperty;
+        /// <summary>
+        /// 列数
+        /// </summary>
+        public Int32 Columns { get => (Int32)GetValue(ColumnsProperty); protected set => SetValue(ColumnsPropertyKey, value); }
 
         #endregion
 
         #endregion
 
+        static AutoGridCanvas()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoGridCanvas), new FrameworkPropertyMetadata(typeof(AutoGridCanvas)));
+        }
+
+        /// <summary>
+        /// 自动分栏且子项可拖动
+        /// </summary>
         public AutoGridCanvas()
         {
-            this.canvas = new Canvas();
-            this.lineGrid = new Grid();
+            lineGrid = new Grid();
 
-            this.Children.Add(lineGrid);
-            this.Children.Add(canvas);
+            lineGrid.SetBinding(WidthProperty, new Binding { Source = this, Path = new PropertyPath(ActualWidthProperty), Mode = BindingMode.OneWay });
+            lineGrid.SetBinding(HeightProperty, new Binding { Source = this, Path = new PropertyPath(ActualHeightProperty), Mode = BindingMode.OneWay });
 
-            this.SizeChanged += OnSizeChanged;
-            this.Loaded += OnLoaded;
+            Children.Add(lineGrid);
+
+            SizeChanged += OnSizeChanged;
+            Loaded += OnLoaded;
         }
 
         #region Methods
 
         private void OnLoaded(Object sender, RoutedEventArgs e)
         {
-            this.Loaded -= OnLoaded;
+            Loaded -= OnLoaded;
             Reset();
         }
 
@@ -116,17 +157,32 @@ namespace PP.Wpf.Controls
             if (!IsLoaded)
                 return;
 
-            position_action = UpdateItemsPosition;
+            sizeChagned_action = DoSizeChanged;
 
             this.Dispatcher.InvokeAsync(() =>
             {
-                if (position_action != null)
+                if (sizeChagned_action != null)
                 {
-                    position_action.Invoke();
-                    position_action = null;
+                    sizeChagned_action.Invoke();
+                    sizeChagned_action = null;
                 }
 
             }, DispatcherPriority.Background);
+        }
+
+        private void DoSizeChanged()
+        {
+            GetRowsAndColumns(Count, out Int32 rows, out Int32 columns);
+
+            if (rows != Rows || columns != Columns)
+            {
+                SetValue(RowsPropertyKey, rows);
+                SetValue(ColumnsPropertyKey, columns);
+
+                DrawGridLine();
+            }
+
+            UpdateItemsPosition();
         }
 
         private void OnItemsSourceChanged(ICollection olds, ICollection news)
@@ -136,6 +192,8 @@ namespace PP.Wpf.Controls
 
             if (news is INotifyCollectionChanged new_oc)
                 new_oc.CollectionChanged += OnCollectionChanged;
+
+            count = news == null ? 0 : news.Count;
 
             if (!IsLoaded)
                 return;
@@ -167,8 +225,8 @@ namespace PP.Wpf.Controls
 
             if (rows != Rows || columns != Columns)
             {
-                SetValue(RowsProperty, rows);
-                SetValue(ColumnsProperty, columns);
+                SetValue(RowsPropertyKey, rows);
+                SetValue(ColumnsPropertyKey, columns);
 
                 DrawGridLine();
             }
@@ -180,8 +238,8 @@ namespace PP.Wpf.Controls
         {
             GetRowsAndColumns(Count, out Int32 rows, out Int32 columns);
 
-            SetValue(RowsProperty, rows);
-            SetValue(ColumnsProperty, columns);
+            SetValue(RowsPropertyKey, rows);
+            SetValue(ColumnsPropertyKey, columns);
 
             DrawGridLine();
             DrawItems();
@@ -200,17 +258,17 @@ namespace PP.Wpf.Controls
             rows = 1;
             columns = 1;
 
+            var ratio = ActualWidth / ActualHeight;
+
             var sum = rows * columns;
 
             while (sum < count)
             {
-                columns++;
-                sum = rows * columns;
+                if (columns / (Double)rows <= ratio)
+                    columns++;
+                else
+                    rows++;
 
-                if (sum >= count)
-                    return;
-
-                rows++;
                 sum = rows * columns;
             }
         }
@@ -292,11 +350,6 @@ namespace PP.Wpf.Controls
                 line.StrokeThickness = StrokeThickness;
             }
 
-            foreach (AutoGridCanvasItem item in canvas.Children)
-            {
-                item.StrokeThickness = StrokeThickness;
-            }
-
             position_action = UpdateItemsPosition;
 
             this.Dispatcher.InvokeAsync(() =>
@@ -316,7 +369,10 @@ namespace PP.Wpf.Controls
 
         private void DrawItems()
         {
-            this.canvas.Children.Clear();
+            for (var i = Children.Count - 1; i > 0; i--)
+            {
+                Children.RemoveAt(i);
+            }
 
             if (Count == 0)
                 return;
@@ -325,19 +381,22 @@ namespace PP.Wpf.Controls
 
             foreach (var data in ItemsSource)
             {
-                var item = new AutoGridCanvasItem(canvas)
+                var row = index / Columns;
+                var column = index % Columns;
+
+                var item = new AutoGridCanvasItem(this, new Rect(column, row, 1, 1), true)
                 {
                     DataContext = data,
                     Content = data,
-                    ContentTemplate = ItemTemplate,
-                    Rows = Rows,
-                    Columns = Columns,
-                    StrokeThickness = StrokeThickness,
-                    Rect = new Rect(index % Columns, index / Columns, 1, 1),
-                    IsCell = true
+                    ContentTemplate = ItemTemplate
                 };
 
-                this.canvas.Children.Add(item);
+                Grid.SetRow(item, row);
+                Grid.SetColumn(item, column);
+                Grid.SetRowSpan(item, 1);
+                Grid.SetColumnSpan(item, 1);
+
+                Children.Add(item);
                 index++;
             }
 
@@ -345,39 +404,42 @@ namespace PP.Wpf.Controls
         }
 
         /// <summary>
-        /// 更新位置
+        /// 更新子项位置
         /// </summary>
         private void UpdateItemsPosition()
         {
-            var size = canvas.RenderSize;
-            var line = Math.Ceiling(StrokeThickness / 2);
+            var size = RenderSize;
+            var columns = Columns;
+            var rows = Rows;
+            var line = StrokeThickness;
+            var cellW = (size.Width - line * (columns - 1)) / columns;
+            var cellH = (size.Height - line * (rows - 1)) / rows;
 
-            foreach (AutoGridCanvasItem item in canvas.Children)
+            for (var i = Children.Count - 1; i > 0; i--)
             {
-                var rect = item.Rect;
-
-                var x = rect.X * size.Width / Columns;
-                var y = rect.Y * size.Height / Rows;
-                var w = rect.Width * size.Width / Columns;
-                var h = rect.Height * size.Height / Rows;
+                var item = (AutoGridCanvasItem)Children[i];
+                Double x = 0, y = 0, w = 0, h = 0;
 
                 if (item.IsCell)
                 {
-                    if (rect.X != 0)
-                    {
-                        x += line;
-                        w -= line;
-                    }
-                    if (rect.Y != 0)
-                    {
-                        y += line;
-                        h -= line;
-                    }
+                    var row = Grid.GetRow(item);
+                    var column = Grid.GetColumn(item);
+                    var rowSpan = Grid.GetRowSpan(item);
+                    var columnSpan = Grid.GetColumnSpan(item);
 
-                    if (rect.X + rect.Width != Columns)
-                        w -= line;
-                    if (rect.Y + rect.Height != Rows)
-                        h -= line;
+                    x = column * (cellW + line);
+                    y = row * (cellH + line);
+                    w = columnSpan * cellW + (columnSpan - 1) * line;
+                    h = rowSpan * cellH + (rowSpan - 1) * line;
+                }
+                else
+                {
+                    var rect = item.Rect;
+
+                    x = rect.X * size.Width / columns;
+                    y = rect.Y * size.Height / rows;
+                    w = rect.Width * size.Width / columns;
+                    h = rect.Height * size.Height / rows;
                 }
 
                 item.SetCurrentValue(Canvas.LeftProperty, x);
@@ -393,21 +455,29 @@ namespace PP.Wpf.Controls
 
         #region Propertys
 
-        public Int32 Count => ItemsSource == null ? 0 : ItemsSource.Count;
+        /// <summary>
+        /// 数据项数量
+        /// </summary>
+        public Int32 Count => count;
 
         #endregion
 
         #region Fields
 
-        private Canvas canvas;
-        private Grid lineGrid;
         private Action collection_action;
         private Action position_action;
+        private Action sizeChagned_action;
+        private Grid lineGrid;
+        private Int32 count;
 
         #endregion
     }
 
 
+
+    /// <summary>
+    /// AutoGridCanvas的数据项
+    /// </summary>
     [TemplatePart(Name = "PART_ResizeTopLeft", Type = typeof(UIElement))]
     [TemplatePart(Name = "PART_ResizeTop", Type = typeof(UIElement))]
     [TemplatePart(Name = "PART_ResizeTopRight", Type = typeof(UIElement))]
@@ -420,8 +490,13 @@ namespace PP.Wpf.Controls
     {
         #region DependencyProperties
 
+        /// <summary>
+        /// 改变大小边框的边宽
+        /// </summary>
         public static readonly DependencyProperty ResizeBorderThicknessProperty = DependencyProperty.Register("ResizeBorderThickness", typeof(Double), typeof(AutoGridCanvasItem), new PropertyMetadata(6d));
-
+        /// <summary>
+        /// 改变大小边框的边宽
+        /// </summary>
         public Double ResizeBorderThickness { get => (Double)GetValue(ResizeBorderThicknessProperty); set => SetValue(ResizeBorderThicknessProperty, value); }
 
         #endregion
@@ -431,9 +506,17 @@ namespace PP.Wpf.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AutoGridCanvasItem), new FrameworkPropertyMetadata(typeof(AutoGridCanvasItem)));
         }
 
-        public AutoGridCanvasItem(Canvas panel)
+        /// <summary>
+        /// AutoGridCanvas的数据项
+        /// </summary>
+        /// <param name="panel"></param>
+        /// <param name="rect"></param>
+        /// <param name="isCell"></param>
+        public AutoGridCanvasItem(AutoGridCanvas panel, Rect rect, Boolean isCell)
         {
             this.panel = panel;
+            this.rect = rect;
+            this.isCell = isCell;
             this.RenderTransform = trans = new MatrixTransform();
         }
 
@@ -441,6 +524,9 @@ namespace PP.Wpf.Controls
 
         #region Override Methods
 
+        /// <summary>
+        /// 应用模板
+        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -489,9 +575,13 @@ namespace PP.Wpf.Controls
                 l.MouseLeftButtonDown += OnResizeBorderMouseLeftButtonDown;
         }
 
-        protected override void OnMouseDown(MouseButtonEventArgs e)
+        /// <summary>
+        /// 鼠标左键按下
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnMouseDown(e);
+            base.OnMouseLeftButtonDown(e);
 
             SetZIndex();
 
@@ -499,6 +589,10 @@ namespace PP.Wpf.Controls
             e.Handled = this.CaptureMouse();
         }
 
+        /// <summary>
+        /// 鼠标移动
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -520,6 +614,10 @@ namespace PP.Wpf.Controls
             this.trans.Matrix = matrix;
         }
 
+        /// <summary>
+        /// 鼠标左键弹起
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonUp(e);
@@ -531,6 +629,10 @@ namespace PP.Wpf.Controls
             }
         }
 
+        /// <summary>
+        /// 鼠标滚轮滚动
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             base.OnMouseWheel(e);
@@ -559,7 +661,7 @@ namespace PP.Wpf.Controls
 
         private void SetZIndex()
         {
-            var brothers = panel.Children.Cast<AutoGridCanvasItem>().Where(q => !Object.ReferenceEquals(q, this)).OrderBy(q => Panel.GetZIndex(q)).ToList();
+            var brothers = panel.Children.Cast<UIElement>().Where(q => !Object.ReferenceEquals(q, this)).OrderBy(q => Panel.GetZIndex(q)).ToList();
 
             Panel.SetZIndex(this, panel.Children.Count - 1);
 
@@ -580,7 +682,7 @@ namespace PP.Wpf.Controls
 
             if (audoDock)
             {
-                var bound = ((FrameworkElement)this.Parent).RenderSize;
+                var bound = panel.RenderSize;
                 AutoDock(ref left, ref top, ref width, ref height, ref bound);
             }
 
@@ -597,52 +699,46 @@ namespace PP.Wpf.Controls
         /// </summary>
         private void AutoDock(ref Double left, ref Double top, ref Double width, ref Double height, ref Size bound)
         {
-            var lenX = (width * 0.05) * Columns / bound.Width;
-            var lenY = (height * 0.05) * Rows / bound.Height;
+            var columns = panel.Columns;
+            var rows = panel.Rows;
 
-            var rectX = left * Columns / bound.Width;
-            var rectY = top * Rows / bound.Height;
-            var rectW = width * Columns / bound.Width;
-            var rectH = height * Rows / bound.Height;
+            var lenX = (width * 0.05) * columns / bound.Width;
+            var lenY = (height * 0.05) * rows / bound.Height;
 
-            var x = (Int32)Math.Round(rectX);
-            var y = (Int32)Math.Round(rectY);
-            var w = (Int32)Math.Round(rectW);
-            var h = (Int32)Math.Round(rectH);
+            var rectX = left * columns / bound.Width;
+            var rectY = top * rows / bound.Height;
+            var rectW = width * columns / bound.Width;
+            var rectH = height * rows / bound.Height;
 
-            if (Math.Abs(x - rectX) > lenX || Math.Abs(y - rectY) > lenY
-                || Math.Abs(w - rectW) > lenX * 2 || Math.Abs(h - rectH) > lenY * 2)
+            var column = (Int32)Math.Round(rectX);
+            var row = (Int32)Math.Round(rectY);
+            var columnSpan = (Int32)Math.Round(rectW);
+            var rowSpan = (Int32)Math.Round(rectH);
+
+            if (Math.Abs(column - rectX) > lenX || Math.Abs(row - rectY) > lenY
+                || Math.Abs(columnSpan - rectW) > lenX * 2 || Math.Abs(rowSpan - rectH) > lenY * 2)
             {
-                Rect = new Rect(rectX, rectY, rectW, rectH);
-                IsCell = false;
+                rect = new Rect(rectX, rectY, rectW, rectH);
+                isCell = false;
             }
             else
             {
-                Rect = new Rect(x, y, w, h);
-                IsCell = true;
+                rect = new Rect(column, row, columnSpan, rowSpan);
+                isCell = true;
 
-                var line = Math.Ceiling(StrokeThickness / 2);
+                Grid.SetRow(this, row);
+                Grid.SetColumn(this, column);
+                Grid.SetRowSpan(this, rowSpan);
+                Grid.SetColumnSpan(this, columnSpan);
 
-                left = x * bound.Width / Columns;
-                top = y * bound.Height / Rows;
-                width = w * bound.Width / Columns;
-                height = h * bound.Height / Rows;
+                var line = panel.StrokeThickness;
+                var cellW = (bound.Width - line * (columns - 1)) / columns;
+                var cellH = (bound.Height - line * (rows - 1)) / rows;
 
-                if (x != 0)
-                {
-                    left += line;
-                    width -= line;
-                }
-                if (y != 0)
-                {
-                    top += line;
-                    height -= line;
-                }
-
-                if (x + w != Columns)
-                    width -= line;
-                if (y + h != Rows)
-                    height -= line;
+                left = column * (cellW + line);
+                top = row * (cellH + line);
+                width = columnSpan * cellW + (columnSpan - 1) * line;
+                height = rowSpan * cellH + (rowSpan - 1) * line;
             }
         }
 
@@ -721,7 +817,7 @@ namespace PP.Wpf.Controls
 
             el.ReleaseMouseCapture();
 
-            var bound = ((FrameworkElement)this.Parent).RenderSize;
+            var bound = panel.RenderSize;
             Double left = Canvas.GetLeft(this), top = Canvas.GetTop(this), width = this.ActualWidth, height = this.ActualHeight;
 
             AutoDock(ref left, ref top, ref width, ref height, ref bound);
@@ -738,20 +834,22 @@ namespace PP.Wpf.Controls
 
         #region Propertys
 
-        public Int32 Rows { get; set; }
-        public Int32 Columns { get; set; }
-        public Double StrokeThickness { get; set; }
-        public Rect Rect { get; set; }
+        /// <summary>
+        /// 相对区域
+        /// </summary>
+        public Rect Rect => rect;
         /// <summary>
         /// 是否在格子里面
         /// </summary>
-        public Boolean IsCell { get; set; }
+        public Boolean IsCell => isCell;
 
         #endregion
 
         #region Fields
 
-        private Canvas panel;
+        private AutoGridCanvas panel;
+        private Rect rect;          // 相对区域
+        private Boolean isCell;     // 是否完全在格子里面
         private UIElement tl, t, tr, r, br, b, bl, l;
         private MatrixTransform trans;
         private Point point;

@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ctrls="clr-namespace:PP.Wpf.Controls">
 
+    <Style TargetType="{x:Type ctrls:AutoGridCanvas}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
     <Style TargetType="{x:Type ctrls:AutoGridCanvasItem}">
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
@@ -16,14 +20,20 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         <ctrls:SimplePanel x:Name="resize" Visibility="Hidden">
                             <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
-                            <Rectangle x:Name="PART_ResizeTopLeft" Width="6" Height="6" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="Transparent" Cursor="SizeNWSE" />
-                            <Rectangle x:Name="PART_ResizeTop" Height="6" Margin="6 0" VerticalAlignment="Top" Fill="Transparent" Cursor="SizeNS" />
-                            <Rectangle x:Name="PART_ResizeTopRight" Width="6" Height="6" HorizontalAlignment="Right" VerticalAlignment="Top" Fill="Transparent" Cursor="SizeNESW" />
-                            <Rectangle x:Name="PART_ResizeRight" Margin="0 6" Width="6" HorizontalAlignment="Right" Fill="Transparent" Cursor="SizeWE" />
-                            <Rectangle x:Name="PART_ResizeBottomRight" Height="6" Width="6" HorizontalAlignment="Right" VerticalAlignment="Bottom" Fill="Transparent" Cursor="SizeNWSE" />
-                            <Rectangle x:Name="PART_ResizeBottom" Margin="6 0" Height="6" VerticalAlignment="Bottom" Fill="Transparent" Cursor="SizeNS" />
-                            <Rectangle x:Name="PART_ResizeBottomLeft" Width="6" Height="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Fill="Transparent" Cursor="SizeNESW" />
-                            <Rectangle x:Name="PART_ResizeLeft" Margin="0 6" Width="6" HorizontalAlignment="Left" Fill="Transparent" Cursor="SizeWE" />
+                            <DockPanel>
+                                <DockPanel DockPanel.Dock="Top">
+                                    <Rectangle x:Name="PART_ResizeTopLeft" Width="{TemplateBinding ResizeBorderThickness}" Height="{TemplateBinding ResizeBorderThickness}" Fill="Transparent" Cursor="SizeNWSE" />
+                                    <Rectangle x:Name="PART_ResizeTopRight" DockPanel.Dock="Right" Width="{TemplateBinding ResizeBorderThickness}" Height="{TemplateBinding ResizeBorderThickness}"  Fill="Transparent" Cursor="SizeNESW" />
+                                    <Rectangle x:Name="PART_ResizeTop" Height="{TemplateBinding ResizeBorderThickness}" Fill="Transparent" Cursor="SizeNS" />
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Bottom">
+                                    <Rectangle x:Name="PART_ResizeBottomLeft" Width="{TemplateBinding ResizeBorderThickness}" Height="{TemplateBinding ResizeBorderThickness}" Fill="Transparent" Cursor="SizeNESW" />
+                                    <Rectangle x:Name="PART_ResizeBottomRight" DockPanel.Dock="Right" Height="{TemplateBinding ResizeBorderThickness}" Width="{TemplateBinding ResizeBorderThickness}" Fill="Transparent" Cursor="SizeNWSE" />
+                                    <Rectangle x:Name="PART_ResizeBottom" Height="{TemplateBinding ResizeBorderThickness}" Fill="Transparent" Cursor="SizeNS" />
+                                </DockPanel>
+                                <Rectangle x:Name="PART_ResizeLeft" Width="{TemplateBinding ResizeBorderThickness}" Fill="Transparent" Cursor="SizeWE" />
+                                <Rectangle x:Name="PART_ResizeRight" Width="{TemplateBinding ResizeBorderThickness}" HorizontalAlignment="Right" Fill="Transparent" Cursor="SizeWE" />
+                            </DockPanel>
                         </ctrls:SimplePanel>
                     </ctrls:SimplePanel>
                     <ControlTemplate.Triggers>

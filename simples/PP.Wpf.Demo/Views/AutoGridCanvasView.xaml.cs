@@ -16,22 +16,30 @@ using System.Windows.Shapes;
 namespace PP.Wpf.Demo.Views
 {
     /// <summary>
-    /// ListBoxDragSelectViewerView.xaml 的交互逻辑
+    /// AutoGridCanvasView.xaml 的交互逻辑
     /// </summary>
-    public partial class ListBoxDragSelectViewerView : UserControl
+    public partial class AutoGridCanvasView : UserControl
     {
-        public ListBoxDragSelectViewerView()
+        public AutoGridCanvasView()
         {
             InitializeComponent();
 
-            var nums = new Int32[1000];
+            btn.Click += OnClicked;
+        }
 
-            for (var i = 0; i < 1000;)
+        private void OnClicked(object sender, RoutedEventArgs e)
+        {
+            if (Int32.TryParse(input.Text, out Int32 num))
             {
-                nums[i] = ++i;
-            }
+                var array = new Int32[num];
 
-            listbox.ItemsSource = nums;
+                for (var i = 0; i < num;)
+                {
+                    array[i] = ++i;
+                }
+
+                agc.ItemsSource = array;
+            }
         }
     }
 }

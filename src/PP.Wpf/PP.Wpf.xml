@@ -355,14 +355,54 @@
             自动分栏且子项可拖动
             </summary>
         </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.ItemsSourceProperty">
+            <summary>
+            数据项
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.ItemsSource">
+            <summary>
+            数据项
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.ItemTemplateProperty">
+            <summary>
+            子项数据模板
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.ItemTemplate">
+            <summary>
+            子项数据模板
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.StrokeProperty">
+            <summary>
+            网络线颜色
+            </summary>
+        </member>
         <member name="P:PP.Wpf.Controls.AutoGridCanvas.Stroke">
             <summary>
             网络线颜色
             </summary>
         </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.StrokeThicknessProperty">
+            <summary>
+            网络线大小
+            </summary>
+        </member>
         <member name="P:PP.Wpf.Controls.AutoGridCanvas.StrokeThickness">
             <summary>
-            网络线宽度
+            网络线大小
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.RowsPropertyKey">
+            <summary>
+            行数
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.RowsProperty">
+            <summary>
+            行数
             </summary>
         </member>
         <member name="P:PP.Wpf.Controls.AutoGridCanvas.Rows">
@@ -370,9 +410,24 @@
             行数
             </summary>
         </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.ColumnsPropertyKey">
+            <summary>
+            列数
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvas.ColumnsProperty">
+            <summary>
+            列数
+            </summary>
+        </member>
         <member name="P:PP.Wpf.Controls.AutoGridCanvas.Columns">
             <summary>
             列数
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvas.#ctor">
+            <summary>
+            自动分栏且子项可拖动
             </summary>
         </member>
         <member name="M:PP.Wpf.Controls.AutoGridCanvas.GetRowsAndColumns(System.Int32,System.Int32@,System.Int32@)">
@@ -400,12 +455,74 @@
         </member>
         <member name="M:PP.Wpf.Controls.AutoGridCanvas.UpdateItemsPosition">
             <summary>
-            更新位置
+            更新子项位置
             </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvas.Count">
+            <summary>
+            数据项数量
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.AutoGridCanvasItem">
+            <summary>
+            AutoGridCanvas的数据项
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.AutoGridCanvasItem.ResizeBorderThicknessProperty">
+            <summary>
+            改变大小边框的边宽
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvasItem.ResizeBorderThickness">
+            <summary>
+            改变大小边框的边宽
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.#ctor(PP.Wpf.Controls.AutoGridCanvas,System.Windows.Rect,System.Boolean)">
+            <summary>
+            AutoGridCanvas的数据项
+            </summary>
+            <param name="panel"></param>
+            <param name="rect"></param>
+            <param name="isCell"></param>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.OnApplyTemplate">
+            <summary>
+            应用模板
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            鼠标左键按下
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.OnMouseMove(System.Windows.Input.MouseEventArgs)">
+            <summary>
+            鼠标移动
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.OnMouseLeftButtonUp(System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            鼠标左键弹起
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.OnMouseWheel(System.Windows.Input.MouseWheelEventArgs)">
+            <summary>
+            鼠标滚轮滚动
+            </summary>
+            <param name="e"></param>
         </member>
         <member name="M:PP.Wpf.Controls.AutoGridCanvasItem.AutoDock(System.Double@,System.Double@,System.Double@,System.Double@,System.Windows.Size@)">
             <summary>
             自动吸附
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AutoGridCanvasItem.Rect">
+            <summary>
+            相对区域
             </summary>
         </member>
         <member name="P:PP.Wpf.Controls.AutoGridCanvasItem.IsCell">
@@ -888,6 +1005,36 @@
             <typeparam name="T">目标类型</typeparam>
             <param name="obj">转换对象</param>
             <returns></returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
