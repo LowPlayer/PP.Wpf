@@ -47,14 +47,17 @@
                 </Grid.RowDefinitions>
                 <Rectangle x:Name="PART_TitleBackground" Height="{TemplateBinding attach:WindowElement.TitleHeight}" Fill="{TemplateBinding attach:WindowElement.TitleBackground}" />
                 <DockPanel TextElement.Foreground="{TemplateBinding attach:WindowElement.TitleForeground}" TextElement.FontSize="{TemplateBinding attach:WindowElement.TitleFontsize}">
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
-                        <Button x:Name="PART_Min" Style="{DynamicResource PP.Styles.Button.Window.Base}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}"
+                    <ctrls:SimplePanel DockPanel.Dock="Right">
+                        <StackPanel Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
+                            <Button x:Name="PART_Min" Style="{DynamicResource PP.Styles.Button.Window.Base}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}"
                                 attach:IconElement.Geometry="{DynamicResource PP.Paths.Window.Minimized}" attach:IconElement.Width="{TemplateBinding attach:IconElement.Width}" />
-                        <Button x:Name="PART_Max" Style="{DynamicResource PP.Styles.Button.Window.Base}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}" 
+                            <Button x:Name="PART_Max" Style="{DynamicResource PP.Styles.Button.Window.Base}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}" 
                                 attach:IconElement.Geometry="{DynamicResource PP.Paths.Window.Maximized}" attach:IconElement.Width="{TemplateBinding attach:IconElement.Width}" />
-                        <Button x:Name="PART_Close" Style="{DynamicResource PP.Styles.Button.Window.Close}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}" 
+                            <Button x:Name="PART_Close" Style="{DynamicResource PP.Styles.Button.Window.Close}" Width="{TemplateBinding attach:WindowElement.WindowButtonWidth}" 
                                 attach:IconElement.Geometry="{DynamicResource PP.Paths.Window.Close}" attach:IconElement.Width="{TemplateBinding attach:IconElement.Width}" />
-                    </StackPanel>
+                        </StackPanel>
+                        <Border BorderBrush="Transparent" BorderThickness="0 3 3 0" />
+                    </ctrls:SimplePanel>
                     <TextBlock VerticalAlignment="Center" Text="{TemplateBinding Title}" Margin="{TemplateBinding attach:WindowElement.TitlePadding}" IsHitTestVisible="False"
                                Visibility="{Binding Text,RelativeSource={RelativeSource Self},Converter={x:Static cvts:StringToVisibilityConverter.EmptyToCollapsed}}" />
                     <ContentPresenter Content="{TemplateBinding TitleContent}" ContentTemplate="{TemplateBinding TitleContentTemplate}" />
