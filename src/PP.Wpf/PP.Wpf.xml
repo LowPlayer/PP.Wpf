@@ -9,6 +9,44 @@
             背景元素
             </summary>
         </member>
+        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.HoverBackgroundProperty">
+            <summary>
+            鼠标悬浮时背景颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetHoverBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标悬浮时背景颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetHoverBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标悬浮时背景颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.PressedBackgroundProperty">
+            <summary>
+            鼠标按压时背景颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetPressedBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标按压时背景颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetPressedBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标按压时背景颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
         <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.SelectedBackgroundProperty">
             <summary>
             选中时背景颜色
@@ -28,21 +66,83 @@
             <param name="element"></param>
             <param name="value"></param>
         </member>
-        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.HoverBackgroundProperty">
+        <member name="T:PP.Wpf.Controls.Attach.BorderElement">
             <summary>
-            鼠标悬浮时背景颜色
+            边框元素
             </summary>
         </member>
-        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetHoverBackground(System.Windows.DependencyObject)">
+        <member name="F:PP.Wpf.Controls.Attach.BorderElement.HoverBorderBrushProperty">
             <summary>
-            获取鼠标悬浮时背景颜色
+            鼠标悬停时边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.GetHoverBorderBrush(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标悬停时边框颜色
             </summary>
             <param name="element"></param>
             <returns></returns>
         </member>
-        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetHoverBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetHoverBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
-            设置鼠标悬浮时背景颜色
+            设置鼠标悬停时边框颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BorderElement.PressedBorderBrushProperty">
+            <summary>
+            鼠标按压时边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.GetPressedBorderBrush(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标按压时边框颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetPressedBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标按压时边框颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BorderElement.SelectedBorderBrushProperty">
+            <summary>
+            选中时边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.GetSelectedBorderBrush(System.Windows.DependencyObject)">
+            <summary>
+            获取选中时边框颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetSelectedBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置选中时边框颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BorderElement.CornerRadiusProperty">
+            <summary>
+            圆角弧度
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.GetCornerRadius(System.Windows.DependencyObject)">
+            <summary>
+            获取圆角弧度
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetCornerRadius(System.Windows.DependencyObject,System.Windows.CornerRadius)">
+            <summary>
+            设置圆角弧度
             </summary>
             <param name="element"></param>
             <param name="value"></param>
@@ -86,6 +186,25 @@
         <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.SetPressedForeground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
             设置鼠标按下时字体颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.ForegroundElement.SelectedForegroundProperty">
+            <summary>
+            选中时字体颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.GetSelectedForeground(System.Windows.DependencyObject)">
+            <summary>
+            获取选中时字体颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.SetSelectedForeground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置选中时字体颜色
             </summary>
             <param name="element"></param>
             <param name="value"></param>
@@ -205,6 +324,25 @@
         <member name="M:PP.Wpf.Controls.Attach.IconElement.SetHeight(System.Windows.DependencyObject,System.Double)">
             <summary>
             设置图标高度
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.IconElement.MarginProperty">
+            <summary>
+            图标内边距
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.GetMargin(System.Windows.DependencyObject)">
+            <summary>
+            获取图标外边距
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.IconElement.SetMargin(System.Windows.DependencyObject,System.Windows.Thickness)">
+            <summary>
+            设置图标外边距
             </summary>
             <param name="element"></param>
             <param name="value"></param>

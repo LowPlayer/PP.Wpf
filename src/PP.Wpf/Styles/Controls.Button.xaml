@@ -2,6 +2,105 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:attach="clr-namespace:PP.Wpf.Controls.Attach">
 
+    <!--按钮-->
+    <Style x:Key="PP.Styles.Button.Default" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Padding" Value="6 3" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Default}" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Default.Hover}" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Default.Highlight}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Black60}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Black50}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Black}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Black}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{Binding Path=(attach:BackgroundElement.HoverBackground),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.HoverBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=(attach:ForegroundElement.HoverForeground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{Binding Path=(attach:BackgroundElement.PressedBackground),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.PressedBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=(attach:ForegroundElement.PressedForeground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PP.Styles.Button.Primary" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource PP.Styles.Button.Default}">
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Themes80}" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.White90}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+    </Style>
+    <Style x:Key="PP.Styles.Button.Info" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource PP.Styles.Button.Default}">
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Info}" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Info.Hover}" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Info.Highlight}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Info.Highlight}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Info.Hover}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Info.Highlight}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.White90}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+    </Style>
+    <Style x:Key="PP.Styles.Button.Warning" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource PP.Styles.Button.Default}">
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Warning}" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Warning.Hover}" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Warning.Highlight}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Warning.Highlight}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Warning.Hover}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Warning.Highlight}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.White90}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+    </Style>
+    <Style x:Key="PP.Styles.Button.Danger" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource PP.Styles.Button.Default}">
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Danger}" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Danger.Hover}" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Danger.Highlight}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Danger.Highlight}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Danger.Hover}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Danger.Highlight}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.White90}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+    </Style>
+    <Style x:Key="PP.Styles.Button.Link" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource PP.Styles.Button.Default}">
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Background}" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Background}" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Background}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Link}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Link.Hover}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Link.Highlight}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Link}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.Link.Hover}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Link.Highlight}" />
+    </Style>
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Default}" />
+
+    <!--窗口按钮-->
     <Style x:Key="PP.Styles.Button.Window.Base" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
@@ -38,7 +137,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
     <Style x:Key="PP.Styles.Button.Window.Close" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Window.Base}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -48,4 +146,137 @@
         </Style.Triggers>
     </Style>
 
+    <!--多选按钮-->
+    <Style x:Key="PP.Styles.ToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PP.Styles.Button.Default}">
+        <Setter Property="attach:BackgroundElement.SelectedBackground" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:BorderElement.SelectedBorderBrush" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
+        <Setter Property="attach:ForegroundElement.SelectedForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{Binding Path=(attach:BackgroundElement.SelectedBackground),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.SelectedBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=(attach:ForegroundElement.SelectedForeground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="0.85" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="1" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PP.Styles.RadioButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Black60}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Black40}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:BorderElement.SelectedBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:BorderElement.CornerRadius" Value="100" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
+        <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.Black80}" />
+        <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:ForegroundElement.SelectedForeground" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="attach:IconElement.Geometry" Value="{DynamicResource PP.Paths.Circle}" />
+        <Setter Property="attach:IconElement.Width" Value="{Binding FontSize,RelativeSource={RelativeSource Self}}" />
+        <Setter Property="attach:IconElement.Height" Value="{Binding FontSize,RelativeSource={RelativeSource Self}}" />
+        <Setter Property="attach:IconElement.Margin" Value="0 0 5 0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <DockPanel Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="icon" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation To="1" Duration="0:0:.2" Storyboard.TargetName="icon" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation To="1" Duration="0:0:.2" Storyboard.TargetName="icon" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked"></VisualState>
+                                <VisualState x:Name="Indeterminate" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Width="{TemplateBinding attach:IconElement.Width}" Height="{TemplateBinding attach:IconElement.Height}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}"
+                                    CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}" Margin="{TemplateBinding attach:IconElement.Margin}">
+                            <Path x:Name="icon" Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Fill="{TemplateBinding BorderBrush}" RenderTransformOrigin="0.5 0.5" Visibility="Hidden">
+                                <Path.RenderTransform>
+                                    <ScaleTransform ScaleX="0" ScaleY="0" />
+                                </Path.RenderTransform>
+                            </Path>
+                        </Border>
+                        <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.HoverBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=(attach:ForegroundElement.HoverForeground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.PressedBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=(attach:ForegroundElement.PressedForeground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.SelectedBorderBrush),RelativeSource={RelativeSource Self}}" />
+                <Setter Property="Foreground" Value="{Binding Path=(attach:ForegroundElement.SelectedForeground),RelativeSource={RelativeSource Self}}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="0.85" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsChecked" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Opacity" Value="1" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource PP.Styles.RadioButton}" />
+    <Style x:Key="PP.Styles.CheckBox" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PP.Styles.RadioButton}">
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="attach:BorderElement.CornerRadius" Value="0" />
+        <Setter Property="attach:IconElement.Geometry" Value="{DynamicResource PP.Paths.Hook}" />
+    </Style>
+    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource PP.Styles.CheckBox}" />
 </ResourceDictionary>

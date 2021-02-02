@@ -120,5 +120,24 @@ namespace PP.Wpf.Controls.Attach
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetHeight(DependencyObject element, Double value) => element.SetValue(HeightProperty, value);
+
+
+
+        /// <summary>
+        /// 图标内边距
+        /// </summary>
+        public static readonly DependencyProperty MarginProperty = DependencyProperty.RegisterAttached("Margin", typeof(Thickness), typeof(IconElement));
+        /// <summary>
+        /// 获取图标外边距
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Thickness GetMargin(DependencyObject element) => (Thickness)element.GetValue(MarginProperty);
+        /// <summary>
+        /// 设置图标外边距
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetMargin(DependencyObject element, Thickness value) => element.SetValue(MarginProperty, value);
     }
 }

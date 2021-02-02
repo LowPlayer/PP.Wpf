@@ -43,5 +43,24 @@ namespace PP.Wpf.Controls.Attach
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetPressedForeground(DependencyObject element, Brush value) => element.SetValue(PressedForegroundProperty, value);
+
+
+
+        /// <summary>
+        /// 选中时字体颜色
+        /// </summary>
+        public static readonly DependencyProperty SelectedForegroundProperty = DependencyProperty.RegisterAttached("SelectedForeground", typeof(Brush), typeof(ForegroundElement));
+        /// <summary>
+        /// 获取选中时字体颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetSelectedForeground(DependencyObject element) => (Brush)element.GetValue(SelectedForegroundProperty);
+        /// <summary>
+        /// 设置选中时字体颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetSelectedForeground(DependencyObject element, Brush value) => element.SetValue(SelectedForegroundProperty, value);
     }
 }

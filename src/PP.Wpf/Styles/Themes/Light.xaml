@@ -5,7 +5,7 @@
                     mc:Ignorable="options">
 
     <Color x:Key="PP.Colors.Background" >#FFFFFF</Color>
-    <Color x:Key="PP.Colors.Foreground" >#000000</Color>
+    <Color x:Key="PP.Colors.Foreground" >#333333</Color>
 
     <Color x:Key="PP.Colors.Black" >#000000</Color>
     <Color x:Key="PP.Colors.Black90" >#E6000000</Color>
@@ -17,6 +17,17 @@
     <Color x:Key="PP.Colors.Black30" >#4D000000</Color>
     <Color x:Key="PP.Colors.Black20" >#33000000</Color>
     <Color x:Key="PP.Colors.Black10" >#1A000000</Color>
+
+    <Color x:Key="PP.Colors.White" >#FFFFFF</Color>
+    <Color x:Key="PP.Colors.White90" >#E6FFFFFF</Color>
+    <Color x:Key="PP.Colors.White80" >#CCFFFFFF</Color>
+    <Color x:Key="PP.Colors.White70" >#B3FFFFFF</Color>
+    <Color x:Key="PP.Colors.White60" >#99FFFFFF</Color>
+    <Color x:Key="PP.Colors.White50" >#80FFFFFF</Color>
+    <Color x:Key="PP.Colors.White40" >#66FFFFFF</Color>
+    <Color x:Key="PP.Colors.White30" >#4DFFFFFF</Color>
+    <Color x:Key="PP.Colors.White20" >#33FFFFFF</Color>
+    <Color x:Key="PP.Colors.White10" >#1AFFFFFF</Color>
 
     <SolidColorBrush x:Key="PP.Brushes.Background" Color="{StaticResource PP.Colors.Background}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Foreground" Color="{StaticResource PP.Colors.Foreground}" options:Freeze="True" />
@@ -31,5 +42,16 @@
     <SolidColorBrush x:Key="PP.Brushes.Black30" Color="{StaticResource PP.Colors.Black30}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Black20" Color="{StaticResource PP.Colors.Black20}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Black10" Color="{StaticResource PP.Colors.Black10}" options:Freeze="True" />
+
+    <SolidColorBrush x:Key="PP.Brushes.White" Color="{StaticResource PP.Colors.White}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White90" Color="{StaticResource PP.Colors.White90}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White80" Color="{StaticResource PP.Colors.White80}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White70" Color="{StaticResource PP.Colors.White70}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White60" Color="{StaticResource PP.Colors.White60}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White50" Color="{StaticResource PP.Colors.White50}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White40" Color="{StaticResource PP.Colors.White40}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White30" Color="{StaticResource PP.Colors.White30}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White20" Color="{StaticResource PP.Colors.White20}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.White10" Color="{StaticResource PP.Colors.White10}" options:Freeze="True" />
 
 </ResourceDictionary>
