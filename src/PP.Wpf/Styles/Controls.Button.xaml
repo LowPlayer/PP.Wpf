@@ -228,8 +228,9 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border Width="{TemplateBinding attach:IconElement.Width}" Height="{TemplateBinding attach:IconElement.Height}"
-                                    BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}"
-                                    CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}" Margin="{TemplateBinding attach:IconElement.Margin}">
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}"
+                                CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}" Margin="{TemplateBinding attach:IconElement.Margin}"
+                                IsHitTestVisible="False">
                             <Path x:Name="icon" Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Fill="{TemplateBinding BorderBrush}" RenderTransformOrigin="0.5 0.5" Visibility="Hidden">
                                 <Path.RenderTransform>
                                     <ScaleTransform ScaleX="0" ScaleY="0" />

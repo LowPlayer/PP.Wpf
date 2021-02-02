@@ -20,7 +20,7 @@ namespace PP.Wpf.Converters
         /// <returns></returns>
         public Object Convert(Object value, Type targetType, Object parameter, CultureInfo culture)
         {
-            return (value == null || String.IsNullOrEmpty(value.ToString())) ? EmptyValue : Visibility.Visible;
+            return (value == null || String.IsNullOrEmpty(value.ToString())) ? EmptyValue : NotEmptyValue;
         }
 
         /// <summary>
@@ -41,6 +41,11 @@ namespace PP.Wpf.Converters
         /// </summary>
         public Visibility EmptyValue { get; set; } = Visibility.Collapsed;
 
+        /// <summary>
+        /// 非空字符串时的Visibility
+        /// </summary>
+        public Visibility NotEmptyValue { get; set; } = Visibility.Visible;
+
         private static readonly Lazy<StringToVisibilityConverter> emptyToCollapsed = new Lazy<StringToVisibilityConverter>();
         /// <summary>
         /// 空字符串时设置Visibility=Collapsed
@@ -53,5 +58,12 @@ namespace PP.Wpf.Converters
         /// 空字符串时设置Visibility=Hidden
         /// </summary>
         public static StringToVisibilityConverter EmptyToHidden => emptyToHidden.Value;
+
+
+        private static readonly Lazy<StringToVisibilityConverter> emptyToVisible = new Lazy<StringToVisibilityConverter>(() => new StringToVisibilityConverter { EmptyValue = Visibility.Visible, NotEmptyValue = Visibility.Collapsed });
+        /// <summary>
+        /// 空字符串时设置Visibility=Visible
+        /// </summary>
+        public static StringToVisibilityConverter EmptyToVisible => emptyToVisible.Value;
     }
 }

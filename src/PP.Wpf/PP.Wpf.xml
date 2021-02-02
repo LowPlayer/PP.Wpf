@@ -66,6 +66,25 @@
             <param name="element"></param>
             <param name="value"></param>
         </member>
+        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.FocusBackgroundProperty">
+            <summary>
+            聚焦时背景颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetFocusBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取聚焦时背景颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetFocusBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置聚焦时背景颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:PP.Wpf.Controls.Attach.BorderElement">
             <summary>
             边框元素
@@ -124,6 +143,25 @@
         <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetSelectedBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
             <summary>
             设置选中时边框颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BorderElement.FocusBorderBrushProperty">
+            <summary>
+            聚焦时边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.GetFocusBorderBrush(System.Windows.DependencyObject)">
+            <summary>
+            聚焦时边框颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetFocusBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            聚焦时边框颜色
             </summary>
             <param name="element"></param>
             <param name="value"></param>
@@ -343,6 +381,30 @@
         <member name="M:PP.Wpf.Controls.Attach.IconElement.SetMargin(System.Windows.DependencyObject,System.Windows.Thickness)">
             <summary>
             设置图标外边距
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:PP.Wpf.Controls.Attach.TextElement">
+            <summary>
+            文本元素
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.TextElement.PlaceholderProperty">
+            <summary>
+            占位符
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.TextElement.GetPlaceholder(System.Windows.DependencyObject)">
+            <summary>
+            获取占位符
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.TextElement.SetPlaceholder(System.Windows.DependencyObject,System.String)">
+            <summary>
+            设置占位符
             </summary>
             <param name="element"></param>
             <param name="value"></param>
@@ -1078,6 +1140,11 @@
             空字符串时的Visibility
             </summary>
         </member>
+        <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.NotEmptyValue">
+            <summary>
+            非空字符串时的Visibility
+            </summary>
+        </member>
         <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.EmptyToCollapsed">
             <summary>
             空字符串时设置Visibility=Collapsed
@@ -1086,6 +1153,11 @@
         <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.EmptyToHidden">
             <summary>
             空字符串时设置Visibility=Hidden
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Converters.StringToVisibilityConverter.EmptyToVisible">
+            <summary>
+            空字符串时设置Visibility=Visible
             </summary>
         </member>
         <member name="T:PP.Wpf.Converters.ThicknessNoTopConverter">

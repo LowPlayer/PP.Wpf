@@ -66,6 +66,25 @@ namespace PP.Wpf.Controls.Attach
 
 
         /// <summary>
+        /// 聚焦时边框颜色
+        /// </summary>
+        public static readonly DependencyProperty FocusBorderBrushProperty = DependencyProperty.RegisterAttached("FocusBorderBrush", typeof(Brush), typeof(BorderElement));
+        /// <summary>
+        /// 聚焦时边框颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetFocusBorderBrush(DependencyObject element) => (Brush)element.GetValue(FocusBorderBrushProperty);
+        /// <summary>
+        /// 聚焦时边框颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetFocusBorderBrush(DependencyObject element, Brush value) => element.SetValue(FocusBorderBrushProperty, value);
+
+
+
+        /// <summary>
         /// 圆角弧度
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(BorderElement));

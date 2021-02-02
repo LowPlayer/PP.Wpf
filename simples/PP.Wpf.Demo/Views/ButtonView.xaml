@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="PP.Wpf.Demo.Views.ButtonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource PP.Brushes.Background}"
+             Foreground="{DynamicResource PP.Brushes.Foreground}">
+    <StackPanel Margin="10">
+        <GroupBox Header="按钮" Margin="10">
+            <WrapPanel>
+                <Button Margin="5">默认按钮</Button>
+                <Button Style="{StaticResource PP.Styles.Button.Primary}" Margin="5">主题按钮</Button>
+                <Button Style="{StaticResource PP.Styles.Button.Info}" Margin="5">信息按钮</Button>
+                <Button Style="{StaticResource PP.Styles.Button.Warning}" Margin="5">警告按钮</Button>
+                <Button Style="{StaticResource PP.Styles.Button.Danger}" Margin="5">危险按钮</Button>
+                <Button Style="{StaticResource PP.Styles.Button.Link}" Margin="5">链接按钮</Button>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Header="单选按钮" Margin="10">
+            <StackPanel>
+                <WrapPanel>
+                    <RadioButton Style="{StaticResource PP.Styles.ToggleButton}" IsChecked="True" Margin="5">选项一</RadioButton>
+                    <RadioButton Style="{StaticResource PP.Styles.ToggleButton}" Margin="5">选项二</RadioButton>
+                    <RadioButton Style="{StaticResource PP.Styles.ToggleButton}" Margin="5">选项三</RadioButton>
+                </WrapPanel>
+                <WrapPanel>
+                    <RadioButton Margin="5" IsChecked="True">选项一</RadioButton>
+                    <RadioButton Margin="5">选项二</RadioButton>
+                    <RadioButton Margin="5">选项三</RadioButton>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="多选按钮" Margin="10">
+            <StackPanel>
+                <WrapPanel>
+                    <CheckBox Style="{StaticResource PP.Styles.ToggleButton}" IsChecked="True" Margin="5">选项一</CheckBox>
+                    <CheckBox Style="{StaticResource PP.Styles.ToggleButton}" IsChecked="True" Margin="5">选项二</CheckBox>
+                    <CheckBox Style="{StaticResource PP.Styles.ToggleButton}" Margin="5">选项三</CheckBox>
+                </WrapPanel>
+                <WrapPanel>
+                    <CheckBox Margin="5" IsChecked="True">选项一</CheckBox>
+                    <CheckBox Margin="5" IsChecked="True">选项二</CheckBox>
+                    <CheckBox Margin="5">选项三</CheckBox>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+</UserControl>

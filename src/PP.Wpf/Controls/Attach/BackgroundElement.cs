@@ -62,5 +62,24 @@ namespace PP.Wpf.Controls.Attach
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetSelectedBackground(DependencyObject element, Brush value) => element.SetValue(SelectedBackgroundProperty, value);
+
+
+
+        /// <summary>
+        /// 聚焦时背景颜色
+        /// </summary>
+        public static readonly DependencyProperty FocusBackgroundProperty = DependencyProperty.RegisterAttached("FocusBackground", typeof(Brush), typeof(BackgroundElement));
+        /// <summary>
+        /// 获取聚焦时背景颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetFocusBackground(DependencyObject element) => (Brush)element.GetValue(FocusBackgroundProperty);
+        /// <summary>
+        /// 设置聚焦时背景颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetFocusBackground(DependencyObject element, Brush value) => element.SetValue(FocusBackgroundProperty, value);
     }
 }
