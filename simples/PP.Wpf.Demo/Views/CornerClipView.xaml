@@ -9,7 +9,7 @@
              Background="{DynamicResource PP.Brushes.Background}" Foreground="{DynamicResource PP.Brushes.Foreground}">
     <DockPanel Margin="10">
         <DockPanel DockPanel.Dock="Top" Margin="6">
-            <TextBlock>圆角大小：</TextBlock>
+            <TextBlock VerticalAlignment="Center">圆角大小：</TextBlock>
             <TextBox TextWrapping="Wrap" Text="{Binding CornerRadius,ElementName=cornerClip}" />
         </DockPanel>
         <pp:CornerClip x:Name="cornerClip" Margin="6" CornerRadius="20">

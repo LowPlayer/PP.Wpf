@@ -409,6 +409,44 @@
             <param name="element"></param>
             <param name="value"></param>
         </member>
+        <member name="F:PP.Wpf.Controls.Attach.TextElement.AttachPasswordBoxProperty">
+            <summary>
+            是否监听PasswordBox的PasswordChanged事件
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.TextElement.GetAttachPasswordBox(System.Windows.DependencyObject)">
+            <summary>
+            获取是否监听PasswordBox的PasswordChanged事件
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.TextElement.SetAttachPasswordBox(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            设置是否监听PasswordBox的PasswordChanged事件
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.TextElement.PasswordProperty">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.TextElement.GetPassword(System.Windows.DependencyObject)">
+            <summary>
+            获取密码
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.TextElement.SetPassword(System.Windows.DependencyObject,System.String)">
+            <summary>
+            设置密码
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:PP.Wpf.Controls.Attach.WindowElement">
             <summary>
             窗体元素

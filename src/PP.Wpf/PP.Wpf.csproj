@@ -9,4 +9,11 @@
     <DocumentationFile>C:\Users\Administrator\Documents\GitHub\PP.Wpf\src\PP.Wpf\PP.Wpf.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Page Update="Styles\Controls.PasswordBox.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -31,6 +31,9 @@
             <views:ButtonView />
         </TabItem>
         <TabItem Header="TextBox">
+            <views:TextBoxView />
+        </TabItem>
+        <TabItem Header="PasswordBox">
             <StackPanel Margin="10">
                 <DockPanel Margin="5">
                     <TextBlock VerticalAlignment="Center">水印文字：</TextBlock>
@@ -42,7 +45,7 @@
                 </DockPanel>
                 <DockPanel Margin="5">
                     <TextBlock VerticalAlignment="Center">演示文本：</TextBlock>
-                    <TextBox x:Name="input" pp:TextElement.Placeholder="水印文字" Height="30" />
+                    <PasswordBox x:Name="input" pp:TextElement.Placeholder="水印文字" Height="30" />
                 </DockPanel>
             </StackPanel>
         </TabItem>

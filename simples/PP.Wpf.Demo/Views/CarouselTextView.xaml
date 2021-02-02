@@ -13,15 +13,15 @@
             <TextBox TextWrapping="Wrap" Text="{Binding Text,ElementName=carouse}" />
         </DockPanel>
         <DockPanel Margin="6">
-            <TextBlock>动画速度：</TextBlock>
+            <TextBlock VerticalAlignment="Center">动画速度：</TextBlock>
             <TextBox Text="{Binding Speed,ElementName=carouse}" />
         </DockPanel>
         <DockPanel Margin="6">
-            <TextBlock>前后间距：</TextBlock>
+            <TextBlock VerticalAlignment="Center">前后间距：</TextBlock>
             <TextBox Text="{Binding Space,ElementName=carouse}" />
         </DockPanel>
         <DockPanel Margin="6">
-            <TextBlock>文字大小：</TextBlock>
+            <TextBlock VerticalAlignment="Center">文字大小：</TextBlock>
             <TextBox Text="{Binding FontSize,ElementName=carouse}" />
         </DockPanel>
         <pp:CarouselText x:Name="carouse" Margin="6" Padding="12 6" Background="{DynamicResource PP.Brushes.Themes}" 

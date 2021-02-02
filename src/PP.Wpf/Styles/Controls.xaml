@@ -2,6 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Geometry.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
