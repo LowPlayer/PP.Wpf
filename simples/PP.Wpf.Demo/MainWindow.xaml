@@ -24,9 +24,6 @@
         <TabItem Header="ListBoxDragSelectViewer">
             <views:ListBoxDragSelectViewerView />
         </TabItem>
-        <TabItem Header="AutoGridCanvas">
-            <views:AutoGridCanvasView />
-        </TabItem>
         <TabItem Header="Button">
             <views:ButtonView />
         </TabItem>
