@@ -1,6 +1,7 @@
 ﻿<Application x:Class="PP.Wpf.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pp="https://www.cnblogs.com/pumbaa"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -8,6 +9,7 @@
                 <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Themes/Light.Blue.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <pp:GenericTypeConverter x:Key="genericTypeConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

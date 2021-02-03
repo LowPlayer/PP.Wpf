@@ -588,56 +588,6 @@
             <param name="element"></param>
             <param name="value"></param>
         </member>
-        <member name="T:PP.Wpf.Controls.CarouselText">
-            <summary>
-            文字走马灯效果
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.CarouselText.TextProperty">
-            <summary>
-            滚动的文字
-            </summary>
-        </member>
-        <member name="P:PP.Wpf.Controls.CarouselText.Text">
-            <summary>
-            滚动的文字
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.CarouselText.SpaceProperty">
-            <summary>
-            间距
-            </summary>
-        </member>
-        <member name="P:PP.Wpf.Controls.CarouselText.Space">
-            <summary>
-            间距
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.CarouselText.SpeedProperty">
-            <summary>
-            滚动速度（每秒wpf单位数）
-            </summary>
-        </member>
-        <member name="P:PP.Wpf.Controls.CarouselText.Speed">
-            <summary>
-            滚动速度（每秒wpf单位数）
-            </summary>
-        </member>
-        <member name="M:PP.Wpf.Controls.CarouselText.#ctor">
-            <summary>
-            文字走马灯效果
-            </summary>
-        </member>
-        <member name="M:PP.Wpf.Controls.CarouselText.OnApplyTemplate">
-            <summary>
-            应用模板
-            </summary>
-        </member>
-        <member name="M:PP.Wpf.Controls.CarouselText.BeginUpdate">
-            <summary>
-            多个事件同时触发时，仅执行一次
-            </summary>
-        </member>
         <member name="T:PP.Wpf.Controls.ChromeWindow">
             <summary>
             使用WindowChorme创建的自定义窗体
@@ -781,6 +731,66 @@
         <member name="M:PP.Wpf.Controls.ListBoxDragSelectViewer.OnApplyTemplate">
             <summary>
             应用模板
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.RunningText">
+            <summary>
+            文字走马灯效果
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningText.TextProperty">
+            <summary>
+            滚动的文字
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningText.Text">
+            <summary>
+            滚动的文字
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningText.SpaceProperty">
+            <summary>
+            间距
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningText.Space">
+            <summary>
+            间距
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningText.SpeedProperty">
+            <summary>
+            滚动速度（每秒wpf单位数）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningText.Speed">
+            <summary>
+            滚动速度（每秒wpf单位数）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningText.OrientationProperty">
+            <summary>
+            滚动方向
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningText.Orientation">
+            <summary>
+            滚动方向
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.RunningText.#ctor">
+            <summary>
+            文字走马灯效果
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.RunningText.OnApplyTemplate">
+            <summary>
+            应用模板
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.RunningText.BeginUpdate">
+            <summary>
+            多个事件同时触发时，仅执行一次
             </summary>
         </member>
         <member name="T:PP.Wpf.Controls.SimplePanel">

@@ -15,8 +15,8 @@
         
     </Window.Resources>
     <TabControl TabStripPlacement="Left">
-        <TabItem Header="CarouselText">
-            <views:CarouselTextView />
+        <TabItem Header="RunningBlock">
+            <views:RunningTextView />
         </TabItem>
         <TabItem Header="CornerClip">
             <views:CornerClipView />
@@ -31,20 +31,7 @@
             <views:TextBoxView />
         </TabItem>
         <TabItem Header="PasswordBox">
-            <StackPanel Margin="10">
-                <DockPanel Margin="5">
-                    <TextBlock VerticalAlignment="Center">水印文字：</TextBlock>
-                    <TextBox Height="30" Text="{Binding Path=(pp:TextElement.Placeholder),ElementName=input,UpdateSourceTrigger=PropertyChanged}" />
-                </DockPanel>
-                <DockPanel Margin="5">
-                    <TextBlock VerticalAlignment="Center">边框圆角：</TextBlock>
-                    <TextBox Height="30" Text="{Binding Path=(pp:BorderElement.CornerRadius),ElementName=input}" />
-                </DockPanel>
-                <DockPanel Margin="5">
-                    <TextBlock VerticalAlignment="Center">演示文本：</TextBlock>
-                    <PasswordBox x:Name="input" pp:TextElement.Placeholder="水印文字" Height="30" />
-                </DockPanel>
-            </StackPanel>
+            <views:PasswordBoxView />
         </TabItem>
     </TabControl>
 </pp:ChromeWindow>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PP.Wpf.Demo.Views
 {
     /// <summary>
-    /// CarouselTextView.xaml 的交互逻辑
+    /// PasswordBoxView.xaml 的交互逻辑
     /// </summary>
-    public partial class CarouselTextView : UserControl
+    public partial class PasswordBoxView : UserControl
     {
-        public CarouselTextView()
+        public PasswordBoxView()
         {
             InitializeComponent();
         }
