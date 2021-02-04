@@ -733,9 +733,86 @@
             应用模板
             </summary>
         </member>
+        <member name="T:PP.Wpf.Controls.RunningBlock">
+            <summary>
+            滚动块
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.RunningBlock.RunningDirection">
+            <summary>
+            滚动方向
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.RightToLeft">
+            <summary>
+            从右往左
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.LeftToRight">
+            <summary>
+            从左往右
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.BottomToTop">
+            <summary>
+            从下往上
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.TopToBottom">
+            <summary>
+            从上往下
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.SpaceProperty">
+            <summary>
+            间距
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningBlock.Space">
+            <summary>
+            间距
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.SpeedProperty">
+            <summary>
+            滚动速度（每秒wpf单位数）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningBlock.Speed">
+            <summary>
+            滚动速度（每秒wpf单位数）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningBlock.DirectionProperty">
+            <summary>
+            滚动方向
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.RunningBlock.Direction">
+            <summary>
+            滚动方向
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.RunningBlock.#ctor">
+            <summary>
+            滚动块
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.RunningBlock.OnApplyTemplate">
+            <summary>
+            应用样式
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.RunningBlock.OnContentChanged(System.Object,System.Object)">
+            <summary>
+            内容改变事件
+            </summary>
+            <param name="oldContent"></param>
+            <param name="newContent"></param>
+        </member>
         <member name="T:PP.Wpf.Controls.RunningText">
             <summary>
-            文字走马灯效果
+            滚动文字
             </summary>
         </member>
         <member name="F:PP.Wpf.Controls.RunningText.TextProperty">
@@ -780,7 +857,7 @@
         </member>
         <member name="M:PP.Wpf.Controls.RunningText.#ctor">
             <summary>
-            文字走马灯效果
+            滚动文字
             </summary>
         </member>
         <member name="M:PP.Wpf.Controls.RunningText.OnApplyTemplate">

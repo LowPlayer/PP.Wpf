@@ -7,7 +7,7 @@ using System.Windows.Media.Animation;
 namespace PP.Wpf.Controls
 {
     /// <summary>
-    /// 文字走马灯效果
+    /// 滚动文字
     /// </summary>
     [ContentProperty("Text")]
     [TemplatePart(Name = "PART_Canvas", Type = typeof(Canvas))]
@@ -65,7 +65,13 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 滚动方向
         /// </summary>
-        public static readonly DependencyProperty OrientationProperty = StackPanel.OrientationProperty.AddOwner(typeof(RunningText), new PropertyMetadata(Orientation.Horizontal));
+        public static readonly DependencyProperty OrientationProperty = StackPanel.OrientationProperty.AddOwner(typeof(RunningText), new PropertyMetadata(Orientation.Horizontal, OnOrientationPropertyChanged));
+
+        private static void OnOrientationPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((RunningText)d).BeginUpdate();
+        }
+
         /// <summary>
         /// 滚动方向
         /// </summary>
@@ -79,7 +85,7 @@ namespace PP.Wpf.Controls
         }
 
         /// <summary>
-        /// 文字走马灯效果
+        /// 滚动文字
         /// </summary>
         public RunningText()
         {
@@ -95,34 +101,21 @@ namespace PP.Wpf.Controls
         {
             base.OnApplyTemplate();
 
-            if (canvas != null)
-                canvas.SizeChanged -= OnSizeChanged;
+            if (_canvas != null)
+                _canvas.SizeChanged -= OnSizeChanged;
 
-            if (txt1 != null)
-            {
-                txt1.SizeChanged -= OnSizeChanged;
-                txt1.BeginAnimation(Canvas.LeftProperty, null);     // 停用动画
-                txt1.BeginAnimation(Canvas.TopProperty, null);      // 停用动画
-            }
+            if (_txt1 != null)
+                _txt1.SizeChanged -= OnSizeChanged;
 
-            if (txt2 != null)
-            {
-                txt2.BeginAnimation(Canvas.LeftProperty, null);     // 停用动画
-                txt2.BeginAnimation(Canvas.TopProperty, null);      // 停用动画
-            }
+            _canvas = this.Template.FindName("PART_Canvas", this) as Canvas;
+            _txt1 = this.Template.FindName("PART_Txt1", this) as TextBlock;
+            _txt2 = this.Template.FindName("PART_Txt2", this) as TextBlock;
 
-            canvas = this.Template.FindName("PART_Canvas", this) as Canvas;
-            txt1 = this.Template.FindName("PART_Txt1", this) as TextBlock;
-            txt2 = this.Template.FindName("PART_Txt2", this) as TextBlock;
-
-            if (canvas == null || txt1 == null || txt2 == null)
+            if (_canvas == null || _txt1 == null || _txt2 == null)
                 return;
 
-            txt1.SizeChanged += OnSizeChanged;
-            canvas.SizeChanged += OnSizeChanged;
-
-            if (IsLoaded)
-                BeginUpdate();
+            _txt1.SizeChanged += OnSizeChanged;
+            _canvas.SizeChanged += OnSizeChanged;
         }
 
         private void OnSizeChanged(Object sender, SizeChangedEventArgs e)
@@ -135,14 +128,14 @@ namespace PP.Wpf.Controls
         /// </summary>
         private void BeginUpdate()
         {
-            delayUpdate = Update;
+            _delayUpdate = Update;
 
             this.Dispatcher.InvokeAsync(() =>
             {
-                if (delayUpdate != null)
+                if (_delayUpdate != null)
                 {
-                    delayUpdate.Invoke();
-                    delayUpdate = null;
+                    _delayUpdate.Invoke();
+                    _delayUpdate = null;
                 }
 
             }, System.Windows.Threading.DispatcherPriority.Loaded);
@@ -150,7 +143,14 @@ namespace PP.Wpf.Controls
 
         private void Update()
         {
-            if (canvas == null || txt1 == null || txt2 == null)
+            // 停用动画
+            if (_storyboard != null)
+            {
+                _storyboard.Stop();
+                _storyboard = null;
+            }
+
+            if (_canvas == null || _txt1 == null || _txt2 == null)
                 return;
 
             switch (Orientation)
@@ -167,31 +167,28 @@ namespace PP.Wpf.Controls
         private void UpdateHorizontal()
         {
             // 复位
-            Canvas.SetLeft(txt1, canvas.RenderSize.Width);
-            Canvas.SetLeft(txt2, canvas.RenderSize.Width);
-            // 停用动画
-            txt1.BeginAnimation(Canvas.LeftProperty, null);
-            txt2.BeginAnimation(Canvas.LeftProperty, null);
+            Canvas.SetLeft(_txt1, _canvas.RenderSize.Width);
+            Canvas.SetLeft(_txt2, _canvas.RenderSize.Width);
 
             // 当不可见时，不启用动画
             if (String.IsNullOrEmpty(Text) || !IsVisible)
                 return;
 
             // 使用新动画
-            var from = canvas.RenderSize.Width; // 起点位置
-            var to = -txt1.RenderSize.Width;    // 终点位置
-            var len = 0d;
+            var from = _canvas.RenderSize.Width; // 起点位置
+            var to = -_txt1.RenderSize.Width;    // 终点位置
 
+            Double len;
             if (Double.IsNaN(Space) || Space < 0)
-                len = txt1.RenderSize.Width < canvas.RenderSize.Width ? canvas.RenderSize.Width : txt1.RenderSize.Width + canvas.RenderSize.Width;
+                len = _txt1.RenderSize.Width < _canvas.RenderSize.Width ? _canvas.RenderSize.Width : _txt1.RenderSize.Width + _canvas.RenderSize.Width;
             else
-                len = txt1.RenderSize.Width < canvas.RenderSize.Width - Space ? canvas.RenderSize.Width : txt1.RenderSize.Width + Space;   // 加上间距的长度，同一时刻只能出现一条信息
+                len = _txt1.RenderSize.Width < _canvas.RenderSize.Width - Space ? _canvas.RenderSize.Width : _txt1.RenderSize.Width + Space;
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
             var duration = TimeSpan.FromSeconds((from - to) / Speed);     // 动画从开始到结束的时间
             var total = begin + begin;      // 加上延迟，一次动画的时间
 
-            var sb = new Storyboard();
+            _storyboard = new Storyboard();
 
             var ani1 = new DoubleAnimationUsingKeyFrames
             {
@@ -202,10 +199,10 @@ namespace PP.Wpf.Controls
             ani1.KeyFrames.Add(new DiscreteDoubleKeyFrame(from, TimeSpan.FromSeconds(0)));
             ani1.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
-            Storyboard.SetTarget(ani1, txt1);
+            Storyboard.SetTarget(ani1, _txt1);
             Storyboard.SetTargetProperty(ani1, new PropertyPath(Canvas.LeftProperty));
 
-            sb.Children.Add(ani1);
+            _storyboard.Children.Add(ani1);
 
             var ani2 = new DoubleAnimationUsingKeyFrames()
             {
@@ -217,15 +214,15 @@ namespace PP.Wpf.Controls
             ani2.KeyFrames.Add(new DiscreteDoubleKeyFrame(from, TimeSpan.FromSeconds(0)));
             ani2.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
-            Storyboard.SetTarget(ani2, txt2);
+            Storyboard.SetTarget(ani2, _txt2);
             Storyboard.SetTargetProperty(ani2, new PropertyPath(Canvas.LeftProperty));
 
-            sb.Children.Add(ani2);
+            _storyboard.Children.Add(ani2);
 
             #region 不显示时隐藏，不造成性能浪费
 
-            txt1.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
-            txt2.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
+            _txt1.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
+            _txt2.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
 
             var ani11 = new ObjectAnimationUsingKeyFrames
             {
@@ -236,10 +233,10 @@ namespace PP.Wpf.Controls
             ani11.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Visible, KeyTime = TimeSpan.FromSeconds(0) });
             ani11.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Hidden, KeyTime = duration });
 
-            Storyboard.SetTarget(ani11, txt1);
+            Storyboard.SetTarget(ani11, _txt1);
             Storyboard.SetTargetProperty(ani11, new PropertyPath(VisibilityProperty));
 
-            sb.Children.Add(ani11);
+            _storyboard.Children.Add(ani11);
 
             var ani22 = new ObjectAnimationUsingKeyFrames
             {
@@ -251,44 +248,41 @@ namespace PP.Wpf.Controls
             ani22.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Visible, KeyTime = TimeSpan.FromSeconds(0) });
             ani22.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Hidden, KeyTime = duration });
 
-            Storyboard.SetTarget(ani22, txt2);
+            Storyboard.SetTarget(ani22, _txt2);
             Storyboard.SetTargetProperty(ani22, new PropertyPath(VisibilityProperty));
 
-            sb.Children.Add(ani22);
+            _storyboard.Children.Add(ani22);
 
             #endregion
 
-            sb.Begin();
+            _storyboard.Begin();
         }
 
         private void UpdateVertical()
         {
             // 复位
-            Canvas.SetTop(txt1, canvas.RenderSize.Height);
-            Canvas.SetTop(txt2, canvas.RenderSize.Height);
-            // 停用动画
-            txt1.BeginAnimation(Canvas.TopProperty, null);
-            txt2.BeginAnimation(Canvas.TopProperty, null);
+            Canvas.SetTop(_txt1, _canvas.RenderSize.Height);
+            Canvas.SetTop(_txt2, _canvas.RenderSize.Height);
 
             // 当不可见时，不启用动画
             if (String.IsNullOrEmpty(Text) || !IsVisible)
                 return;
 
             // 使用新动画
-            var from = canvas.RenderSize.Height; // 起点位置
-            var to = -txt1.RenderSize.Height;    // 终点位置
-            var len = 0d;
+            var from = _canvas.RenderSize.Height; // 起点位置
+            var to = -_txt1.RenderSize.Height;    // 终点位置
 
+            Double len;
             if (Double.IsNaN(Space) || Space < 0)
-                len = txt1.RenderSize.Height < canvas.RenderSize.Height ? canvas.RenderSize.Height : txt1.RenderSize.Height + canvas.RenderSize.Height;
+                len = _txt1.RenderSize.Height < _canvas.RenderSize.Height ? _canvas.RenderSize.Height : _txt1.RenderSize.Height + _canvas.RenderSize.Height;
             else
-                len = txt1.RenderSize.Height < canvas.RenderSize.Height - Space ? canvas.RenderSize.Height : txt1.RenderSize.Height + Space;   // 加上间距的长度，同一时刻只能出现一条信息
+                len = _txt1.RenderSize.Height < _canvas.RenderSize.Height - Space ? _canvas.RenderSize.Height : _txt1.RenderSize.Height + Space;
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
             var duration = TimeSpan.FromSeconds((from - to) / Speed);     // 动画从开始到结束的时间
             var total = begin + begin;      // 加上延迟，一次动画的时间
 
-            var sb = new Storyboard();
+            _storyboard = new Storyboard();
 
             var ani1 = new DoubleAnimationUsingKeyFrames
             {
@@ -299,10 +293,10 @@ namespace PP.Wpf.Controls
             ani1.KeyFrames.Add(new DiscreteDoubleKeyFrame(from, TimeSpan.FromSeconds(0)));
             ani1.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
-            Storyboard.SetTarget(ani1, txt1);
+            Storyboard.SetTarget(ani1, _txt1);
             Storyboard.SetTargetProperty(ani1, new PropertyPath(Canvas.TopProperty));
 
-            sb.Children.Add(ani1);
+            _storyboard.Children.Add(ani1);
 
             var ani2 = new DoubleAnimationUsingKeyFrames()
             {
@@ -314,15 +308,15 @@ namespace PP.Wpf.Controls
             ani2.KeyFrames.Add(new DiscreteDoubleKeyFrame(from, TimeSpan.FromSeconds(0)));
             ani2.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
-            Storyboard.SetTarget(ani2, txt2);
+            Storyboard.SetTarget(ani2, _txt2);
             Storyboard.SetTargetProperty(ani2, new PropertyPath(Canvas.TopProperty));
 
-            sb.Children.Add(ani2);
+            _storyboard.Children.Add(ani2);
 
             #region 不显示时隐藏，不造成性能浪费
 
-            txt1.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
-            txt2.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
+            _txt1.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
+            _txt2.SetCurrentValue(VisibilityProperty, Visibility.Hidden);
 
             var ani11 = new ObjectAnimationUsingKeyFrames
             {
@@ -333,10 +327,10 @@ namespace PP.Wpf.Controls
             ani11.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Visible, KeyTime = TimeSpan.FromSeconds(0) });
             ani11.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Hidden, KeyTime = duration });
 
-            Storyboard.SetTarget(ani11, txt1);
+            Storyboard.SetTarget(ani11, _txt1);
             Storyboard.SetTargetProperty(ani11, new PropertyPath(VisibilityProperty));
 
-            sb.Children.Add(ani11);
+            _storyboard.Children.Add(ani11);
 
             var ani22 = new ObjectAnimationUsingKeyFrames
             {
@@ -348,24 +342,25 @@ namespace PP.Wpf.Controls
             ani22.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Visible, KeyTime = TimeSpan.FromSeconds(0) });
             ani22.KeyFrames.Add(new DiscreteObjectKeyFrame { Value = Visibility.Hidden, KeyTime = duration });
 
-            Storyboard.SetTarget(ani22, txt2);
+            Storyboard.SetTarget(ani22, _txt2);
             Storyboard.SetTargetProperty(ani22, new PropertyPath(VisibilityProperty));
 
-            sb.Children.Add(ani22);
+            _storyboard.Children.Add(ani22);
 
             #endregion
 
-            sb.Begin();
+            _storyboard.Begin();
         }
 
         #endregion
 
         #region Fields
 
-        private Canvas canvas;
-        private TextBlock txt1;
-        private TextBlock txt2;
-        private Action delayUpdate;
+        private Canvas _canvas;
+        private TextBlock _txt1;
+        private TextBlock _txt2;
+        private Action _delayUpdate;
+        private Storyboard _storyboard;
 
         #endregion
     }

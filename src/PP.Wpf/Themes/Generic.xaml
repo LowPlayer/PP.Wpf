@@ -1,8 +1,9 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Geometry.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/RunningText.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/ChormeWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/ListBoxDragSelectViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/RunningBlock.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/RunningText.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
