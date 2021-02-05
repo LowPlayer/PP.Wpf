@@ -4,8 +4,8 @@
 
     <ControlTemplate x:Key="Template.Horizontal" TargetType="{x:Type ctrls:RunningText}">
         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" Height="{Binding ActualHeight,ElementName=PART_Txt1}">
+                Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" Height="{Binding ActualHeight,ElementName=PART_Txt1}" VerticalAlignment="Center">
                 <TextBlock x:Name="PART_Txt1" Text="{TemplateBinding Text}" />
                 <TextBlock x:Name="PART_Txt2" Text="{TemplateBinding Text}" />
             </Canvas>
@@ -13,8 +13,8 @@
     </ControlTemplate>
     <ControlTemplate x:Key="Template.Vertical" TargetType="{x:Type ctrls:RunningText}">
         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                                    Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" MinWidth="{TemplateBinding FontSize}">
+                Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" MinWidth="{TemplateBinding FontSize}" HorizontalAlignment="Center">
                 <TextBlock x:Name="PART_Txt1" Text="{TemplateBinding Text}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth,ElementName=PART_Canvas}" />
                 <TextBlock x:Name="PART_Txt2" Text="{TemplateBinding Text}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth,ElementName=PART_Canvas}" />
             </Canvas>

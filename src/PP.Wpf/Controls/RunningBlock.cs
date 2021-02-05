@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace PP.Wpf.Controls
@@ -9,7 +8,7 @@ namespace PP.Wpf.Controls
     /// <summary>
     /// 滚动块
     /// </summary>
-    [TemplatePart(Name = "PART_Panel", Type = typeof(Panel))]
+    [TemplatePart(Name = "PART_Canvas", Type = typeof(Canvas))]
     [TemplatePart(Name = "PART_Content", Type = typeof(ContentPresenter))]
     [TemplatePart(Name = "PART_Mirror", Type = typeof(FrameworkElement))]
     public class RunningBlock : ContentControl
@@ -89,15 +88,21 @@ namespace PP.Wpf.Controls
         {
             base.OnApplyTemplate();
 
+            if (_canvas != null)
+                _canvas.SizeChanged -= OnSizeChanged;
+
             if (_content != null)
                 _content.SizeChanged -= OnSizeChanged;
 
-            _panel = this.Template.FindName("PART_Panel", this) as Panel;
+            _canvas = this.Template.FindName("PART_Canvas", this) as Canvas;
             _content = this.Template.FindName("PART_Content", this) as ContentPresenter;
             _mirror = this.Template.FindName("PART_Mirror", this) as FrameworkElement;
 
-            if (_panel != null && _content != null && _mirror != null)
-                _content.SizeChanged += OnSizeChanged;
+            if (_canvas == null || _content == null || _mirror == null)
+                return;
+
+            _canvas.SizeChanged += OnSizeChanged;
+            _content.SizeChanged += OnSizeChanged;
         }
 
         private void OnSizeChanged(Object sender, SizeChangedEventArgs e)
@@ -130,7 +135,7 @@ namespace PP.Wpf.Controls
                 _storyboard = null;
             }
 
-            if (_panel == null || _content == null || _mirror == null || !HasContent || !IsVisible)
+            if (_canvas == null || _content == null || _mirror == null || !HasContent || !IsVisible)
                 return;
 
             switch (Direction)
@@ -177,33 +182,25 @@ namespace PP.Wpf.Controls
         private void GetHorizontal(out Double from, out Double to, out Double len)
         {
             // 计算起始位置
-            var width_panel = _panel.ActualWidth;
+            var width_canvas = _canvas.ActualWidth;
             var width_content = _content.ActualWidth;
 
-            if (width_content < width_panel)
-            {
-                to = (width_panel - width_content) / 2 + width_content;
-                from = -to;
-            }
-            else
-            {
-                to = width_panel;
-                from = -width_content;
-            }
+            from = -width_content;
+            to = width_canvas;
 
             if (Double.IsNaN(Space) || Space < 0)
-                len = width_content < width_panel ? width_panel : width_content + width_panel;
+                len = width_content < width_canvas ? width_canvas : width_content + width_canvas;
             else
-                len = width_content < width_panel - Space ? width_panel : width_content + Space;
+                len = width_content < width_canvas - Space ? width_canvas : width_content + Space;
         }
 
         private void UpdateHorizontal(Double from, Double to, Double len)
         {
             // 复位
-            var trans_content = new TranslateTransform { X = from };
-            var trans_mirror = new TranslateTransform { X = from };
-            _content.RenderTransform = trans_content;
-            _mirror.RenderTransform = trans_mirror;
+            Canvas.SetLeft(_content, from);
+            Canvas.SetLeft(_mirror, from);
+            _content.SetCurrentValue(Canvas.LeftProperty, from);
+            _mirror.SetCurrentValue(Canvas.LeftProperty, from);
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
             var duration = TimeSpan.FromSeconds(Math.Abs((from - to)) / Speed);     // 动画从开始到结束的时间
@@ -221,7 +218,7 @@ namespace PP.Wpf.Controls
             ani1.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
             Storyboard.SetTarget(ani1, _content);
-            Storyboard.SetTargetProperty(ani1, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.X)"));
+            Storyboard.SetTargetProperty(ani1, new PropertyPath(Canvas.LeftProperty));
 
             _storyboard.Children.Add(ani1);
 
@@ -236,7 +233,7 @@ namespace PP.Wpf.Controls
             ani2.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
             Storyboard.SetTarget(ani2, _mirror);
-            Storyboard.SetTargetProperty(ani2, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.X)"));
+            Storyboard.SetTargetProperty(ani2, new PropertyPath(Canvas.LeftProperty));
 
             _storyboard.Children.Add(ani2);
 
@@ -246,33 +243,25 @@ namespace PP.Wpf.Controls
         private void GetVertical(out Double from, out Double to, out Double len)
         {
             // 计算起始位置
-            var height_panel = _panel.ActualHeight;
+            var heigth_canvas = _canvas.ActualHeight;
             var height_content = _content.ActualHeight;
 
-            if (height_content < height_panel)
-            {
-                to = (height_panel - height_content) / 2 + height_content;
-                from = -to;
-            }
-            else
-            {
-                to = height_panel;
-                from = -height_content;
-            }
+            from = -height_content;
+            to = heigth_canvas;
 
             if (Double.IsNaN(Space) || Space < 0)
-                len = height_content < height_panel ? height_panel : height_content + height_panel;
+                len = height_content < heigth_canvas ? heigth_canvas : height_content + heigth_canvas;
             else
-                len = height_content < height_panel - Space ? height_panel : height_content + Space;
+                len = height_content < heigth_canvas - Space ? heigth_canvas : height_content + Space;
         }
 
         private void UpdateVertical(Double from, Double to, Double len)
         {
             // 复位
-            var trans_content = new TranslateTransform { Y = from };
-            var trans_mirror = new TranslateTransform { Y = from };
-            _content.RenderTransform = trans_content;
-            _mirror.RenderTransform = trans_mirror;
+            Canvas.SetTop(_content, from);
+            Canvas.SetTop(_mirror, from);
+            _content.SetCurrentValue(Canvas.TopProperty, from);
+            _mirror.SetCurrentValue(Canvas.TopProperty, from);
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
             var duration = TimeSpan.FromSeconds(Math.Abs((from - to)) / Speed);     // 动画从开始到结束的时间
@@ -290,7 +279,7 @@ namespace PP.Wpf.Controls
             ani1.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
             Storyboard.SetTarget(ani1, _content);
-            Storyboard.SetTargetProperty(ani1, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+            Storyboard.SetTargetProperty(ani1, new PropertyPath(Canvas.TopProperty));
 
             _storyboard.Children.Add(ani1);
 
@@ -305,7 +294,7 @@ namespace PP.Wpf.Controls
             ani2.KeyFrames.Add(new LinearDoubleKeyFrame(to, duration));
 
             Storyboard.SetTarget(ani2, _mirror);
-            Storyboard.SetTargetProperty(ani2, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+            Storyboard.SetTargetProperty(ani2, new PropertyPath(Canvas.TopProperty));
 
             _storyboard.Children.Add(ani2);
 
@@ -316,7 +305,7 @@ namespace PP.Wpf.Controls
 
         #region Fields
 
-        private Panel _panel;
+        private Canvas _canvas;
         private ContentPresenter _content;
         private FrameworkElement _mirror;
         private Action _delayUpdate;

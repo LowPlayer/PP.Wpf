@@ -2,33 +2,54 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ctrls="clr-namespace:PP.Wpf.Controls">
 
+    <ControlTemplate x:Key="Template.Horizontal" TargetType="{x:Type ctrls:RunningBlock}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" MinHeight="{Binding ActualHeight,ElementName=PART_Content}" VerticalAlignment="Center">
+                <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                <Rectangle x:Name="PART_Mirror" Width="{Binding ActualWidth,ElementName=PART_Content}" Height="{Binding ActualHeight,ElementName=PART_Content}">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=PART_Content}" Stretch="None" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Canvas>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="Template.Vertical" TargetType="{x:Type ctrls:RunningBlock}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" MinWidth="{Binding ActualWidth,ElementName=PART_Content}" HorizontalAlignment="Center">
+                <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}" />
+                <Rectangle x:Name="PART_Mirror" Width="{Binding ActualWidth,ElementName=PART_Content}" Height="{Binding ActualHeight,ElementName=PART_Content}">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{Binding ElementName=PART_Content}" Stretch="None" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Canvas>
+        </Border>
+    </ControlTemplate>
+
     <Style TargetType="{x:Type ctrls:RunningBlock}">
         <Setter Property="Padding" Value="6 3" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="ClipToBounds" Value="True" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ctrls:RunningBlock}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                        <ctrls:SimplePanel x:Name="PART_Panel" ClipToBounds="{TemplateBinding ClipToBounds}">
-                            <ContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                            <Rectangle x:Name="PART_Mirror" Width="{Binding ActualWidth,ElementName=PART_Content}" Height="{Binding ActualHeight,ElementName=PART_Content}"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Rectangle.Fill>
-                                    <VisualBrush Visual="{Binding ElementName=PART_Content}" Stretch="None" />
-                                </Rectangle.Fill>
-                            </Rectangle>
-                        </ctrls:SimplePanel>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Direction" Value="RightToLeft">
+                <Setter Property="Template" Value="{StaticResource Template.Horizontal}" />
+            </Trigger>
+            <Trigger Property="Direction" Value="LeftToRight">
+                <Setter Property="Template" Value="{StaticResource Template.Horizontal}" />
+            </Trigger>
+            <Trigger Property="Direction" Value="BottomToTop">
+                <Setter Property="Template" Value="{StaticResource Template.Vertical}" />
+            </Trigger>
+            <Trigger Property="Direction" Value="TopToBottom">
+                <Setter Property="Template" Value="{StaticResource Template.Vertical}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

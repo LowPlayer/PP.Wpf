@@ -47,9 +47,24 @@
             <RadioButton IsChecked="{Binding Direction,ElementName=rb,Converter={StaticResource genericTypeConverter},ConverterParameter='TopToBottom:True'}" Margin="20 0 0 0">从上向下</RadioButton>
         </DockPanel>
         <pp:RunningBlock x:Name="rb" Margin="6" Padding="12 6" Background="{DynamicResource PP.Brushes.Themes}" Foreground="{DynamicResource PP.Brushes.Themes.Foreground}">
+            <pp:RunningBlock.Style>
+                <Style TargetType="{x:Type pp:RunningBlock}">
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Style.Triggers>
+                        <Trigger Property="Direction" Value="BottomToTop">
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Trigger>
+                        <Trigger Property="Direction" Value="TopToBottom">
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </pp:RunningBlock.Style>
             <StackPanel Orientation="Horizontal">
                 <Path Data="{StaticResource path1}" Fill="White" Stretch="Uniform" Height="{Binding ActualHeight,ElementName=txt}" />
-                <TextBlock VerticalAlignment="Center" x:Name="txt" Margin="20 0 0 0">测试本文</TextBlock>
+                <TextBlock VerticalAlignment="Center" x:Name="txt" Margin="20 0 0 0">WPF滚动块，可调节滚动速度、首尾间距...</TextBlock>
                 <Path Data="{StaticResource path2}" Fill="White" Stretch="Uniform" Margin="20 0 0 0" Height="{Binding ActualHeight,ElementName=txt}" />
             </StackPanel>
         </pp:RunningBlock>

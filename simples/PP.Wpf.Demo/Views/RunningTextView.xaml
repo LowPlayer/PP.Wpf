@@ -32,7 +32,7 @@
             <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='TopToBottom:True'}" Margin="20 0 0 0">从上向下</RadioButton>
         </DockPanel>
         <pp:RunningText x:Name="rt" Margin="6" Padding="12 6" Background="{DynamicResource PP.Brushes.Themes}" Foreground="{DynamicResource PP.Brushes.Themes.Foreground}"
-                        Text="WPF滚动轮播文字（走马灯效果）；可调节滚动速度、首尾间距、文字大小、颜色，以及常规的背景、边框、内外边距；文字不限长度、自动适应容器大小...">
+                        Text="WPF滚动轮播文字（走马灯效果）；可调节滚动速度、首尾间距...">
             <pp:RunningText.Style>
                 <Style TargetType="{x:Type pp:RunningText}">
                     <Setter Property="VerticalAlignment" Value="Top" />
