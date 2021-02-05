@@ -15,8 +15,11 @@
         
     </Window.Resources>
     <TabControl TabStripPlacement="Left">
-        <TabItem Header="RunningBlock">
+        <TabItem Header="RunningText">
             <views:RunningTextView />
+        </TabItem>
+        <TabItem Header="RunningBlock">
+            <views:RunningBlockView />
         </TabItem>
         <TabItem Header="CornerClip">
             <views:CornerClipView />

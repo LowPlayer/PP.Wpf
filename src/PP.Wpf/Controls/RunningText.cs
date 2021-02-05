@@ -7,6 +7,29 @@ using System.Windows.Media.Animation;
 namespace PP.Wpf.Controls
 {
     /// <summary>
+    /// 滚动方向
+    /// </summary>
+    public enum RunningDirection
+    {
+        /// <summary>
+        /// 从右往左
+        /// </summary>
+        RightToLeft,
+        /// <summary>
+        /// 从左往右
+        /// </summary>
+        LeftToRight,
+        /// <summary>
+        /// 从下往上
+        /// </summary>
+        BottomToTop,
+        /// <summary>
+        /// 从上往下
+        /// </summary>
+        TopToBottom
+    }
+
+    /// <summary>
     /// 滚动文字
     /// </summary>
     [ContentProperty("Text")]
@@ -65,9 +88,9 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 滚动方向
         /// </summary>
-        public static readonly DependencyProperty OrientationProperty = StackPanel.OrientationProperty.AddOwner(typeof(RunningText), new PropertyMetadata(Orientation.Horizontal, OnOrientationPropertyChanged));
+        public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register("Direction", typeof(RunningDirection), typeof(RunningText), new PropertyMetadata(RunningDirection.RightToLeft, OnDirectionPropertyChanged));
 
-        private static void OnOrientationPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnDirectionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((RunningText)d).BeginUpdate();
         }
@@ -75,7 +98,7 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 滚动方向
         /// </summary>
-        public Orientation Orientation { get => (Orientation)GetValue(OrientationProperty); set => SetValue(OrientationProperty, value); }
+        public RunningDirection Direction { get => (RunningDirection)GetValue(DirectionProperty); set => SetValue(DirectionProperty, value); }
 
         #endregion
 
@@ -147,45 +170,77 @@ namespace PP.Wpf.Controls
             if (_storyboard != null)
             {
                 _storyboard.Stop();
+                _storyboard.Remove();
                 _storyboard = null;
             }
 
-            if (_canvas == null || _txt1 == null || _txt2 == null)
+            if (_canvas == null || _txt1 == null || _txt2 == null || String.IsNullOrEmpty(Text) || !IsVisible)
                 return;
 
-            switch (Orientation)
+            switch (Direction)
             {
-                case Orientation.Horizontal:
-                    UpdateHorizontal();
+                case RunningDirection.RightToLeft:
+                    UpdateRightToLeft();
                     break;
-                case Orientation.Vertical:
-                    UpdateVertical();
+                case RunningDirection.LeftToRight:
+                    UpdateLeftToRight();
+                    break;
+                case RunningDirection.BottomToTop:
+                    UpdateBottomToTop();
+                    break;
+                case RunningDirection.TopToBottom:
+                    UpdateTopToBottom();
                     break;
             }
         }
 
-        private void UpdateHorizontal()
+        private void UpdateRightToLeft()
+        {
+            GetHorizontal(out Double to, out Double from, out Double len);
+            UpdateHorizontal(from, to, len);
+        }
+
+        private void UpdateLeftToRight()
+        {
+            GetHorizontal(out Double from, out Double to, out Double len);
+            UpdateHorizontal(from, to, len);
+        }
+
+        private void UpdateBottomToTop()
+        {
+            GetVertical(out Double to, out Double from, out Double len);
+            UpdateVertical(from, to, len);
+        }
+
+        private void UpdateTopToBottom()
+        {
+            GetVertical(out Double from, out Double to, out Double len);
+            UpdateVertical(from, to, len);
+        }
+
+        private void GetHorizontal(out Double from, out Double to, out Double len)
+        {
+            // 计算起始位置
+            var width_canvas = _canvas.ActualWidth;
+            var width_txt = _txt1.ActualWidth;
+
+            from = -width_txt;
+            to = width_canvas;
+
+            if (Double.IsNaN(Space) || Space < 0)
+                len = width_txt < width_canvas ? width_canvas : width_txt + width_canvas;
+            else
+                len = width_txt < width_canvas - Space ? width_canvas : width_txt + Space;
+        }
+
+        private void UpdateHorizontal(Double from, Double to, Double len)
         {
             // 复位
-            Canvas.SetLeft(_txt1, _canvas.RenderSize.Width);
-            Canvas.SetLeft(_txt2, _canvas.RenderSize.Width);
-
-            // 当不可见时，不启用动画
-            if (String.IsNullOrEmpty(Text) || !IsVisible)
-                return;
-
-            // 使用新动画
-            var from = _canvas.RenderSize.Width; // 起点位置
-            var to = -_txt1.RenderSize.Width;    // 终点位置
-
-            Double len;
-            if (Double.IsNaN(Space) || Space < 0)
-                len = _txt1.RenderSize.Width < _canvas.RenderSize.Width ? _canvas.RenderSize.Width : _txt1.RenderSize.Width + _canvas.RenderSize.Width;
-            else
-                len = _txt1.RenderSize.Width < _canvas.RenderSize.Width - Space ? _canvas.RenderSize.Width : _txt1.RenderSize.Width + Space;
+            Canvas.SetLeft(_txt1, from);
+            Canvas.SetLeft(_txt2, from);
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
-            var duration = TimeSpan.FromSeconds((from - to) / Speed);     // 动画从开始到结束的时间
+            var duration = TimeSpan.FromSeconds(Math.Abs((from - to)) / Speed);     // 动画从开始到结束的时间
             var total = begin + begin;      // 加上延迟，一次动画的时间
 
             _storyboard = new Storyboard();
@@ -258,28 +313,29 @@ namespace PP.Wpf.Controls
             _storyboard.Begin();
         }
 
-        private void UpdateVertical()
+        private void GetVertical(out Double from, out Double to, out Double len)
+        {
+            // 计算起始位置
+            var height_canvas = _canvas.ActualHeight;
+            var height_txt = _txt1.ActualHeight;
+
+            from = -height_txt;
+            to = height_canvas;
+
+            if (Double.IsNaN(Space) || Space < 0)
+                len = height_txt < height_canvas ? height_canvas : height_txt + height_canvas;
+            else
+                len = height_txt < height_canvas - Space ? height_canvas : height_txt + Space;
+        }
+
+        private void UpdateVertical(Double from, Double to, Double len)
         {
             // 复位
-            Canvas.SetTop(_txt1, _canvas.RenderSize.Height);
-            Canvas.SetTop(_txt2, _canvas.RenderSize.Height);
-
-            // 当不可见时，不启用动画
-            if (String.IsNullOrEmpty(Text) || !IsVisible)
-                return;
-
-            // 使用新动画
-            var from = _canvas.RenderSize.Height; // 起点位置
-            var to = -_txt1.RenderSize.Height;    // 终点位置
-
-            Double len;
-            if (Double.IsNaN(Space) || Space < 0)
-                len = _txt1.RenderSize.Height < _canvas.RenderSize.Height ? _canvas.RenderSize.Height : _txt1.RenderSize.Height + _canvas.RenderSize.Height;
-            else
-                len = _txt1.RenderSize.Height < _canvas.RenderSize.Height - Space ? _canvas.RenderSize.Height : _txt1.RenderSize.Height + Space;
+            Canvas.SetTop(_txt1, from);
+            Canvas.SetTop(_txt2, from);
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
-            var duration = TimeSpan.FromSeconds((from - to) / Speed);     // 动画从开始到结束的时间
+            var duration = TimeSpan.FromSeconds(Math.Abs((from - to)) / Speed);     // 动画从开始到结束的时间
             var total = begin + begin;      // 加上延迟，一次动画的时间
 
             _storyboard = new Storyboard();

@@ -2,41 +2,44 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ctrls="clr-namespace:PP.Wpf.Controls">
 
+    <ControlTemplate x:Key="Template.Horizontal" TargetType="{x:Type ctrls:RunningText}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" Height="{Binding ActualHeight,ElementName=PART_Txt1}">
+                <TextBlock x:Name="PART_Txt1" Text="{TemplateBinding Text}" />
+                <TextBlock x:Name="PART_Txt2" Text="{TemplateBinding Text}" />
+            </Canvas>
+        </Border>
+    </ControlTemplate>
+    <ControlTemplate x:Key="Template.Vertical" TargetType="{x:Type ctrls:RunningText}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" MinWidth="{TemplateBinding FontSize}">
+                <TextBlock x:Name="PART_Txt1" Text="{TemplateBinding Text}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth,ElementName=PART_Canvas}" />
+                <TextBlock x:Name="PART_Txt2" Text="{TemplateBinding Text}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth,ElementName=PART_Canvas}" />
+            </Canvas>
+        </Border>
+    </ControlTemplate>
+
     <Style TargetType="{x:Type ctrls:RunningText}">
         <Setter Property="Padding" Value="6 3" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="ClipToBounds" Value="True" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ctrls:RunningText}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                        <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" Height="{Binding ActualHeight,ElementName=PART_Txt1}">
-                            <TextBlock x:Name="PART_Txt1" Text="{TemplateBinding Text}" />
-                            <TextBlock x:Name="PART_Txt2" Text="{TemplateBinding Text}" />
-                        </Canvas>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
         <Style.Triggers>
-            <Trigger Property="Orientation" Value="Vertical">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ctrls:RunningText}">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                                    Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                <Canvas x:Name="PART_Canvas" ClipToBounds="{TemplateBinding ClipToBounds}" MinWidth="{TemplateBinding FontSize}">
-                                    <TextBlock x:Name="PART_Txt1" Text="{TemplateBinding Text}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth,ElementName=PART_Canvas}" />
-                                    <TextBlock x:Name="PART_Txt2" Text="{TemplateBinding Text}" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth,ElementName=PART_Canvas}" />
-                                </Canvas>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
+            <Trigger Property="Direction" Value="RightToLeft">
+                <Setter Property="Template" Value="{StaticResource Template.Horizontal}" />
+            </Trigger>
+            <Trigger Property="Direction" Value="LeftToRight">
+                <Setter Property="Template" Value="{StaticResource Template.Horizontal}" />
+            </Trigger>
+            <Trigger Property="Direction" Value="BottomToTop">
+                <Setter Property="Template" Value="{StaticResource Template.Vertical}" />
+            </Trigger>
+            <Trigger Property="Direction" Value="TopToBottom">
+                <Setter Property="Template" Value="{StaticResource Template.Vertical}" />
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
 </ResourceDictionary>

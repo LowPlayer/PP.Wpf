@@ -26,8 +26,10 @@
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="6">
             <TextBlock VerticalAlignment="Center">滚动方向：</TextBlock>
-            <RadioButton IsChecked="{Binding Orientation,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='Horizontal:True'}">水平</RadioButton>
-            <RadioButton IsChecked="{Binding Orientation,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='Vertical:True'}" Margin="20 0 0 0">垂直</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='RightToLeft:True'}">从右向左</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='LeftToRight:True'}" Margin="20 0 0 0">从左向右</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='BottomToTop:True'}" Margin="20 0 0 0">从下向上</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='TopToBottom:True'}" Margin="20 0 0 0">从上向下</RadioButton>
         </DockPanel>
         <pp:RunningText x:Name="rt" Margin="6" Padding="12 6" Background="{DynamicResource PP.Brushes.Themes}" Foreground="{DynamicResource PP.Brushes.Themes.Foreground}"
                         Text="WPF滚动轮播文字（走马灯效果）；可调节滚动速度、首尾间距、文字大小、颜色，以及常规的背景、边框、内外边距；文字不限长度、自动适应容器大小...">
@@ -35,7 +37,11 @@
                 <Style TargetType="{x:Type pp:RunningText}">
                     <Setter Property="VerticalAlignment" Value="Top" />
                     <Style.Triggers>
-                        <Trigger Property="Orientation" Value="Vertical">
+                        <Trigger Property="Direction" Value="BottomToTop">
+                            <Setter Property="VerticalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Trigger>
+                        <Trigger Property="Direction" Value="TopToBottom">
                             <Setter Property="VerticalAlignment" Value="Stretch" />
                             <Setter Property="HorizontalAlignment" Value="Left" />
                         </Trigger>

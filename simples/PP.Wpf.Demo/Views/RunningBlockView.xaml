@@ -7,30 +7,51 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{DynamicResource PP.Brushes.Background}" Foreground="{DynamicResource PP.Brushes.Foreground}">
+    <UserControl.Resources>
+        <Geometry x:Key="path1">
+            M512 0C229.2 0 0 229.2 0 512s229.2 512 512 512 512-229.2 512-512S794.8 0 512 0z 
+            m0 960C265 960 64 759 64 512S265 64 512 64s448 201 448 448-201 448-448 448z
+            M320 405.3m-64 0a64 64 0 1 0 128 0 64 64 0 1 0-128 0Z
+            M704 405.3m-64 0a64 64 0 1 0 128 0 64 64 0 1 0-128 0Z
+            M512 810.7c117.8 0 213.3-95.5 213.3-213.3H298.7c0 117.8 95.5 213.3 213.3 213.3z
+        </Geometry>
+        <Geometry x:Key="path2">
+            M512 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512zM512 64a448 448 0 1 0 448 448 448 448 0 0 0-448-448z
+            M320 384m-64 0a64 64 0 1 0 128 0 64 64 0 1 0-128 0Z
+            M704 384m-64 0a64 64 0 1 0 128 0 64 64 0 1 0-128 0Z
+            M512 832a288 288 0 0 1-279.04-215.68 32 32 0 0 1 64-16 224 224 0 0 0 433.92 0 32 32 0 1 1 64 16A288 288 0 0 1 512 832z
+        </Geometry>
+    </UserControl.Resources>
     <DockPanel Margin="10">
         <DockPanel DockPanel.Dock="Top" Margin="6">
             <TextBlock>内容文本：</TextBlock>
-            <TextBox TextWrapping="Wrap" Text="{Binding Text,ElementName=rt}" />
+            <TextBox TextWrapping="Wrap" Text="{Binding Text,ElementName=txt}" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="6">
             <TextBlock VerticalAlignment="Center">动画速度：</TextBlock>
-            <TextBox Text="{Binding Speed,ElementName=rt}" />
+            <TextBox Text="{Binding Speed,ElementName=rb}" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="6">
             <TextBlock VerticalAlignment="Center">前后间距：</TextBlock>
-            <TextBox Text="{Binding Space,ElementName=rt}" />
+            <TextBox Text="{Binding Space,ElementName=rb}" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="6">
             <TextBlock VerticalAlignment="Center">文字大小：</TextBlock>
-            <TextBox Text="{Binding FontSize,ElementName=rt}" />
+            <TextBox Text="{Binding FontSize,ElementName=rb}" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="6">
             <TextBlock VerticalAlignment="Center">滚动方向：</TextBlock>
-            <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='RightToLeft:True'}">水平</RadioButton>
-            <RadioButton IsChecked="{Binding Direction,ElementName=rt,Converter={StaticResource genericTypeConverter},ConverterParameter='Vertical:True'}" Margin="20 0 0 0">垂直</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rb,Converter={StaticResource genericTypeConverter},ConverterParameter='RightToLeft:True'}">从右向左</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rb,Converter={StaticResource genericTypeConverter},ConverterParameter='LeftToRight:True'}" Margin="20 0 0 0">从左向右</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rb,Converter={StaticResource genericTypeConverter},ConverterParameter='BottomToTop:True'}" Margin="20 0 0 0">从下向上</RadioButton>
+            <RadioButton IsChecked="{Binding Direction,ElementName=rb,Converter={StaticResource genericTypeConverter},ConverterParameter='TopToBottom:True'}" Margin="20 0 0 0">从上向下</RadioButton>
         </DockPanel>
-        <pp:RunningBlock x:Name="rt" Margin="6" Padding="12 6" Background="{DynamicResource PP.Brushes.Themes}" Foreground="{DynamicResource PP.Brushes.Themes.Foreground}">
-            <Rectangle Width="60" Height="60" Fill="{DynamicResource PP.Brushes.Danger}" />
+        <pp:RunningBlock x:Name="rb" Margin="6" Padding="12 6" Background="{DynamicResource PP.Brushes.Themes}" Foreground="{DynamicResource PP.Brushes.Themes.Foreground}">
+            <StackPanel Orientation="Horizontal">
+                <Path Data="{StaticResource path1}" Fill="White" Stretch="Uniform" Height="{Binding ActualHeight,ElementName=txt}" />
+                <TextBlock VerticalAlignment="Center" x:Name="txt" Margin="20 0 0 0">测试本文</TextBlock>
+                <Path Data="{StaticResource path2}" Fill="White" Stretch="Uniform" Margin="20 0 0 0" Height="{Binding ActualHeight,ElementName=txt}" />
+            </StackPanel>
         </pp:RunningBlock>
     </DockPanel>
 </UserControl>

@@ -738,31 +738,6 @@
             滚动块
             </summary>
         </member>
-        <member name="T:PP.Wpf.Controls.RunningBlock.RunningDirection">
-            <summary>
-            滚动方向
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.RightToLeft">
-            <summary>
-            从右往左
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.LeftToRight">
-            <summary>
-            从左往右
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.BottomToTop">
-            <summary>
-            从下往上
-            </summary>
-        </member>
-        <member name="F:PP.Wpf.Controls.RunningBlock.RunningDirection.TopToBottom">
-            <summary>
-            从上往下
-            </summary>
-        </member>
         <member name="F:PP.Wpf.Controls.RunningBlock.SpaceProperty">
             <summary>
             间距
@@ -803,12 +778,30 @@
             应用样式
             </summary>
         </member>
-        <member name="M:PP.Wpf.Controls.RunningBlock.OnContentChanged(System.Object,System.Object)">
+        <member name="T:PP.Wpf.Controls.RunningDirection">
             <summary>
-            内容改变事件
+            滚动方向
             </summary>
-            <param name="oldContent"></param>
-            <param name="newContent"></param>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningDirection.RightToLeft">
+            <summary>
+            从右往左
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningDirection.LeftToRight">
+            <summary>
+            从左往右
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningDirection.BottomToTop">
+            <summary>
+            从下往上
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.RunningDirection.TopToBottom">
+            <summary>
+            从上往下
+            </summary>
         </member>
         <member name="T:PP.Wpf.Controls.RunningText">
             <summary>
@@ -845,12 +838,12 @@
             滚动速度（每秒wpf单位数）
             </summary>
         </member>
-        <member name="F:PP.Wpf.Controls.RunningText.OrientationProperty">
+        <member name="F:PP.Wpf.Controls.RunningText.DirectionProperty">
             <summary>
             滚动方向
             </summary>
         </member>
-        <member name="P:PP.Wpf.Controls.RunningText.Orientation">
+        <member name="P:PP.Wpf.Controls.RunningText.Direction">
             <summary>
             滚动方向
             </summary>
