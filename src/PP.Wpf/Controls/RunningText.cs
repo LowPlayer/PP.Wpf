@@ -335,8 +335,8 @@ namespace PP.Wpf.Controls
             // 复位
             Canvas.SetTop(_txt1, from);
             Canvas.SetTop(_txt2, from);
-            _txt1.SetCurrentValue(Canvas.LeftProperty, from);
-            _txt2.SetCurrentValue(Canvas.LeftProperty, from);
+            _txt1.SetCurrentValue(Canvas.TopProperty, from);
+            _txt2.SetCurrentValue(Canvas.TopProperty, from);
 
             var begin = TimeSpan.FromSeconds(len / Speed);      // 第二个动画延迟时间
             var duration = TimeSpan.FromSeconds(Math.Abs((from - to)) / Speed);     // 动画从开始到结束的时间
