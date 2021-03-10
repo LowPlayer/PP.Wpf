@@ -7,7 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Res\btn_first_hover.png" />
+    <None Remove="Res\btn_first_normal.png" />
+    <None Remove="Res\btn_first_press.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\PP.Wpf\PP.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Res\btn_first_hover.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\btn_first_normal.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\btn_first_press.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

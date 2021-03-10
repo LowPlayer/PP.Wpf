@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pp="https://www.cnblogs.com/pumbaa"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{DynamicResource PP.Brushes.Background}"
              Foreground="{DynamicResource PP.Brushes.Foreground}">
     <StackPanel Margin="10">
-        <GroupBox Header="按钮" Margin="10">
+        <GroupBox Header="主题按钮" Margin="10">
             <WrapPanel>
                 <Button Margin="5">默认按钮</Button>
                 <Button Style="{StaticResource PP.Styles.Button.Primary}" Margin="5">主题按钮</Button>
@@ -16,6 +17,24 @@
                 <Button Style="{StaticResource PP.Styles.Button.Warning}" Margin="5">警告按钮</Button>
                 <Button Style="{StaticResource PP.Styles.Button.Danger}" Margin="5">危险按钮</Button>
                 <Button Style="{StaticResource PP.Styles.Button.Link}" Margin="5">链接按钮</Button>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Header="透明按钮" Margin="10">
+            <WrapPanel>
+                <Button Style="{StaticResource PP.Styles.Button.Scale}" Margin="5" Height="32">
+                    <pp:SimplePanel>
+                        <Image Source="/Res/btn_first_normal.png" IsEnabled="False" />
+                        <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">缩放按钮</TextBlock>
+                    </pp:SimplePanel>
+                </Button>
+                <Button Style="{StaticResource PP.Styles.Button.Opacity}" Margin="5" Height="32">
+                    <pp:SimplePanel>
+                        <Image Source="/Res/btn_first_normal.png" IsEnabled="False" />
+                        <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">透明按钮</TextBlock>
+                    </pp:SimplePanel>
+                </Button>
+                <Button Style="{StaticResource PP.Styles.Button.ImageSwitch}" Margin="5" Height="32" Foreground="White"
+                        pp:IconElement.Image="/Res/btn_first_normal.png" pp:IconElement.HoverImage="/Res/btn_first_hover.png" pp:IconElement.PressedImage="/Res/btn_first_press.png">切图按钮</Button>
             </WrapPanel>
         </GroupBox>
         <GroupBox Header="单选按钮" Margin="10">

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="options">
+
+    <DropShadowEffect x:Key="PP.Effects.Popup" Color="{StaticResource PP.Colors.Black}" Opacity=".15" ShadowDepth="3" BlurRadius="6" Direction="-90" options:Freeze="True" />
+
+</ResourceDictionary>

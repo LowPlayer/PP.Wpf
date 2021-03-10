@@ -86,6 +86,63 @@ namespace PP.Wpf.Controls.Attach
 
 
         /// <summary>
+        /// 鼠标悬浮时图像图标
+        /// </summary>
+        public static readonly DependencyProperty HoverImageProperty = DependencyProperty.RegisterAttached("HoverImage", typeof(ImageSource), typeof(IconElement));
+        /// <summary>
+        /// 获取鼠标悬浮时图像图标
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static ImageSource GetHoverImage(DependencyObject element) => (ImageSource)element.GetValue(HoverImageProperty);
+        /// <summary>
+        /// 设置鼠标悬浮时图像图标
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetHoverImage(DependencyObject element, ImageSource value) => element.SetValue(HoverImageProperty, value);
+
+
+
+        /// <summary>
+        /// 鼠标按压时图像图标
+        /// </summary>
+        public static readonly DependencyProperty PressedImageProperty = DependencyProperty.RegisterAttached("PressedImage", typeof(ImageSource), typeof(IconElement));
+        /// <summary>
+        /// 获取鼠标按压时图像图标
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static ImageSource GetPressedImage(DependencyObject element) => (ImageSource)element.GetValue(PressedImageProperty);
+        /// <summary>
+        /// 设置鼠标按压时图像图标
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetPressedImage(DependencyObject element, ImageSource value) => element.SetValue(PressedImageProperty, value);
+
+
+
+        /// <summary>
+        /// 不可用时图像图标
+        /// </summary>
+        public static readonly DependencyProperty DisabledImageProperty = DependencyProperty.RegisterAttached("DisabledImage", typeof(ImageSource), typeof(IconElement));
+        /// <summary>
+        /// 获取不可用时图像图标
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static ImageSource GetDisabledImage(DependencyObject element) => (ImageSource)element.GetValue(DisabledImageProperty);
+        /// <summary>
+        /// 设置不可用时图像图标
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetDisabledImage(DependencyObject element, ImageSource value) => element.SetValue(DisabledImageProperty, value);
+
+
+
+        /// <summary>
         /// 图标宽度
         /// </summary>
         public static readonly DependencyProperty WidthProperty = DependencyProperty.RegisterAttached("Width", typeof(Double), typeof(IconElement), new PropertyMetadata(Double.NaN));
@@ -139,5 +196,24 @@ namespace PP.Wpf.Controls.Attach
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetMargin(DependencyObject element, Thickness value) => element.SetValue(MarginProperty, value);
+
+
+
+        /// <summary>
+        /// 平铺模式
+        /// </summary>
+        public static readonly DependencyProperty StretchProperty = DependencyProperty.RegisterAttached("Stretch", typeof(Stretch), typeof(IconElement), new PropertyMetadata(Stretch.Uniform));
+        /// <summary>
+        /// 获取平铺模式
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Thickness GetStretch(DependencyObject element) => (Thickness)element.GetValue(StretchProperty);
+        /// <summary>
+        /// 设置平铺模式
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetStretch(DependencyObject element, Thickness value) => element.SetValue(StretchProperty, value);
     }
 }
