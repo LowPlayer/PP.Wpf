@@ -36,5 +36,8 @@
         <TabItem Header="PasswordBox">
             <views:PasswordBoxView />
         </TabItem>
+        <TabItem Header="ScrollViewer">
+            <views:ScrollViewerView />
+        </TabItem>
     </TabControl>
 </pp:ChromeWindow>

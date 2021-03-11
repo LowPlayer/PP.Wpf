@@ -9,7 +9,7 @@
              Background="{DynamicResource PP.Brushes.Background}" Foreground="{DynamicResource PP.Brushes.Foreground}">
     <DockPanel Margin="10">
         <DockPanel DockPanel.Dock="Top" Margin="6">
-            <TextBlock>内容文本：</TextBlock>
+            <TextBlock VerticalAlignment="Center">内容文本：</TextBlock>
             <TextBox TextWrapping="Wrap" Text="{Binding Text,ElementName=rt}" />
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" Margin="6">
