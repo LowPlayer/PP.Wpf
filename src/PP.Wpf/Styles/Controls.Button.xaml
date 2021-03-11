@@ -163,6 +163,8 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
     
     
@@ -240,6 +242,8 @@
 
     <!--根据鼠标状态切换图片的透明按钮-->
     <Style x:Key="PP.Styles.Button.ImageSwitch" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">

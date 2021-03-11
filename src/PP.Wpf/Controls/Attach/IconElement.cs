@@ -208,12 +208,12 @@ namespace PP.Wpf.Controls.Attach
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static Thickness GetStretch(DependencyObject element) => (Thickness)element.GetValue(StretchProperty);
+        public static Stretch GetStretch(DependencyObject element) => (Stretch)element.GetValue(StretchProperty);
         /// <summary>
         /// 设置平铺模式
         /// </summary>
         /// <param name="element"></param>
         /// <param name="value"></param>
-        public static void SetStretch(DependencyObject element, Thickness value) => element.SetValue(StretchProperty, value);
+        public static void SetStretch(DependencyObject element, Stretch value) => element.SetValue(StretchProperty, value);
     }
 }
