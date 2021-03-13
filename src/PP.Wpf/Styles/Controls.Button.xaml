@@ -105,8 +105,8 @@
     </Style>
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Default}" />
 
-    
-    
+
+
     <!--窗口按钮-->
     <Style x:Key="PP.Styles.Button.Window.Base" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
@@ -157,25 +157,19 @@
 
     <!--透明按钮-->
     <Style x:Key="PP.Styles.Button.TransparentBase" TargetType="{x:Type ButtonBase}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{x:Null}" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Focusable" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
     </Style>
-    
-    
-    <!--带缩放动画的透明按钮-->
-    <Style x:Key="PP.Styles.Button.Scale" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
-        <Setter Property="RenderTransformOrigin" Value="0.5 0.5" />
-        <Setter Property="RenderTransform">
-            <Setter.Value>
-                <ScaleTransform ScaleX="1" ScaleY="1" />
-            </Setter.Value>
-        </Setter>
+
+    <Style x:Key="PP.Styles.Button.Transparent" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -185,6 +179,18 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="False" />
                     </Border>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--带缩放动画的透明按钮-->
+    <Style x:Key="PP.Styles.Button.Scale" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
+        <Setter Property="RenderTransformOrigin" Value="0.5 0.5" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>
@@ -211,21 +217,10 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
-    
+
+
     <!--根据鼠标状态改变透明度的透明按钮-->
-    <Style x:Key="PP.Styles.Button.Opacity" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
-                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}">
-                        <ContentPresenter RecognizesAccessKey="True" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="False" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="PP.Styles.Button.Opacity" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Opacity" Value=".9"/>
@@ -241,9 +236,9 @@
 
 
     <!--根据鼠标状态切换图片的透明按钮-->
-    <Style x:Key="PP.Styles.Button.ImageSwitch" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
+    <Style x:Key="PP.Styles.Button.ImageSwitch" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -270,9 +265,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
-    
+
+
+
     <!--多选按钮-->
     <Style x:Key="PP.Styles.ToggleButton" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource PP.Styles.Button.Default}">
         <Setter Property="attach:BackgroundElement.SelectedBackground" Value="{DynamicResource PP.Brushes.Themes}" />
@@ -303,7 +298,7 @@
         </Style.Triggers>
     </Style>
 
-    
+
     <Style x:Key="PP.Styles.RadioButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Padding" Value="2" />
         <Setter Property="BorderThickness" Value="1" />

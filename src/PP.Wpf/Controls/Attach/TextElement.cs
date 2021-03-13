@@ -91,5 +91,43 @@ namespace PP.Wpf.Controls.Attach
                     pb.Password = newVal;
             }
         }
+
+
+
+        /// <summary>
+        /// 是否输入错误
+        /// </summary>
+        public static readonly DependencyProperty IsErrorProperty = DependencyProperty.RegisterAttached("IsError", typeof(Boolean), typeof(TextElement));
+        /// <summary>
+        /// 获取是否输入错误
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Boolean GetIsError(DependencyObject element) => (Boolean)element.GetValue(IsErrorProperty);
+        /// <summary>
+        /// 设置是否输入错误
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetIsError(DependencyObject element, Boolean value) => element.SetValue(IsErrorProperty, value);
+
+
+
+        /// <summary>
+        /// 错误提示
+        /// </summary>
+        public static readonly DependencyProperty ErrorTextProperty = DependencyProperty.RegisterAttached("ErrorText", typeof(String), typeof(TextElement));
+        /// <summary>
+        /// 获取错误提示
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static String GetErrorText(DependencyObject element) => (String)element.GetValue(ErrorTextProperty);
+        /// <summary>
+        /// 设置错误提示
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetErrorText(DependencyObject element, String value) => element.SetValue(ErrorTextProperty, value);
     }
 }

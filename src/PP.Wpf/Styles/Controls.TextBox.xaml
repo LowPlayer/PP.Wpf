@@ -11,6 +11,7 @@
         <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Themes70}" />
         <Setter Property="attach:BorderElement.FocusBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
+        <Setter Property="CaretBrush" Value="{Binding Foreground,RelativeSource={RelativeSource Self}}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />

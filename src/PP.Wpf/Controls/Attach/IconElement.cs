@@ -215,5 +215,24 @@ namespace PP.Wpf.Controls.Attach
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetStretch(DependencyObject element, Stretch value) => element.SetValue(StretchProperty, value);
+
+
+
+        /// <summary>
+        /// 是否选中
+        /// </summary>
+        public static readonly DependencyProperty IsSelectedProperty=DependencyProperty.RegisterAttached("IsSelected", typeof(Boolean), typeof(IconElement));
+        /// <summary>
+        /// 获取是否选中
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Boolean GetIsSelected(DependencyObject element) => (Boolean)element.GetValue(IsSelectedProperty);
+        /// <summary>
+        /// 设置是否选中
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetIsSelected(DependencyObject element, Boolean value) => element.SetValue(IsSelectedProperty, value);
     }
 }
