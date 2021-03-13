@@ -48,6 +48,25 @@ namespace PP.Wpf.Controls.Attach
 
 
         /// <summary>
+        /// 画刷
+        /// </summary>
+        public static readonly DependencyProperty BrushProperty = DependencyProperty.RegisterAttached("Brush", typeof(Brush), typeof(IconElement));
+        /// <summary>
+        /// 获取画刷
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetBrush(DependencyObject element) => (Brush)element.GetValue(BrushProperty);
+        /// <summary>
+        /// 设置画刷
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetBrush(DependencyObject element, Brush value) => element.SetValue(BrushProperty, value);
+
+
+
+        /// <summary>
         /// 图像图标
         /// </summary>
         public static readonly DependencyProperty ImageProperty = DependencyProperty.RegisterAttached("Image", typeof(ImageSource), typeof(IconElement));

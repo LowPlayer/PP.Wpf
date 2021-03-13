@@ -7,7 +7,7 @@
                  xmlns:views="clr-namespace:PP.Wpf.Demo.Views"
                  mc:Ignorable="d"
                  Title="PP.Wpf Demo Application" Height="450" Width="800"
-                 Foreground="{DynamicResource PP.Brushes.Foreground}" FontSize="14">
+                 Foreground="{DynamicResource PP.Brushes.Foreground}" FontSize="15">
     <pp:ChromeWindow.TitleContent>
         <TextBlock VerticalAlignment="Center" TextAlignment="Center" IsHitTestVisible="False">支持编辑的标题栏</TextBlock>
     </pp:ChromeWindow.TitleContent>
@@ -38,6 +38,9 @@
         </TabItem>
         <TabItem Header="ScrollViewer">
             <views:ScrollViewerView />
+        </TabItem>
+        <TabItem Header="SimpleDateTimePicker">
+            <views:SimpleDateTimePickerView />
         </TabItem>
     </TabControl>
 </pp:ChromeWindow>

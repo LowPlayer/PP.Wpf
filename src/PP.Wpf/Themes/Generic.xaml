@@ -2,6 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Geometry.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/ChormeWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/DateTimePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/ListBoxDragSelectViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/RunningBlock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Themes/RunningText.xaml" />

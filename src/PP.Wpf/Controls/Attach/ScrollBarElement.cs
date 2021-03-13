@@ -125,7 +125,7 @@ namespace PP.Wpf.Controls.Attach
             scrollBar.MouseLeave -= OnMouseLeave;
             scrollBar.MouseLeave += OnMouseLeave;
 
-            void OnMouseEnter(object sender, MouseEventArgs args)
+            void OnMouseEnter(Object sender, MouseEventArgs args)
             {
                 var bar = (ScrollBar)sender;
                 var val = GetHoverThumbWidth(bar);
@@ -148,7 +148,7 @@ namespace PP.Wpf.Controls.Attach
                 }
             }
 
-            void OnMouseLeave(object sender, MouseEventArgs args)
+            void OnMouseLeave(Object sender, MouseEventArgs args)
             {
                 var bar = (ScrollBar)sender;
 
@@ -227,7 +227,7 @@ namespace PP.Wpf.Controls.Attach
             scrollViewer.ScrollChanged -= OnScrollChanged;
             scrollViewer.ScrollChanged += OnScrollChanged;
 
-            void OnScrollChanged(object sender, ScrollChangedEventArgs args)
+            void OnScrollChanged(Object sender, ScrollChangedEventArgs args)
             {
                 var sv = (ScrollViewer)sender;
 
@@ -246,7 +246,7 @@ namespace PP.Wpf.Controls.Attach
                             thumb.SizeChanged -= OnVerticalThumbSizeChanged;
                             thumb.SizeChanged += OnVerticalThumbSizeChanged;
 
-                            void OnVerticalThumbSizeChanged(object sender1, SizeChangedEventArgs args1)
+                            void OnVerticalThumbSizeChanged(Object sender1, SizeChangedEventArgs args1)
                             {
                                 thumb.SizeChanged -= OnVerticalThumbSizeChanged;
 
@@ -274,7 +274,7 @@ namespace PP.Wpf.Controls.Attach
                             thumb.SizeChanged -= OnHorizontalThumbSizeChanged;
                             thumb.SizeChanged += OnHorizontalThumbSizeChanged;
 
-                            void OnHorizontalThumbSizeChanged(object sender1, SizeChangedEventArgs args1)
+                            void OnHorizontalThumbSizeChanged(Object sender1, SizeChangedEventArgs args1)
                             {
                                 thumb.SizeChanged -= OnHorizontalThumbSizeChanged;
 

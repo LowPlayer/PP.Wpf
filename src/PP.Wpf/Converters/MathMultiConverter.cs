@@ -46,7 +46,7 @@ namespace PP.Wpf.Converters
         /// <param name="parameter">要使用的转换器参数</param>
         /// <param name="culture">要用在转换器中的区域性</param>
         /// <returns></returns>
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public Object Convert(Object[] values, Type targetType, Object parameter, CultureInfo culture)
         {
             if (values.Length != 2)
                 throw new ArgumentException("values应传入两个值");
@@ -78,7 +78,7 @@ namespace PP.Wpf.Converters
         /// <param name="parameter">要使用的转换器参数</param>
         /// <param name="culture">要用在转换器中的区域性</param>
         /// <returns></returns>
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public Object[] ConvertBack(Object value, Type[] targetTypes, Object parameter, CultureInfo culture)
         {
             return new Object[] { Binding.DoNothing, Binding.DoNothing };
         }

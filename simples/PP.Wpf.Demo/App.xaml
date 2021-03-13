@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Themes/Light.Blue.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Themes/Light.Green.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <pp:GenericTypeConverter x:Key="genericTypeConverter" />

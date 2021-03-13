@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="options">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Themes/Light.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Color x:Key="PP.Colors.Themes">#009688</Color>
+    <Color x:Key="PP.Colors.Themes90">#E6009688</Color>
+    <Color x:Key="PP.Colors.Themes80">#CC009688</Color>
+    <Color x:Key="PP.Colors.Themes70">#B3009688</Color>
+    <Color x:Key="PP.Colors.Themes60">#99009688</Color>
+    <Color x:Key="PP.Colors.Themes50">#80009688</Color>
+    <Color x:Key="PP.Colors.Themes40">#66009688</Color>
+    <Color x:Key="PP.Colors.Themes30">#4D009688</Color>
+    <Color x:Key="PP.Colors.Themes20">#33009688</Color>
+    <Color x:Key="PP.Colors.Themes10">#1A009688</Color>
+
+    <Color x:Key="PP.Colors.Themes.Highlight">#018276</Color>
+    <Color x:Key="PP.Colors.Themes.Foreground">#FFFFFF</Color>
+
+    <Color x:Key="PP.Colors.Default">#F6F6F6</Color>
+    <Color x:Key="PP.Colors.Default.Hover">#FFFFFF</Color>
+    <Color x:Key="PP.Colors.Default.Highlight">#F0F0F0</Color>
+    <Color x:Key="PP.Colors.Info">#2AB9E4</Color>
+    <Color x:Key="PP.Colors.Info.Hover">#50C5E8</Color>
+    <Color x:Key="PP.Colors.Info.Highlight">#0BB0E1</Color>
+    <Color x:Key="PP.Colors.Warning">#f0ad4e</Color>
+    <Color x:Key="PP.Colors.Warning.Hover">#F2B967</Color>
+    <Color x:Key="PP.Colors.Warning.Highlight">#F69A18</Color>
+    <Color x:Key="PP.Colors.Danger">#F63530</Color>
+    <Color x:Key="PP.Colors.Danger.Hover">#F85551</Color>
+    <Color x:Key="PP.Colors.Danger.Highlight">#F5201B</Color>
+    <Color x:Key="PP.Colors.Link">#2440B3</Color>
+    <Color x:Key="PP.Colors.Link.Hover">#4059BD</Color>
+    <Color x:Key="PP.Colors.Link.Highlight">#1532AA</Color>
+
+    <SolidColorBrush x:Key="PP.Brushes.Themes" Color="{StaticResource PP.Colors.Themes}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes90" Color="{StaticResource PP.Colors.Themes90}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes80" Color="{StaticResource PP.Colors.Themes80}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes70" Color="{StaticResource PP.Colors.Themes70}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes60" Color="{StaticResource PP.Colors.Themes60}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes50" Color="{StaticResource PP.Colors.Themes50}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes40" Color="{StaticResource PP.Colors.Themes40}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes30" Color="{StaticResource PP.Colors.Themes30}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes20" Color="{StaticResource PP.Colors.Themes20}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes10" Color="{StaticResource PP.Colors.Themes10}" options:Freeze="True" />
+    
+    <SolidColorBrush x:Key="PP.Brushes.Themes.Highlight" Color="{StaticResource PP.Colors.Themes.Highlight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Themes.Foreground" Color="{StaticResource PP.Colors.Themes.Foreground}" options:Freeze="True" />
+
+    <SolidColorBrush x:Key="PP.Brushes.Default" Color="{StaticResource PP.Colors.Default}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Default.Hover" Color="{StaticResource PP.Colors.Default.Hover}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Default.Highlight" Color="{StaticResource PP.Colors.Default.Highlight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Info" Color="{StaticResource PP.Colors.Info.Hover}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Info.Hover" Color="{StaticResource PP.Colors.Info}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Info.Highlight" Color="{StaticResource PP.Colors.Info.Highlight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Warning" Color="{StaticResource PP.Colors.Warning}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Warning.Hover" Color="{StaticResource PP.Colors.Warning.Hover}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Warning.Highlight" Color="{StaticResource PP.Colors.Warning.Highlight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Danger" Color="{StaticResource PP.Colors.Danger}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Danger.Hover" Color="{StaticResource PP.Colors.Danger.Hover}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Danger.Highlight" Color="{StaticResource PP.Colors.Danger.Highlight}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Link" Color="{StaticResource PP.Colors.Link}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Link.Hover" Color="{StaticResource PP.Colors.Link.Hover}" options:Freeze="True" />
+    <SolidColorBrush x:Key="PP.Brushes.Link.Highlight" Color="{StaticResource PP.Colors.Link.Highlight}" options:Freeze="True" />
+    
+</ResourceDictionary>
