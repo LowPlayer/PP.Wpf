@@ -9,11 +9,6 @@ namespace PP.Wpf.Controls
     /// </summary>
     public class SimplePanel : Panel
     {
-        /// <summary>
-        /// 在派生类中重写时，测量子元素在布局中所需的大小，并确定由 System.Windows.FrameworkElement 派生的类的大小。
-        /// </summary>
-        /// <param name="constraint"></param>
-        /// <returns></returns>
         protected override Size MeasureOverride(Size constraint)
         {
             var maxSize = new Size();
@@ -31,11 +26,6 @@ namespace PP.Wpf.Controls
             return maxSize;
         }
 
-        /// <summary>
-        /// 在派生类中重写时，为 System.Windows.FrameworkElement 派生类定位子元素并确定大小。
-        /// </summary>
-        /// <param name="arrangeSize"></param>
-        /// <returns></returns>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             foreach (UIElement child in InternalChildren)

@@ -40,7 +40,7 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                         <Border Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" />
                                         </Border>
                                     </ControlTemplate>
                                 </Setter.Value>
@@ -79,29 +79,31 @@
                                            Visibility="{Binding Text,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static cvts:StringToVisibilityConverter.EmptyToVisible}}"
                                            Opacity="0.6" IsHitTestVisible="False" />
                                 <TextBox x:Name="PART_TextBox" Background="Transparent" BorderThickness="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}" 
-                                             Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" />
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}"
+                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False" />
                             </ctrls:SimplePanel>
                         </Border>
                         <Button x:Name="PART_IconButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" IsTabStop="False" HorizontalAlignment="Right"
                                     Padding="{TemplateBinding attach:IconElement.Margin}">
                             <Path Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Fill="{TemplateBinding attach:IconElement.Brush}" />
                         </Button>
-                        <Popup x:Name="PART_Popup" StaysOpen="False" Placement="Bottom" VerticalOffset="2" AllowsTransparency="True" MinWidth="{TemplateBinding ActualWidth}" Focusable="True">
-                            <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" Height="280"
-                                        MinWidth="420">
+                        <Popup x:Name="PART_Popup" StaysOpen="False" Placement="Bottom" VerticalOffset="2" AllowsTransparency="True" MinWidth="{TemplateBinding ActualWidth}">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" Height="280" MinWidth="420"
+                                    CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}">
                                 <DockPanel>
                                     <Border DockPanel.Dock="Top" Height="40">
-                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">选择日期时间</TextBlock>
+                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">选择日期时间</TextBlock>
                                     </Border>
                                     <Line DockPanel.Dock="Top" X1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
-                                    <ctrls:SimplePanel DockPanel.Dock="Bottom" Height="40" Margin="10 0">
-                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding PrevText,RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                            <Button x:Name="PART_CancelButton" Style="{DynamicResource PP.Styles.Button.Default}" Focusable="False" VerticalAlignment="Center" Margin="30 0 0 0">取消</Button>
-                                            <Button x:Name="PART_ConfirmButton" Style="{DynamicResource PP.Styles.Button.Primary}" Focusable="False" VerticalAlignment="Center" Margin="10 0 0 0">确定</Button>
-                                        </StackPanel>
-                                    </ctrls:SimplePanel>
+                                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="40" Margin="10 0" HorizontalAlignment="Right">
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding PrevText,RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" />
+                                        <Button x:Name="PART_ClearButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" VerticalAlignment="Center" Margin="30 0 0 0"
+                                                    BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" Padding="6 3">清空</Button>
+                                        <Button x:Name="PART_NowButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" VerticalAlignment="Center" Margin="10 0 0 0"
+                                                    BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" Padding="6 3">现在</Button>
+                                        <Button x:Name="PART_ConfirmButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" VerticalAlignment="Center" Margin="10 0 0 0"
+                                                    BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" Padding="6 3">确定</Button>
+                                    </StackPanel>
                                     <Line DockPanel.Dock="Bottom" X1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
                                     <Grid Margin="10 0 10 10">
                                         <Grid.RowDefinitions>
@@ -121,24 +123,24 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">年</TextBlock>
-                                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">月</TextBlock>
-                                        <TextBlock Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">日</TextBlock>
-                                        <TextBlock Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center">时</TextBlock>
-                                        <TextBlock Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Center">分</TextBlock>
-                                        <TextBlock Grid.Column="10" HorizontalAlignment="Center" VerticalAlignment="Center">秒</TextBlock>
+                                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">年</TextBlock>
+                                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">月</TextBlock>
+                                        <TextBlock Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">日</TextBlock>
+                                        <TextBlock Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">时</TextBlock>
+                                        <TextBlock Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">分</TextBlock>
+                                        <TextBlock Grid.Column="10" HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">秒</TextBlock>
                                         <Rectangle Grid.Row="1" Grid.ColumnSpan="11" StrokeThickness="1" Stroke="{TemplateBinding BorderBrush}" />
                                         <Line Grid.Row="1" Grid.Column="1" Y1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
                                         <Line Grid.Row="1" Grid.Column="3" Y1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
                                         <Line Grid.Row="1" Grid.Column="5" Y1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
                                         <Line Grid.Row="1" Grid.Column="7" Y1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
                                         <Line Grid.Row="1" Grid.Column="9" Y1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
-                                        <ListBox x:Name="list1" Grid.Row="1" Grid.Column="0" Style="{StaticResource ListBoxStyle}" ItemsSource="{TemplateBinding Years}" SelectedItem="{Binding Year,RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <ListBox x:Name="list2" Grid.Row="1" Grid.Column="2" Style="{StaticResource ListBoxStyle}" ItemsSource="{TemplateBinding Months}" SelectedItem="{Binding Month,RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <ListBox x:Name="list3" Grid.Row="1" Grid.Column="4" Style="{StaticResource ListBoxStyle}" ItemsSource="{TemplateBinding Days}" SelectedItem="{Binding Day,RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <ListBox x:Name="list4" Grid.Row="1" Grid.Column="6" Style="{StaticResource ListBoxStyle}" ItemsSource="{TemplateBinding Hours}" SelectedItem="{Binding Hour,RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <ListBox x:Name="list5" Grid.Row="1" Grid.Column="8" Style="{StaticResource ListBoxStyle}" ItemsSource="{TemplateBinding Minutes}" SelectedItem="{Binding Minute,RelativeSource={RelativeSource TemplatedParent}}" />
-                                        <ListBox x:Name="list6" Grid.Row="1" Grid.Column="10" Style="{StaticResource ListBoxStyle}" ItemsSource="{TemplateBinding Seconds}" SelectedItem="{Binding Second,RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ListBox x:Name="list1" Grid.Row="1" Grid.Column="0" Style="{StaticResource ListBoxStyle}" Foreground="{TemplateBinding Foreground}" ItemsSource="{TemplateBinding Years}" SelectedItem="{Binding Year,RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ListBox x:Name="list2" Grid.Row="1" Grid.Column="2" Style="{StaticResource ListBoxStyle}" Foreground="{TemplateBinding Foreground}" ItemsSource="{TemplateBinding Months}" SelectedItem="{Binding Month,RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ListBox x:Name="list3" Grid.Row="1" Grid.Column="4" Style="{StaticResource ListBoxStyle}" Foreground="{TemplateBinding Foreground}" ItemsSource="{TemplateBinding Days}" SelectedItem="{Binding Day,RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ListBox x:Name="list4" Grid.Row="1" Grid.Column="6" Style="{StaticResource ListBoxStyle}" Foreground="{TemplateBinding Foreground}" ItemsSource="{TemplateBinding Hours}" SelectedItem="{Binding Hour,RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ListBox x:Name="list5" Grid.Row="1" Grid.Column="8" Style="{StaticResource ListBoxStyle}" Foreground="{TemplateBinding Foreground}" ItemsSource="{TemplateBinding Minutes}" SelectedItem="{Binding Minute,RelativeSource={RelativeSource TemplatedParent}}" />
+                                        <ListBox x:Name="list6" Grid.Row="1" Grid.Column="10" Style="{StaticResource ListBoxStyle}" Foreground="{TemplateBinding Foreground}" ItemsSource="{TemplateBinding Seconds}" SelectedItem="{Binding Second,RelativeSource={RelativeSource TemplatedParent}}" />
                                     </Grid>
                                 </DockPanel>
                             </Border>

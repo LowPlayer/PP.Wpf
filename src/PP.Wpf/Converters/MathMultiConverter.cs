@@ -38,14 +38,6 @@ namespace PP.Wpf.Converters
             Compare
         }
 
-        /// <summary>
-        /// 转换值
-        /// </summary>
-        /// <param name="values">绑定源生成的值</param>
-        /// <param name="targetType">绑定目标属性的类型</param>
-        /// <param name="parameter">要使用的转换器参数</param>
-        /// <param name="culture">要用在转换器中的区域性</param>
-        /// <returns></returns>
         public Object Convert(Object[] values, Type targetType, Object parameter, CultureInfo culture)
         {
             if (values.Length != 2)
@@ -70,14 +62,6 @@ namespace PP.Wpf.Converters
             }
         }
 
-        /// <summary>
-        /// 转换值
-        /// </summary>
-        /// <param name="value">绑定目标生成的值</param>
-        /// <param name="targetTypes">要转换为的类型</param>
-        /// <param name="parameter">要使用的转换器参数</param>
-        /// <param name="culture">要用在转换器中的区域性</param>
-        /// <returns></returns>
         public Object[] ConvertBack(Object value, Type[] targetTypes, Object parameter, CultureInfo culture)
         {
             return new Object[] { Binding.DoNothing, Binding.DoNothing };

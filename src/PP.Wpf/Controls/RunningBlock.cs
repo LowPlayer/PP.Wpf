@@ -81,9 +81,6 @@ namespace PP.Wpf.Controls
 
         #region Methods
 
-        /// <summary>
-        /// 应用样式
-        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

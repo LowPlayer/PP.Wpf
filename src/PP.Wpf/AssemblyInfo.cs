@@ -27,6 +27,7 @@ using System.Windows.Markup;
                                               // app, or any theme specific resource dictionaries)
 )]
 
+[assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Behaviors")]
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Controls")]
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Controls.Attach")]
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Converters")]

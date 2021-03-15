@@ -14,7 +14,8 @@ namespace PP.Wpf.Controls
     [TemplatePart(Name = "PART_IconButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_Popup", Type = typeof(Popup))]
     [TemplatePart(Name = "PART_ConfirmButton", Type = typeof(Button))]
-    [TemplatePart(Name = "PART_CancelButton", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_NowButton", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_ClearButton", Type = typeof(Button))]
     public class SimpleDateTimePicker : Control
     {
         #region DependencyProperties
@@ -295,11 +296,17 @@ namespace PP.Wpf.Controls
             SelectedDate = SelectedDate ?? DateTime.Now;
         }
 
+        #region Public Methods
+
+        public void SelectAll()
+        {
+            input?.SelectAll();
+        }
+
+        #endregion
+
         #region Override Methods
 
-        /// <summary>
-        /// 应用模板
-        /// </summary>
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -307,12 +314,19 @@ namespace PP.Wpf.Controls
             if (input != null && popup != null)
             {
                 input.PreviewMouseLeftButtonUp -= OnInputPreviewMouseLeftButtonUp;
+                input.LostFocus -= OnInputLostFocus;
 
                 if (btn_icon != null)
                     btn_icon.Click -= OnPrevOpenPopup;
 
                 if (btn_confirm != null)
                     btn_confirm.Click -= OnConfirmButtonClick;
+
+                if (btn_now != null)
+                    btn_now.Click -= OnNowButtonClick;
+
+                if (btn_clear != null)
+                    btn_clear.Click -= OnClearButtonClick;
 
                 var lists = new List<ListBox> { list1, list2, list3, list4, list5, list6 };
 
@@ -322,7 +336,7 @@ namespace PP.Wpf.Controls
                         continue;
 
                     list.SelectionChanged -= OnListBoxSelectionChanged;
-                    list.Loaded -= OnListBoxFirstLoaded;
+                    list.Loaded -= OnListBoxLoaded;
                 }
             }
 
@@ -332,10 +346,12 @@ namespace PP.Wpf.Controls
             if (input != null && popup != null)
             {
                 input.PreviewMouseLeftButtonUp += OnInputPreviewMouseLeftButtonUp;
+                input.LostFocus += OnInputLostFocus;
 
                 btn_icon = this.Template.FindName("PART_IconButton", this) as Button;
                 btn_confirm = this.Template.FindName("PART_ConfirmButton", this) as Button;
-                btn_cancel = this.Template.FindName("PART_CancelButton", this) as Button;
+                btn_now = this.Template.FindName("PART_NowButton", this) as Button;
+                btn_clear = this.Template.FindName("PART_ClearButton", this) as Button;
 
                 if (btn_icon != null)
                     btn_icon.Click += OnPrevOpenPopup;
@@ -343,8 +359,11 @@ namespace PP.Wpf.Controls
                 if (btn_confirm != null)
                     btn_confirm.Click += OnConfirmButtonClick;
 
-                if (btn_cancel != null)
-                    btn_cancel.Click += OnPrevClosePopup;
+                if (btn_now != null)
+                    btn_now.Click += OnNowButtonClick;
+
+                if (btn_clear != null)
+                    btn_clear.Click += OnClearButtonClick;
 
                 list1 = popup.FindName("list1") as ListBox;
                 list2 = popup.FindName("list2") as ListBox;
@@ -362,9 +381,17 @@ namespace PP.Wpf.Controls
 
                     list.SelectionMode = SelectionMode.Single;
                     list.SelectionChanged += OnListBoxSelectionChanged;
-                    list.Loaded += OnListBoxFirstLoaded;
+                    list.Loaded += OnListBoxLoaded;
                 }
             }
+        }
+
+        protected override void OnGotFocus(RoutedEventArgs e)
+        {
+            if (input != null && input.Focus())
+                e.Handled = true;
+            else
+                base.OnGotFocus(e);
         }
 
         #endregion
@@ -416,13 +443,16 @@ namespace PP.Wpf.Controls
             popup.IsOpen = true;
         }
 
-        private void OnPrevClosePopup(Object sender, RoutedEventArgs e)
+        private void OnClearButtonClick(Object sender, RoutedEventArgs e)
         {
-            popup.IsOpen = false;
-            input.Focus();
-            input.SelectionLength = 0;
-            input.SelectionStart = input.Text == null ? 0 : input.Text.Length;
+            SelectedDate = null;
         }
+
+        private void OnNowButtonClick(Object sender, RoutedEventArgs e)
+        {
+            SelectedDate = DateTime.Now;
+        }
+
 
         private void OnInputPreviewMouseLeftButtonUp(Object sender, MouseButtonEventArgs e)
         {
@@ -433,10 +463,26 @@ namespace PP.Wpf.Controls
             });
         }
 
+        private void OnInputLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(Text) || !DateTime.TryParse(Text, out DateTime date))
+            {
+                Text = null;
+                SelectedDate = null;
+            }
+            else
+                SelectedDate = date;
+        }
+
         private void OnConfirmButtonClick(Object sender, RoutedEventArgs e)
         {
             SelectedDate = prevDate;
-            OnPrevClosePopup(sender, e);
+
+            popup.IsOpen = false;
+
+            input.Focus();
+            input.SelectionLength = 0;
+            input.SelectionStart = input.Text == null ? 0 : input.Text.Length;
         }
 
         private void OnListBoxSelectionChanged(Object sender, SelectionChangedEventArgs e)
@@ -444,7 +490,7 @@ namespace PP.Wpf.Controls
             ScrollToCenter((ListBox)sender);
         }
 
-        private void OnListBoxFirstLoaded(object sender, RoutedEventArgs e)
+        private void OnListBoxLoaded(object sender, RoutedEventArgs e)
         {
             ScrollToCenter((ListBox)sender);
         }
@@ -454,12 +500,15 @@ namespace PP.Wpf.Controls
             if (!list.IsLoaded || list.SelectedItem == null || (list.IsMouseOver && Mouse.LeftButton == MouseButtonState.Pressed))
                 return;
 
+            var item = (ListBoxItem)list.ItemContainerGenerator.ContainerFromIndex(list.SelectedIndex);
+
+            if (item == null)
+                return;
+
             var sv = list.Template.FindName("PART_ScrollViewer", list) as ScrollViewer;
 
             if (sv == null)
                 return;
-
-            var item = (ListBoxItem)list.ItemContainerGenerator.ContainerFromIndex(list.SelectedIndex);
 
             var offsetY = item.TranslatePoint(new Point(0, -(sv.ViewportHeight - item.ActualHeight) / 2), sv).Y;
 
@@ -492,7 +541,7 @@ namespace PP.Wpf.Controls
 
         private TextBox input;
         private Popup popup;
-        private Button btn_icon, btn_confirm, btn_cancel;
+        private Button btn_icon, btn_confirm, btn_now, btn_clear;
         private ListBox list1, list2, list3, list4, list5, list6;
         private Action action;
         private DateTime prevDate;

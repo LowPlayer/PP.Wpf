@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net452;net462;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageProjectUrl>https://github.com/LowPlayer/PP.Wpf</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -11,6 +11,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net452|AnyCPU'">
     <DocumentationFile>C:\Users\Administrator\Documents\GitHub\PP.Wpf\src\PP.Wpf\PP.Wpf.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+  </ItemGroup>
 
   <ItemGroup>
     <Page Update="Styles\Controls.PasswordBox.xaml">
