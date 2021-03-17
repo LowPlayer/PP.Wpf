@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PP.Wpf.Extensions;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -53,16 +54,14 @@ namespace PP.Wpf.Controls.Attach
                     pb.PasswordChanged += OnPasswordChanged;
                 else
                     pb.PasswordChanged -= OnPasswordChanged;
+
+                void OnPasswordChanged(Object sender, RoutedEventArgs args)
+                {
+                    var p = (PasswordBox)sender;
+                    SetPassword(p, p.Password);
+                }
             }
         }
-
-        private static void OnPasswordChanged(Object sender, RoutedEventArgs e)
-        {
-            var pb = (PasswordBox)sender;
-            SetPassword(pb, pb.Password);
-        }
-
-
 
         /// <summary>
         /// 密码

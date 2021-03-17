@@ -32,6 +32,22 @@ namespace PP.Wpf.Extensions
         }
 
         /// <summary>
+        /// Unloaded的时候执行
+        /// </summary>
+        /// <param name="ele"></param>
+        /// <param name="action"></param>
+        public static void ExecuteWhenUnloaded(this FrameworkElement ele, Action action)
+        {
+            ele.Unloaded += OnUnloaded;
+
+            void OnUnloaded(Object sender, RoutedEventArgs e)
+            {
+                ele.Unloaded -= OnUnloaded;
+                action.Invoke();
+            }
+        }
+
+        /// <summary>
         /// 窗口关闭时执行
         /// </summary>
         /// <param name="win"></param>

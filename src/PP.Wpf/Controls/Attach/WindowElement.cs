@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -142,5 +143,55 @@ namespace PP.Wpf.Controls.Attach
         /// <param name="element"></param>
         /// <param name="value"></param>
         public static void SetTitlePadding(DependencyObject element, Thickness value) => element.SetValue(TitlePaddingProperty, value);
+
+
+
+        /// <summary>
+        /// 保持最大化（窗口只能最小化和最大化，不能正常化）
+        /// </summary>
+        public static readonly DependencyProperty KeepMaximizedProperty = DependencyProperty.RegisterAttached("KeepMaximized", typeof(Boolean), typeof(WindowElement), new PropertyMetadata(OnKeepMaximizedPropertyChanged));
+
+        private static readonly DependencyPropertyDescriptor descriptorWindowState = DependencyPropertyDescriptor.FromProperty(Window.WindowStateProperty, typeof(Window));
+
+        private static void OnKeepMaximizedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Window win)
+            {
+                if ((Boolean)e.NewValue)
+                {
+                    descriptorWindowState.AddValueChanged(win, OnMaximizedPropertyChanged);
+
+                    if (win.WindowState == WindowState.Normal)
+                        win.WindowState = WindowState.Maximized;
+                }
+                else
+                    descriptorWindowState.RemoveValueChanged(win, OnMaximizedPropertyChanged);
+
+                void OnMaximizedPropertyChanged(Object sender, EventArgs args)
+                {
+                    var w = (Window)sender;
+
+                    if (w.WindowState == WindowState.Normal)
+                    {
+                        w.Dispatcher.InvokeAsync(() =>
+                        {
+                            if (w.WindowState == WindowState.Normal)
+                                w.WindowState = WindowState.Maximized;
+                        });
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取标题栏边距
+        /// </summary>
+        public static Boolean GetKeepMaximized(DependencyObject element) => (Boolean)element.GetValue(KeepMaximizedProperty);
+        /// <summary>
+        /// 设置标题栏边距
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetKeepMaximized(DependencyObject element, Boolean value) => element.SetValue(KeepMaximizedProperty, value);
     }
 }

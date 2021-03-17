@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PP.Wpf.Extensions;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -121,8 +122,9 @@ namespace PP.Wpf.Controls.Attach
                 return;
 
             scrollBar.MouseEnter -= OnMouseEnter;
-            scrollBar.MouseEnter += OnMouseEnter;
             scrollBar.MouseLeave -= OnMouseLeave;
+
+            scrollBar.MouseEnter += OnMouseEnter;
             scrollBar.MouseLeave += OnMouseLeave;
 
             void OnMouseEnter(Object sender, MouseEventArgs args)
@@ -136,7 +138,7 @@ namespace PP.Wpf.Controls.Attach
                     Duration = TimeSpan.FromSeconds(0.1)
                 };
 
-                if (bar.Orientation == System.Windows.Controls.Orientation.Vertical)
+                if (bar.Orientation == Orientation.Vertical)
                 {
                     ani.From = bar.ActualWidth;
                     bar.BeginAnimation(FrameworkElement.WidthProperty, ani);
@@ -152,7 +154,7 @@ namespace PP.Wpf.Controls.Attach
             {
                 var bar = (ScrollBar)sender;
 
-                if (bar.Orientation == System.Windows.Controls.Orientation.Vertical)
+                if (bar.Orientation == Orientation.Vertical)
                     bar.BeginAnimation(FrameworkElement.WidthProperty, null);
                 else
                     bar.BeginAnimation(FrameworkElement.HeightProperty, null);
