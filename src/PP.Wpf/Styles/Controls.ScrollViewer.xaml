@@ -157,7 +157,6 @@
         <Setter Property="attach:ScrollBarElement.ThumbPressFill" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
         <Setter Property="attach:ScrollBarElement.ThumbWidth" Value="12" />
         <Setter Property="attach:ScrollBarElement.ThumbRadius" Value="0" />
-        <Setter Property="attach:ScrollBarElement.ThumbMinLength" Value="60" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template" Value="{StaticResource PP.Templates.ScrollViewer.Inline}" />
@@ -237,7 +236,7 @@
         <ctrls:SimplePanel Background="{TemplateBinding Background}">
             <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False"
                                     ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" />
-            <Grid x:Name="grid" Opacity="0" >
+            <Grid x:Name="grid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -275,20 +274,6 @@
                 <Rectangle Grid.Row="1" Grid.Column="1" Fill="{TemplateBinding attach:ScrollBarElement.Background}" />
             </Grid>
         </ctrls:SimplePanel>
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="begin">
-                        <Storyboard>
-                            <DoubleAnimation Duration="0:0:.1" To="1" Storyboard.TargetName="grid" Storyboard.TargetProperty="Opacity" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <RemoveStoryboard BeginStoryboardName="begin" />
-                </Trigger.ExitActions>
-            </Trigger>
-        </ControlTemplate.Triggers>
     </ControlTemplate>
 
 

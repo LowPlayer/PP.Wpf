@@ -239,6 +239,7 @@
     <Style x:Key="PP.Styles.Button.ImageSwitch" TargetType="{x:Type Button}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="attach:IconElement.Stretch" Value="Fill" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">

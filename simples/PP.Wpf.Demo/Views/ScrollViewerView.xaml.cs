@@ -24,5 +24,13 @@ namespace PP.Wpf.Demo.Views
         {
             InitializeComponent();
         }
+
+        private void OnRadioClick(object sender, RoutedEventArgs e)
+        {
+            var styleStr = sender == radio_inline ? "PP.Styles.ScrollViewer.Inline" : "PP.Styles.ScrollViewer.Overlay";
+
+            if (this.FindResource(styleStr) is Style style)
+                scroll.Style = style;
+        }
     }
 }

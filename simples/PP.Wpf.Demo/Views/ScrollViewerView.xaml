@@ -21,29 +21,38 @@
         </DrawingBrush>
     </UserControl.Resources>
     <DockPanel Margin="10">
-        <StackPanel DockPanel.Dock="Top" Margin="10">
+        <WrapPanel DockPanel.Dock="Top" Margin="10">
             <DockPanel Margin="6">
-                <TextBlock VerticalAlignment="Center">内容宽度：</TextBlock>
-                <TextBox TextWrapping="Wrap" Text="{Binding Width,ElementName=rec}" />
+                <TextBlock VerticalAlignment="Center">滚动条样式：</TextBlock>
+                <RadioButton x:Name="radio_inline" Click="OnRadioClick">Inline</RadioButton>
+                <RadioButton x:Name="radio_overlay" Click="OnRadioClick" IsChecked="True" Margin="10 0 0 0">Overlay</RadioButton>
             </DockPanel>
             <DockPanel Margin="6">
                 <TextBlock VerticalAlignment="Center">内容高度：</TextBlock>
-                <TextBox TextWrapping="Wrap" Text="{Binding Height,ElementName=rec}" />
+                <TextBox MinWidth="60" Text="{Binding Height,ElementName=rec,UpdateSourceTrigger=PropertyChanged}" />
             </DockPanel>
             <DockPanel Margin="6">
                 <TextBlock VerticalAlignment="Center">滑块窄：</TextBlock>
-                <TextBox TextWrapping="Wrap" Text="{Binding Path=(pp:ScrollBarElement.ThumbWidth),ElementName=scroll}" />
+                <TextBox MinWidth="60" Text="{Binding Path=(pp:ScrollBarElement.ThumbWidth),ElementName=scroll}" />
             </DockPanel>
             <DockPanel Margin="6">
                 <TextBlock VerticalAlignment="Center">滑块窄 :Hover：</TextBlock>
-                <TextBox TextWrapping="Wrap" Text="{Binding Path=(pp:ScrollBarElement.HoverThumbWidth),ElementName=scroll}" />
+                <TextBox MinWidth="60" Text="{Binding Path=(pp:ScrollBarElement.HoverThumbWidth),ElementName=scroll}" />
             </DockPanel>
             <DockPanel Margin="6">
-                <TextBlock VerticalAlignment="Center">滑块最小长度 :Hover：</TextBlock>
-                <TextBox TextWrapping="Wrap" Text="{Binding Path=(pp:ScrollBarElement.ThumbMinLength),ElementName=scroll}" />
+                <TextBlock VerticalAlignment="Center">滑块最小长度：</TextBlock>
+                <TextBox MinWidth="60" Text="{Binding Path=(pp:ScrollBarElement.ThumbMinLength),ElementName=scroll}" />
             </DockPanel>
-        </StackPanel>
-        <ScrollViewer x:Name="scroll" HorizontalScrollBarVisibility="Auto" Margin="10">
+            <DockPanel Margin="6">
+                <TextBlock VerticalAlignment="Center">滑块圆角：</TextBlock>
+                <TextBox MinWidth="60" Text="{Binding Path=(pp:ScrollBarElement.ThumbRadius),ElementName=scroll}" />
+            </DockPanel>
+            <DockPanel Margin="6">
+                <TextBlock VerticalAlignment="Center">滑块圆角 :Hover：</TextBlock>
+                <TextBox MinWidth="60" Text="{Binding Path=(pp:ScrollBarElement.HoverThumbRadius),ElementName=scroll}" />
+            </DockPanel>
+        </WrapPanel>
+        <ScrollViewer x:Name="scroll" Style="{StaticResource PP.Styles.ScrollViewer.Overlay}" HorizontalScrollBarVisibility="Auto" Margin="10">
             <Rectangle x:Name="rec" Width="1280" Height="720" Fill="{StaticResource drawingBrush}" />
         </ScrollViewer>
     </DockPanel>
