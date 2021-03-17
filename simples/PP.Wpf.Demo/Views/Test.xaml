@@ -2,68 +2,187 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PP.Wpf.Demo.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:pp="https://www.cnblogs.com/pumbaa"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White" FontSize="15">
     <UserControl.Resources>
-        <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="#FF688CAF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
-            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Style x:Key="PP.Styles.CalendarDayButton" TargetType="{x:Type CalendarDayButton}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
+            <Setter Property="Padding" Value="4 2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value=".4" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Black50}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes80}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+                <Trigger Property="IsInactive" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Black60}" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes80}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes80}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+                <Trigger Property="IsToday" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PP.Styles.CalendarButton" TargetType="{x:Type CalendarButton}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Black50}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes80}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+                <Trigger Property="IsInactive" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Black60}" />
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes80}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+                <Trigger Property="HasSelectedDays" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes.Highlight}" />
+                    <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes}" />
+                    <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PP.Styles.CalendarItem" TargetType="{x:Type CalendarItem}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type DataGrid}">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
-                                <ScrollViewer.Template>
-                                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                                        <Grid>
+                    <ControlTemplate TargetType="{x:Type CalendarItem}">
+                        <ControlTemplate.Resources>
+                            <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                                <Border Padding="6 4">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding}" />
+                                </Border>
+                            </DataTemplate>
+                        </ControlTemplate.Resources>
+                        <pp:SimplePanel x:Name="PART_Root">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
+                                    Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding pp:BorderElement.CornerRadius}">
+                                <DockPanel>
+                                    <Border DockPanel.Dock="Top" Background="{DynamicResource PP.Brushes.Themes}" Padding="0 4">
+                                        <DockPanel>
+                                            <Button x:Name="PART_PreviousButton" Style="{StaticResource PP.Styles.Button.Opacity}" Focusable="False" Height="20" Width="28">
+                                                <Path Data="M0 -2 M0 22 M0 10 L13 0 V20 Z" Fill="{DynamicResource PP.Brushes.Themes.Foreground}" Height="{TemplateBinding FontSize}" Stretch="Uniform" />
+                                            </Button>
+                                            <Button x:Name="PART_NextButton" DockPanel.Dock="Right" Style="{StaticResource PP.Styles.Button.Opacity}" Focusable="False" Height="20" Width="28">
+                                                <Path Data="M0 -2 M0 22 M0 0 V20 L13 10 Z" Fill="{DynamicResource PP.Brushes.Themes.Foreground}" Height="{TemplateBinding FontSize}" Stretch="Uniform" />
+                                            </Button>
+                                            <Button x:Name="PART_HeaderButton" Style="{StaticResource PP.Styles.Button.Opacity}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource PP.Brushes.Themes.Foreground}" Focusable="False" />
+                                        </DockPanel>
+                                    </Border>
+                                    <pp:SimplePanel>
+                                        <Grid x:Name="PART_MonthView" Visibility="Visible">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
                                             </Grid.RowDefinitions>
-                                            <Button Command="{x:Static DataGrid.SelectAllCommand}" Focusable="false" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-                                            <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-                                            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" Grid.ColumnSpan="2" Grid.Row="1"/>
-                                            <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="1" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
-                                            <Grid Grid.Column="1" Grid.Row="2">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
-                                            </Grid>
                                         </Grid>
-                                    </ControlTemplate>
-                                </ScrollViewer.Template>
-                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                            </ScrollViewer>
-                        </Border>
+                                        <Grid x:Name="PART_YearView" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                        </Grid>
+                                    </pp:SimplePanel>
+                                </DockPanel>
+                            </Border>
+                            <Rectangle x:Name="PART_DisabledVisual" Fill="{DynamicResource PP.Brushes.Black20}" Visibility="Collapsed"/>
+                        </pp:SimplePanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Visibility" TargetName="PART_DisabledVisual" Value="Visible"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Year">
+                                <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
+                                <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Calendar}}}" Value="Decade">
+                                <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
+                                <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsGrouping" Value="true"/>
-                        <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
-                </MultiTrigger>
-            </Style.Triggers>
+        </Style>
+        <Style x:Key="PP.Styles.Calendar" TargetType="{x:Type Calendar}">
+            <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
+            <Setter Property="Background" Value="{DynamicResource PP.Brushes.Background}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Black60}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CalendarItemStyle" Value="{StaticResource PP.Styles.CalendarItem}" />
+            <Setter Property="CalendarButtonStyle" Value="{StaticResource PP.Styles.CalendarButton}" />
+            <Setter Property="CalendarDayButtonStyle" Value="{StaticResource PP.Styles.CalendarDayButton}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                            <CalendarItem x:Name="PART_CalendarItem" Style="{TemplateBinding CalendarItemStyle}"
+                                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                                          Padding="{TemplateBinding Padding}" pp:BorderElement.CornerRadius="{TemplateBinding pp:BorderElement.CornerRadius}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
-    <DataGrid Style="{DynamicResource DataGridStyle1}"></DataGrid>
+    <StackPanel Orientation="Horizontal" Margin="10">
+        <Calendar Margin="10" />
+    </StackPanel>
 </UserControl>

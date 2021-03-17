@@ -42,5 +42,11 @@
         <TabItem Header="SimpleDateTimePicker">
             <views:SimpleDateTimePickerView />
         </TabItem>
+        <TabItem Header="Calendar">
+            <Calendar />
+        </TabItem>
+        <TabItem Header="Test">
+            <views:Test />
+        </TabItem>
     </TabControl>
 </pp:ChromeWindow>
