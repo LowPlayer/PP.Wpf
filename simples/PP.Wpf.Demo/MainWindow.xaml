@@ -39,8 +39,8 @@
         <TabItem Header="ScrollViewer">
             <views:ScrollViewerView />
         </TabItem>
-        <TabItem Header="SimpleDateTimePicker">
-            <views:SimpleDateTimePickerView />
+        <TabItem Header="DateTimePicker">
+            <views:DateTimePickerView />
         </TabItem>
         <TabItem Header="Calendar">
             <Calendar />

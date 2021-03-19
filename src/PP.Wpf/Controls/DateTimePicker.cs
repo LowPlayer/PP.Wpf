@@ -16,18 +16,19 @@ namespace PP.Wpf.Controls
     [TemplatePart(Name = "PART_ConfirmButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_NowButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_ClearButton", Type = typeof(Button))]
-    public class SimpleDateTimePicker : Control
+    [TemplatePart(Name = "PART_Calendar", Type = typeof(Calendar))]
+    public class DateTimePicker : Control
     {
         #region DependencyProperties
 
         /// <summary>
         /// 选择的时间
         /// </summary>
-        public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register("SelectedDate", typeof(DateTime?), typeof(SimpleDateTimePicker), new PropertyMetadata(OnSelectedDatePropertyChanged));
+        public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register("SelectedDate", typeof(DateTime?), typeof(DateTimePicker), new PropertyMetadata(OnSelectedDatePropertyChanged));
 
         private static void OnSelectedDatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((SimpleDateTimePicker)d).OnSelectedDateChanged((DateTime?)e.NewValue);
+            ((DateTimePicker)d).OnSelectedDateChanged((DateTime?)e.NewValue);
         }
 
         /// <summary>
@@ -40,11 +41,11 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 显示文本
         /// </summary>
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String), typeof(SimpleDateTimePicker), new PropertyMetadata(OnTextPropertyChanged));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(String), typeof(DateTimePicker), new PropertyMetadata(OnTextPropertyChanged));
 
         private static void OnTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var picker = (SimpleDateTimePicker)d;
+            var picker = (DateTimePicker)d;
             var txt = (String)e.NewValue;
 
             if (DateTime.TryParseExact(txt, picker.DateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime time))
@@ -61,7 +62,7 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 日期时间显示格式
         /// </summary>
-        public static readonly DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(String), typeof(SimpleDateTimePicker), new PropertyMetadata("yyyy-MM-dd HH:mm:ss"));
+        public static readonly DependencyProperty DateTimeFormatProperty = DependencyProperty.Register("DateTimeFormat", typeof(String), typeof(DateTimePicker), new PropertyMetadata("yyyy-MM-dd HH:mm:ss"));
         /// <summary>
         /// 日期时间显示格式
         /// </summary>
@@ -70,105 +71,9 @@ namespace PP.Wpf.Controls
 
 
         /// <summary>
-        /// 年列表
-        /// </summary>
-        public static readonly DependencyPropertyKey YearsPropertyKey = DependencyProperty.RegisterReadOnly("Years", typeof(IEnumerable<Int32>), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
-        /// <summary>
-        /// 年列表
-        /// </summary>
-        public static readonly DependencyProperty YearsProperty = YearsPropertyKey.DependencyProperty;
-        /// <summary>
-        /// 年列表
-        /// </summary>
-        public IEnumerable<Int32> Years { get => (IEnumerable<Int32>)GetValue(YearsProperty); private set => SetValue(YearsPropertyKey, value); }
-
-
-
-        /// <summary>
-        /// 年
-        /// </summary>
-        public static readonly DependencyProperty YearProperty = DependencyProperty.Register("Year", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnYearPropertyChagned));
-
-        private static void OnYearPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
-        }
-
-        /// <summary>
-        /// 年
-        /// </summary>
-        public Int32 Year { get => (Int32)GetValue(YearProperty); set => SetValue(YearProperty, value); }
-
-
-
-        /// <summary>
-        /// 月列表
-        /// </summary>
-        public static readonly DependencyPropertyKey MonthsPropertyKey = DependencyProperty.RegisterReadOnly("Months", typeof(IEnumerable<Int32>), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
-        /// <summary>
-        /// 月列表
-        /// </summary>
-        public static readonly DependencyProperty MonthsProperty = MonthsPropertyKey.DependencyProperty;
-        /// <summary>
-        /// 月列表
-        /// </summary>
-        public IEnumerable<Int32> Months { get => (IEnumerable<Int32>)GetValue(MonthsProperty); private set => SetValue(MonthsPropertyKey, value); }
-
-
-
-        /// <summary>
-        /// 月
-        /// </summary>
-        public static readonly DependencyProperty MonthProperty = DependencyProperty.Register("Month", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnMonthPropertyChagned));
-
-        private static void OnMonthPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
-        }
-
-        /// <summary>
-        /// 月
-        /// </summary>
-        public Int32 Month { get => (Int32)GetValue(MonthProperty); set => SetValue(MonthProperty, value); }
-
-
-
-        /// <summary>
-        /// 日列表
-        /// </summary>
-        public static readonly DependencyPropertyKey DaysPropertyKey = DependencyProperty.RegisterReadOnly("Days", typeof(IEnumerable<Int32>), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
-        /// <summary>
-        /// 日列表
-        /// </summary>
-        public static readonly DependencyProperty DaysProperty = DaysPropertyKey.DependencyProperty;
-        /// <summary>
-        /// 日列表
-        /// </summary>
-        public IEnumerable<Int32> Days { get => (IEnumerable<Int32>)GetValue(DaysProperty); private set => SetValue(DaysPropertyKey, value); }
-
-
-
-        /// <summary>
-        /// 日
-        /// </summary>
-        public static readonly DependencyProperty DayProperty = DependencyProperty.Register("Day", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnDayPropertyChagned));
-
-        private static void OnDayPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
-        }
-
-        /// <summary>
-        /// 日
-        /// </summary>
-        public Int32 Day { get => (Int32)GetValue(DayProperty); set => SetValue(DayProperty, value); }
-
-
-
-        /// <summary>
         /// 小时列表
         /// </summary>
-        public static readonly DependencyPropertyKey HoursPropertyKey = DependencyProperty.RegisterReadOnly("Hours", typeof(IEnumerable<Int32>), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
+        public static readonly DependencyPropertyKey HoursPropertyKey = DependencyProperty.RegisterReadOnly("Hours", typeof(IEnumerable<Int32>), typeof(DateTimePicker), new PropertyMetadata(default));
         /// <summary>
         /// 小时列表
         /// </summary>
@@ -183,11 +88,11 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 小时
         /// </summary>
-        public static readonly DependencyProperty HourProperty = DependencyProperty.Register("Hour", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnHourPropertyChagned));
+        public static readonly DependencyProperty HourProperty = DependencyProperty.Register("Hour", typeof(Int32), typeof(DateTimePicker), new PropertyMetadata(OnHourPropertyChagned));
 
         private static void OnHourPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
+            ((DateTimePicker)d).BeginUpdatePreText();
         }
 
         /// <summary>
@@ -200,7 +105,7 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 分钟列表
         /// </summary>
-        public static readonly DependencyPropertyKey MinutesPropertyKey = DependencyProperty.RegisterReadOnly("Minutes", typeof(IEnumerable<Int32>), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
+        public static readonly DependencyPropertyKey MinutesPropertyKey = DependencyProperty.RegisterReadOnly("Minutes", typeof(IEnumerable<Int32>), typeof(DateTimePicker), new PropertyMetadata(default));
         /// <summary>
         /// 分钟列表
         /// </summary>
@@ -215,11 +120,11 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 分钟
         /// </summary>
-        public static readonly DependencyProperty MinuteProperty = DependencyProperty.Register("Minute", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnMinutePropertyChagned));
+        public static readonly DependencyProperty MinuteProperty = DependencyProperty.Register("Minute", typeof(Int32), typeof(DateTimePicker), new PropertyMetadata(OnMinutePropertyChagned));
 
         private static void OnMinutePropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
+            ((DateTimePicker)d).BeginUpdatePreText();
         }
 
         /// <summary>
@@ -232,7 +137,7 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 秒列表
         /// </summary>
-        public static readonly DependencyPropertyKey SecondsPropertyKey = DependencyProperty.RegisterReadOnly("Seconds", typeof(IEnumerable<Int32>), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
+        public static readonly DependencyPropertyKey SecondsPropertyKey = DependencyProperty.RegisterReadOnly("Seconds", typeof(IEnumerable<Int32>), typeof(DateTimePicker), new PropertyMetadata(default));
         /// <summary>
         /// 秒列表
         /// </summary>
@@ -247,11 +152,11 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 秒
         /// </summary>
-        public static readonly DependencyProperty SecondProperty = DependencyProperty.Register("Second", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnSecondPropertyChagned));
+        public static readonly DependencyProperty SecondProperty = DependencyProperty.Register("Second", typeof(Int32), typeof(DateTimePicker), new PropertyMetadata(OnSecondPropertyChagned));
 
         private static void OnSecondPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
+            ((DateTimePicker)d).BeginUpdatePreText();
         }
 
         /// <summary>
@@ -264,7 +169,7 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 日期预览
         /// </summary>
-        public static readonly DependencyPropertyKey PrevTextPropertyKey = DependencyProperty.RegisterReadOnly("PrevText", typeof(String), typeof(SimpleDateTimePicker), new PropertyMetadata(default));
+        public static readonly DependencyPropertyKey PrevTextPropertyKey = DependencyProperty.RegisterReadOnly("PrevText", typeof(String), typeof(DateTimePicker), new PropertyMetadata(default));
         /// <summary>
         /// 日期预览
         /// </summary>
@@ -274,20 +179,18 @@ namespace PP.Wpf.Controls
         /// </summary>
         public String PrevText { get => (String)GetValue(PrevTextProperty); private set => SetValue(PrevTextPropertyKey, value); }
 
-
         #endregion
 
-        static SimpleDateTimePicker()
+        static DateTimePicker()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(SimpleDateTimePicker), new FrameworkPropertyMetadata(typeof(SimpleDateTimePicker)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(DateTimePicker), new FrameworkPropertyMetadata(typeof(DateTimePicker)));
         }
 
         /// <summary>
         /// 时间日期选择器
         /// </summary>
-        public SimpleDateTimePicker()
+        public DateTimePicker()
         {
-            Months = new List<Int32>(Range(1, 12));
             Hours = new List<Int32>(Range(0, 23));
             Minutes = Seconds = new List<Int32>(Range(0, 59));
 
@@ -309,10 +212,12 @@ namespace PP.Wpf.Controls
         {
             base.OnApplyTemplate();
 
-            if (input != null && popup != null)
+            if (input != null && popup != null && calendar != null)
             {
                 input.PreviewMouseLeftButtonUp -= OnInputPreviewMouseLeftButtonUp;
                 input.LostFocus -= OnInputLostFocus;
+
+                calendar.SelectedDatesChanged -= OnCalendarSelectedDatesChanged;
 
                 if (btn_icon != null)
                     btn_icon.Click -= OnPrevOpenPopup;
@@ -326,7 +231,7 @@ namespace PP.Wpf.Controls
                 if (btn_clear != null)
                     btn_clear.Click -= OnClearButtonClick;
 
-                var lists = new List<ListBox> { list1, list2, list3, list4, list5, list6 };
+                var lists = new List<ListBox> { list1, list2, list3 };
 
                 foreach (var list in lists)
                 {
@@ -340,11 +245,16 @@ namespace PP.Wpf.Controls
 
             input = this.Template.FindName("PART_TextBox", this) as TextBox;
             popup = this.Template.FindName("PART_Popup", this) as Popup;
+            calendar = popup?.FindName("PART_Calendar") as Calendar;
 
-            if (input != null && popup != null)
+            if (input != null && popup != null && calendar != null)
             {
                 input.PreviewMouseLeftButtonUp += OnInputPreviewMouseLeftButtonUp;
                 input.LostFocus += OnInputLostFocus;
+
+                calendar.SelectionMode = CalendarSelectionMode.SingleDate;
+                calendar.SelectedDatesChanged += OnCalendarSelectedDatesChanged;
+                calendar.SelectedDate = SelectedDate;
 
                 btn_icon = this.Template.FindName("PART_IconButton", this) as Button;
                 btn_confirm = this.Template.FindName("PART_ConfirmButton", this) as Button;
@@ -366,11 +276,8 @@ namespace PP.Wpf.Controls
                 list1 = popup.FindName("list1") as ListBox;
                 list2 = popup.FindName("list2") as ListBox;
                 list3 = popup.FindName("list3") as ListBox;
-                list4 = popup.FindName("list4") as ListBox;
-                list5 = popup.FindName("list5") as ListBox;
-                list6 = popup.FindName("list6") as ListBox;
 
-                var lists = new List<ListBox> { list1, list2, list3, list4, list5, list6 };
+                var lists = new List<ListBox> { list1, list2, list3 };
 
                 foreach (var list in lists)
                 {
@@ -421,19 +328,15 @@ namespace PP.Wpf.Controls
                 time = today;
             }
 
-            var max = time > today ? time : today;
-
-            Years = new List<Int32>(Range(1970, max.Year + 10));
-            Year = time.Year;
-
-            Month = time.Month;
-
-            Days = new List<Int32>(Range(1, DateTime.DaysInMonth(time.Year, time.Month)));
-            Day = time.Day;
-
+            year = time.Year;
+            month = time.Month;
+            day = time.Day;
             Hour = time.Hour;
             Minute = time.Minute;
             Second = time.Second;
+
+            if (calendar != null)
+                calendar.SelectedDate = time;
         }
 
         private void OnPrevOpenPopup(Object sender, RoutedEventArgs e)
@@ -483,6 +386,19 @@ namespace PP.Wpf.Controls
             input.SelectionStart = input.Text == null ? 0 : input.Text.Length;
         }
 
+        private void OnCalendarSelectedDatesChanged(Object sender, SelectionChangedEventArgs e)
+        {
+            calendar.ReleaseStylusCapture();
+
+            var time = calendar.SelectedDate ?? DateTime.Now;
+
+            year = time.Year;
+            month = time.Month;
+            day = time.Day;
+
+            BeginUpdatePreText();
+        }
+
         private void OnListBoxSelectionChanged(Object sender, SelectionChangedEventArgs e)
         {
             ScrollToCenter((ListBox)sender);
@@ -529,7 +445,7 @@ namespace PP.Wpf.Controls
 
         private void UpdatePreText()
         {
-            prevDate = new DateTime(Year, Month, Day, Hour, Minute, Second);
+            prevDate = new DateTime(year, month, day, Hour, Minute, Second);
             PrevText = prevDate.ToString(DateTimeFormat);
         }
 
@@ -540,9 +456,11 @@ namespace PP.Wpf.Controls
         private TextBox input;
         private Popup popup;
         private Button btn_icon, btn_confirm, btn_now, btn_clear;
-        private ListBox list1, list2, list3, list4, list5, list6;
+        private Calendar calendar;
         private Action action;
+        private ListBox list1, list2, list3;
         private DateTime prevDate;
+        private Int32 year, month, day;
 
         #endregion
     }

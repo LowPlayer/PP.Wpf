@@ -18,9 +18,9 @@ namespace PP.Wpf.Demo.Views
     /// <summary>
     /// SimpleDateTimePickerView.xaml 的交互逻辑
     /// </summary>
-    public partial class SimpleDateTimePickerView : UserControl
+    public partial class DateTimePickerView : UserControl
     {
-        public SimpleDateTimePickerView()
+        public DateTimePickerView()
         {
             InitializeComponent();
         }
