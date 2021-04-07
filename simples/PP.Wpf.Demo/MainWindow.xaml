@@ -45,6 +45,9 @@
         <TabItem Header="Calendar">
             <Calendar />
         </TabItem>
+        <TabItem Header="Loading">
+            <views:LoadingView />
+        </TabItem>
         <TabItem Header="Test">
             <views:Test />
         </TabItem>

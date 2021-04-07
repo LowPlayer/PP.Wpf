@@ -50,4 +50,17 @@
     </Style>
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource PP.Styles.TextBox}" />
 
+    <Style x:Key="PP.Styles.TextBox.SelectedOnly" TargetType="{x:Type TextBox}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <AdornerDecorator x:Name="PART_ContentHost" Focusable="False" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

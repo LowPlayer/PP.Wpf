@@ -93,12 +93,14 @@
         <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
     </Style>
     <Style x:Key="PP.Styles.Button.Link" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource PP.Styles.Button.Default}">
-        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Background}" />
-        <Setter Property="attach:BackgroundElement.HoverBackground" Value="{DynamicResource PP.Brushes.Background}" />
-        <Setter Property="attach:BackgroundElement.PressedBackground" Value="{DynamicResource PP.Brushes.Background}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Link}" />
-        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Link.Hover}" />
-        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{DynamicResource PP.Brushes.Link.Highlight}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="attach:BackgroundElement.HoverBackground" Value="Transparent" />
+        <Setter Property="attach:BackgroundElement.PressedBackground" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="attach:BorderElement.HoverBorderBrush" Value="{x:Null}" />
+        <Setter Property="attach:BorderElement.PressedBorderBrush" Value="{x:Null}" />
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Link}" />
         <Setter Property="attach:ForegroundElement.HoverForeground" Value="{DynamicResource PP.Brushes.Link.Hover}" />
         <Setter Property="attach:ForegroundElement.PressedForeground" Value="{DynamicResource PP.Brushes.Link.Highlight}" />

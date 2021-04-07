@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Res\btn_first_hover.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
