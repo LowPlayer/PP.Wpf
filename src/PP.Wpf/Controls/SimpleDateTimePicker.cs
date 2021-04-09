@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -87,11 +88,14 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 年
         /// </summary>
-        public static readonly DependencyProperty YearProperty = DependencyProperty.Register("Year", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnYearPropertyChagned));
+        public static readonly DependencyProperty YearProperty = DependencyProperty.Register("Year", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(1970, OnYearPropertyChagned));
 
         private static void OnYearPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
+            var picker = (SimpleDateTimePicker)d;
+
+            picker.Days = Enumerable.Range(1, DateTime.DaysInMonth(picker.Year, picker.Month));
+            picker.BeginUpdatePreText();
         }
 
         /// <summary>
@@ -119,11 +123,14 @@ namespace PP.Wpf.Controls
         /// <summary>
         /// 月
         /// </summary>
-        public static readonly DependencyProperty MonthProperty = DependencyProperty.Register("Month", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(OnMonthPropertyChagned));
+        public static readonly DependencyProperty MonthProperty = DependencyProperty.Register("Month", typeof(Int32), typeof(SimpleDateTimePicker), new PropertyMetadata(1, OnMonthPropertyChagned));
 
         private static void OnMonthPropertyChagned(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((SimpleDateTimePicker)d).BeginUpdatePreText();
+            var picker = (SimpleDateTimePicker)d;
+
+            picker.Days = Enumerable.Range(1, DateTime.DaysInMonth(picker.Year, picker.Month));
+            picker.BeginUpdatePreText();
         }
 
         /// <summary>
@@ -287,9 +294,9 @@ namespace PP.Wpf.Controls
         /// </summary>
         public SimpleDateTimePicker()
         {
-            Months = new List<Int32>(Range(1, 12));
-            Hours = new List<Int32>(Range(0, 23));
-            Minutes = Seconds = new List<Int32>(Range(0, 59));
+            Months = Enumerable.Range(1, 12);
+            Hours = Enumerable.Range(0, 24);
+            Minutes = Seconds = Enumerable.Range(0, 60);
 
             SelectedDate = SelectedDate ?? DateTime.Now;
         }
@@ -396,14 +403,6 @@ namespace PP.Wpf.Controls
 
         #region Private Methods
 
-        private IEnumerable<Int32> Range(Int32 from, Int32 to)
-        {
-            for (var i = from; i <= to; i++)
-            {
-                yield return i;
-            }
-        }
-
         private void OnSelectedDateChanged(DateTime? date)
         {
             var today = DateTime.Now;
@@ -423,12 +422,12 @@ namespace PP.Wpf.Controls
 
             var max = time > today ? time : today;
 
-            Years = new List<Int32>(Range(1970, max.Year + 10));
+            Years = Enumerable.Range(1970, max.Year - 1970 + 11);
             Year = time.Year;
 
             Month = time.Month;
 
-            Days = new List<Int32>(Range(1, DateTime.DaysInMonth(time.Year, time.Month)));
+            Days = Enumerable.Range(1, DateTime.DaysInMonth(time.Year, time.Month));
             Day = time.Day;
 
             Hour = time.Hour;

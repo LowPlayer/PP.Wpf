@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -191,8 +192,9 @@ namespace PP.Wpf.Controls
         /// </summary>
         public DateTimePicker()
         {
-            Hours = new List<Int32>(Range(0, 23));
-            Minutes = Seconds = new List<Int32>(Range(0, 59));
+
+            Hours = Enumerable.Range(0, 24);
+            Minutes = Seconds = Enumerable.Range(0, 60);
 
             SelectedDate = SelectedDate ?? DateTime.Now;
         }
@@ -302,14 +304,6 @@ namespace PP.Wpf.Controls
         #endregion
 
         #region Private Methods
-
-        private IEnumerable<Int32> Range(Int32 from, Int32 to)
-        {
-            for (var i = from; i <= to; i++)
-            {
-                yield return i;
-            }
-        }
 
         private void OnSelectedDateChanged(DateTime? date)
         {
