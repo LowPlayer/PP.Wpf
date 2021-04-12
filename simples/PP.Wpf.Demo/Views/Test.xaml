@@ -14,8 +14,10 @@
             <RowDefinition />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <pp:Arc RadianEnd="180" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Stroke="{DynamicResource PP.Brushes.Danger}" StrokeThickness="10" Stretch="None" />
-        <Path x:Name="path" Stroke="{DynamicResource PP.Brushes.Themes}" StrokeThickness="10" Stretch="None" Margin="10" Opacity="0.6" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Rectangle Width="200" Height="200" Stroke="Yellow" StrokeThickness="10" />
+        <pp:Arc x:Name="arc" RadianEnd="180" Stroke="{DynamicResource PP.Brushes.Danger}" StrokeThickness="10" Stretch="None" Width="200" Height="200" Visibility="Hidden" />
+        <pp:ProgressRingArc1 StrokeThickness="10" Width="200" Height="200" Visibility="Hidden" />
+        <pp:ProgressRingArc2 StrokeThickness="10" Width="200" Height="200" />
         <Slider Grid.Row="1" Minimum="0" Maximum="100" SmallChange="1" MinWidth="200" Value="50" Margin="10" ValueChanged="Slider_ValueChanged" />
     </Grid>
 </UserControl>

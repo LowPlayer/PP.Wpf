@@ -10,5 +10,7 @@
     <WrapPanel Margin="10">
         <pp:ProgressRingWin10 Foreground="{DynamicResource PP.Brushes.Themes}" Margin="10" />
         <pp:ProgressRing3Color Margin="10" Width="60" />
+        <pp:ProgressRingArc1 Margin="10" Width="60" />
+        <pp:ProgressRingArc2 Margin="10" Width="60" />
     </WrapPanel>
 </UserControl>

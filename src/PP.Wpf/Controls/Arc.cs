@@ -12,26 +12,15 @@ namespace PP.Wpf.Controls
     {
         #region DependencyProperties
 
-        public static readonly DependencyProperty RadianStartProperty = DependencyProperty.Register("RadianStart", typeof(Double), typeof(Arc)
-            , new FrameworkPropertyMetadata(-90d, FrameworkPropertyMetadataOptions.AffectsRender, new PropertyChangedCallback(OnRadianStartPropertyChanged)));
+        public static readonly DependencyProperty RadianStartProperty = DependencyProperty.Register("RadianStart", typeof(Double), typeof(Arc), new FrameworkPropertyMetadata(-90d, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        private static void OnRadianStartPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((Arc)d).DrawGeometry();
-        }
 
         /// <summary>
         /// 开始弧度
         /// </summary>
         public Double RadianStart { get => (Double)GetValue(RadianStartProperty); set => SetValue(RadianStartProperty, value); }
 
-        public static readonly DependencyProperty RadianEndProperty = DependencyProperty.Register("RadianEnd", typeof(Double), typeof(Arc)
-            , new FrameworkPropertyMetadata(-90d, FrameworkPropertyMetadataOptions.AffectsRender, new PropertyChangedCallback(OnRadianEndPropertyChanged)));
-
-        private static void OnRadianEndPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((Arc)d).DrawGeometry();
-        }
+        public static readonly DependencyProperty RadianEndProperty = DependencyProperty.Register("RadianEnd", typeof(Double), typeof(Arc), new FrameworkPropertyMetadata(-90d, FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// 结束弧度
@@ -40,43 +29,29 @@ namespace PP.Wpf.Controls
 
         #endregion
 
-        public Arc()
-        {
-            Loaded += OnLoaded;
-            SizeChanged += OnSizeChanged;
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            DrawGeometry();
-        }
-
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            DrawGeometry();
-        }
-
-        private void DrawGeometry()
+        private Geometry DrawGeometry()
         {
             // 圆心
-            var cx = ActualWidth / 2;
-            var cy = ActualHeight / 2;
+            var cx = RenderSize.Width / 2;
+            var cy = RenderSize.Height / 2;
 
             if (cx == 0 || cy == 0 || RadianStart == RadianEnd)
-            {
-                geometry = new StreamGeometry();
-                return;
-            }
+                return Geometry.Empty;
 
-            // 半径
-            var r = Math.Min(cx, cy);
-            var d = 2 * r;
+            var r = Math.Min(cx, cy) - StrokeThickness / 2;  // 半径
+            var d = 2 * r; // 直径
 
             if ((RadianEnd - RadianStart) % 360 == 0)
             {
-                var desc = $"M0 0 M{d} {d} M{r} 0 A{r} {r} 0 0 1 {r} {d} M{r} 0 A{r} {r} 0 0 0 {r} {d}";
-                geometry = Geometry.Parse(desc);
+                // 计算开始、结束弧度坐标点
+                var s = CoordMap(cx, cy, r, 0);
+                var e = CoordMap(cx, cy, r, 180);
+
+                var desc = $"M0 0 M{d} {d} M{s.X} {s.Y} A{r} {r} 0 0 1 {e.X} {e.Y} A{r} {r} 0 0 1 {s.X} {s.Y}";
+                var geometry = Geometry.Parse(desc);
                 geometry.Freeze();
+
+                return geometry;
             }
             else
             {
@@ -85,10 +60,12 @@ namespace PP.Wpf.Controls
                 var e = CoordMap(cx, cy, r, RadianEnd);
 
                 var lenghty = (RadianEnd - RadianStart) % 360 > 180 ? 1 : 0;
-                var desc = $"M0 0 M{2 * r} {2 * r} M{s.X} {s.Y} A{r} {r} 0 {lenghty} 1 {e.X} {e.Y}";
+                var desc = $"M0 0 M{d} {d} M{s.X} {s.Y} A{r} {r} 0 {lenghty} 1 {e.X} {e.Y}";
 
-                geometry = Geometry.Parse(desc);
+                var geometry = Geometry.Parse(desc);
                 geometry.Freeze();
+
+                return geometry;
             }
         }
 
@@ -100,8 +77,6 @@ namespace PP.Wpf.Controls
             return new Point(x + tx, y - ty);
         }
 
-        protected override Geometry DefiningGeometry => geometry;
-
-        private Geometry geometry = new StreamGeometry();
+        protected override Geometry DefiningGeometry => DrawGeometry();
     }
 }
