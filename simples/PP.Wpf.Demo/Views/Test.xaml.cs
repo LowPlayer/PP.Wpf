@@ -24,15 +24,5 @@ namespace PP.Wpf.Demo.Views
         {
             InitializeComponent();
         }
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            var val = (Double)e.NewValue;
-
-            // 计算当前的进度对应的角度值
-            var degrees = val * 3.6;
-
-            arc.RadianEnd = arc.RadianStart + degrees;
-        }
     }
 }

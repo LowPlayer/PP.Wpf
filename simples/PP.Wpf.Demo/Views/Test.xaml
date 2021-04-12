@@ -4,20 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:pp="https://www.cnblogs.com/pumbaa"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White" FontSize="15">
     <UserControl.Resources>
     </UserControl.Resources>
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Rectangle Width="200" Height="200" Stroke="Yellow" StrokeThickness="10" />
-        <pp:Arc x:Name="arc" RadianEnd="180" Stroke="{DynamicResource PP.Brushes.Danger}" StrokeThickness="10" Stretch="None" Width="200" Height="200" Visibility="Hidden" />
-        <pp:ProgressRingArc1 StrokeThickness="10" Width="200" Height="200" Visibility="Hidden" />
-        <pp:ProgressRingArc2 StrokeThickness="10" Width="200" Height="200" />
-        <Slider Grid.Row="1" Minimum="0" Maximum="100" SmallChange="1" MinWidth="200" Value="50" Margin="10" ValueChanged="Slider_ValueChanged" />
-    </Grid>
+    <StackPanel Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <pp:ProgressRingArc1 StrokeThickness="10" Width="200" Height="200" />
+        <TextBlock FontSize="20" TextAlignment="Center" Margin="0 30 0 0" Text="正在加载...">
+            <i:Interaction.Behaviors>
+                <pp:TextBeatingBehavior />
+            </i:Interaction.Behaviors>
+        </TextBlock>
+    </StackPanel>
 </UserControl>
