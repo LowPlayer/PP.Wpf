@@ -3,7 +3,7 @@
                     xmlns:ctrls="clr-namespace:PP.Wpf.Controls">
 
     <Style TargetType="{x:Type ctrls:ProgressRingArc2}">
-        <Setter Property="Stroke" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes}" />
         <Setter Property="Background" Value="{DynamicResource PP.Brushes.Black50}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -37,7 +37,7 @@
                         </VisualStateManager.VisualStateGroups>
                         <ctrls:SimplePanel>
                             <ctrls:Arc RadianEnd="270" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding StrokeThickness}" />
-                            <ctrls:Arc x:Name="arc" Stroke="{TemplateBinding Stroke}" StrokeThickness="{TemplateBinding StrokeThickness}"
+                            <ctrls:Arc x:Name="arc" Stroke="{TemplateBinding Foreground}" StrokeThickness="{TemplateBinding StrokeThickness}"
                                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                    Stretch="None" Visibility="Hidden" />
                         </ctrls:SimplePanel>

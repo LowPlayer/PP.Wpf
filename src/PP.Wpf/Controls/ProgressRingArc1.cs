@@ -38,10 +38,6 @@ namespace PP.Wpf.Controls
 
         public Double StrokeThickness { get => (Double)GetValue(StrokeThicknessProperty); set => SetValue(StrokeThicknessProperty, value); }
 
-        public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(typeof(ProgressRingArc1));
-
-        public Brush Stroke { get => (Brush)GetValue(StrokeProperty); set => SetValue(StrokeProperty, value); }
-
         #endregion
 
         private void OnIsVisibleChanged(Object sender, DependencyPropertyChangedEventArgs e)
