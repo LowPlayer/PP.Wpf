@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PP.Wpf.Demo.Views
 {
     /// <summary>
-    /// Test.xaml 的交互逻辑
+    /// ListPagerView.xaml 的交互逻辑
     /// </summary>
-    public partial class Test : UserControl
+    public partial class ListPagerView : UserControl
     {
-        public Test()
+        public ListPagerView()
         {
             InitializeComponent();
 

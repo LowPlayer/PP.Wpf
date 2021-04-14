@@ -70,7 +70,7 @@ namespace PP.Wpf.Extensions
         /// <param name="d">查找源点</param>
         /// <param name="filter">筛选条件</param>
         /// <returns>查找对象</returns>
-        public static T FindParent<T>(this DependencyObject d, Func<T, Boolean> filter = null) where T : class
+        public static T FindParent<T>(this DependencyObject d, Func<T, Boolean> filter = null) where T : Visual
         {
             if (d == null)
                 return null;
@@ -79,13 +79,8 @@ namespace PP.Wpf.Extensions
 
             while (parent != null)
             {
-                if (parent is T t)
-                {
-                    if (filter == null)
-                        return t;
-                    else if (filter.Invoke(t))
-                        return t;
-                }
+                if (parent is T t && (filter == null || filter.Invoke(t)))
+                    return t;
 
                 parent = LogicalTreeHelper.GetParent(parent) ?? VisualTreeHelper.GetParent(parent);
             }
@@ -99,21 +94,24 @@ namespace PP.Wpf.Extensions
         /// <typeparam name="T">类型</typeparam>
         /// <param name="root">根节点</param>
         /// <param name="list">查找结果</param>
-        public static void FindChildrenByType<T>(this DependencyObject root, ref List<T> list) where T : class
+        public static void FindChildrenByType<T>(this DependencyObject root, ref List<T> list, Func<T, Boolean> filter = null) where T : Visual
         {
             if (list == null)
                 list = new List<T>();
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
+
+            var count = VisualTreeHelper.GetChildrenCount(root);
+
+            for (int i = 0; i < count; i++)
             {
-                var el = VisualTreeHelper.GetChild(root, i) as FrameworkElement;
+                var el = VisualTreeHelper.GetChild(root, i);
+
                 if (el == null)
                     continue;
-                if (el is T t)
+
+                if (el is T t && (filter == null || filter.Invoke(t)))
                     list.Add(t);
                 else
-                {
-                    FindChildrenByType<T>(el, ref list);
-                }
+                    FindChildrenByType<T>(el, ref list, filter);
             }
         }
 
@@ -123,19 +121,26 @@ namespace PP.Wpf.Extensions
         /// <typeparam name="T">类型</typeparam>
         /// <param name="root">根节点</param>
         /// <returns>查找结果</returns>
-        public static T FindChildByType<T>(this DependencyObject root) where T : class
+        public static T FindChildByType<T>(this DependencyObject root, Func<T, Boolean> filter = null) where T : Visual
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
+            var count = VisualTreeHelper.GetChildrenCount(root);
+
+            for (int i = 0; i < count; i++)
             {
-                var el = VisualTreeHelper.GetChild(root, i) as FrameworkElement;
+                var el = VisualTreeHelper.GetChild(root, i);
 
                 if (el == null)
                     continue;
 
-                if (el is T t)
+                if (el is T t && (filter == null || filter.Invoke(t)))
                     return t;
                 else
-                    return FindChildByType<T>(el);
+                {
+                    var ret = FindChildByType<T>(el, filter);
+
+                    if (ret != null)
+                        return ret;
+                }
             }
 
             return null;

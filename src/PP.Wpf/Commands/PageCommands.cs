@@ -1,0 +1,13 @@
+﻿using System.Windows.Input;
+
+namespace PP.Wpf.Commands
+{
+    public static class PageCommands
+    {
+        public static readonly RoutedUICommand FirstPage = new RoutedUICommand("首页", "FirstPage", typeof(PageCommands));
+        public static readonly RoutedUICommand LastPage = new RoutedUICommand("尾页", "LastPage", typeof(PageCommands));
+        public static readonly RoutedUICommand NextPage = new RoutedUICommand("下一页", "NextPage", typeof(PageCommands));
+        public static readonly RoutedUICommand PrevPage = new RoutedUICommand("上一页", "PrevPage", typeof(PageCommands));
+        public static readonly RoutedUICommand SkipPage = new RoutedUICommand("跳转页面", "SkipPage", typeof(PageCommands));
+    }
+}

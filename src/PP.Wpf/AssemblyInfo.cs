@@ -28,6 +28,7 @@ using System.Windows.Markup;
 )]
 
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Behaviors")]
+[assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Commands")]
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Controls")]
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Controls.Attach")]
 [assembly: XmlnsDefinition("https://www.cnblogs.com/pumbaa", "PP.Wpf.Converters")]

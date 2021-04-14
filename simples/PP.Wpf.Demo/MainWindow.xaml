@@ -48,6 +48,9 @@
         <TabItem Header="Loading">
             <views:LoadingView />
         </TabItem>
+        <TabItem Header="ListPager">
+            <views:ListPagerView />
+        </TabItem>
         <TabItem Header="Test">
             <views:Test />
         </TabItem>

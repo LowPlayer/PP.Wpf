@@ -7,7 +7,7 @@
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="PP.Styles.CalendarDayButton" TargetType="{x:Type CalendarDayButton}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
+    <Style x:Key="PP.Styles.CalendarDayButton" TargetType="{x:Type CalendarDayButton}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
         <Setter Property="Padding" Value="4 2"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -46,7 +46,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="PP.Styles.CalendarButton" TargetType="{x:Type CalendarButton}" BasedOn="{StaticResource PP.Styles.Button.Transparent}">
+    <Style x:Key="PP.Styles.CalendarButton" TargetType="{x:Type CalendarButton}" BasedOn="{StaticResource PP.Styles.Button.TransparentBase}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderThickness" Value="2" />
