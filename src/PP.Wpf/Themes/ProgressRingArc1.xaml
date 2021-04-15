@@ -4,6 +4,7 @@
 
     <Style TargetType="{x:Type ctrls:ProgressRingArc1}">
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes}" />
+        <Setter Property="Background" Value="{DynamicResource PP.Brushes.Black50}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ctrls:ProgressRingArc1}">
@@ -35,13 +36,16 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ctrls:Arc x:Name="arc" Stroke="{TemplateBinding Foreground}" StrokeThickness="{TemplateBinding StrokeThickness}"
+                        <ctrls:SimplePanel>
+                            <ctrls:Arc RadianEnd="270" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding StrokeThickness}" />
+                            <ctrls:Arc x:Name="arc" Stroke="{TemplateBinding Foreground}" StrokeThickness="{TemplateBinding StrokeThickness}"
                                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                    Stretch="None" Visibility="Hidden" RenderTransformOrigin="0.5 0.5">
-                            <ctrls:Arc.RenderTransform>
-                                <RotateTransform x:Name="arcR" />
-                            </ctrls:Arc.RenderTransform>
-                        </ctrls:Arc>
+                                <ctrls:Arc.RenderTransform>
+                                    <RotateTransform x:Name="arcR" />
+                                </ctrls:Arc.RenderTransform>
+                            </ctrls:Arc>
+                        </ctrls:SimplePanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

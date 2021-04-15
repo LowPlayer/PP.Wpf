@@ -97,7 +97,11 @@ namespace PP.Wpf.Controls
         private void OnSourceChanged(IEnumerable source)
         {
             PageCount = GetPageCount();
-            ClearValue(PageIndexProperty);
+
+            if (PageIndex != 1)
+                PageIndex = 1;
+            else
+                OnPageIndexChanged();
         }
 
         private void OnPageSizeChanged()
@@ -112,6 +116,9 @@ namespace PP.Wpf.Controls
 
         private Int32 GetPageCount()
         {
+            if (Source == null)
+                return 0;
+
             var count = 0;
 
             if (Source is ICollection collection)
