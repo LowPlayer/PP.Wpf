@@ -141,7 +141,9 @@ namespace PP.Wpf.Controls
 
             if (Source is IList list)
             {
-                for (var i = start; i <= end; i++)
+                var max = Math.Min(list.Count - 1, end);
+
+                for (var i = start; i <= max; i++)
                 {
                     yield return list[i];
                 }
