@@ -7,8 +7,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White" FontSize="15">
-    <DockPanel Margin="10">
-        <pp:ListPager x:Name="pager" DockPanel.Dock="Top" PageSize="10" Margin="0 10" />
-        <ListBox x:Name="list" ItemsSource="{Binding DisplaySource,ElementName=pager}" />
-    </DockPanel>
+    <UserControl.Resources>
+        <Style x:Key="ProgressBarStyle1" TargetType="{x:Type ProgressBar}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
+                <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
+                <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
+            </Style.Resources>
+            <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
+            <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <pp:SimplePanel x:Name="TemplateRoot">
+                            <Border x:Name="PART_Track" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding pp:BorderElement.CornerRadius}" />
+                            <pp:CornerClip Margin="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding pp:BorderElement.CornerRadius}">
+                                <pp:SimplePanel x:Name="PART_Indicator" HorizontalAlignment="Left">
+                                    <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" Visibility="Visible" />
+                                    <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" Visibility="Collapsed" />
+                                </pp:SimplePanel>
+                            </pp:CornerClip>
+                        </pp:SimplePanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsIndeterminate" Value="true">
+                                <Setter TargetName="Indicator" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="Animation" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <ProgressBar Minimum="0" Maximum="100" Value="50" Height="10" Style="{DynamicResource ProgressBarStyle1}" />
+    </StackPanel>
 </UserControl>

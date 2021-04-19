@@ -26,7 +26,13 @@ namespace PP.Wpf.Controls
         /// </summary>
         public IEnumerable Source { get => (IEnumerable)GetValue(SourceProperty); set => SetValue(SourceProperty, value); }
 
-        public static readonly DependencyProperty PageSizeProperty = DependencyProperty.Register("PageSize", typeof(Int32), typeof(ListPager), new PropertyMetadata(10, new PropertyChangedCallback(OnPageSizePropertyChanged), new CoerceValueCallback(OnPageSizePropertyCoerceValueCallback)));
+        public static readonly DependencyProperty PageSizeProperty = DependencyProperty.Register("PageSize", typeof(Int32), typeof(ListPager), new PropertyMetadata(10, new PropertyChangedCallback(OnPageSizePropertyChanged), new CoerceValueCallback(OnPageSizePropertyCoerceValueCallback)), new ValidateValueCallback(OnPageSizePropertyValidateValueCallback));
+
+        private static Boolean OnPageSizePropertyValidateValueCallback(Object value)
+        {
+            var val = (Int32)value;
+            return val > 0 && !Double.IsPositiveInfinity(val);
+        }
 
         private static Object OnPageSizePropertyCoerceValueCallback(DependencyObject d, Object baseValue)
         {
@@ -112,6 +118,7 @@ namespace PP.Wpf.Controls
         private void OnPageIndexChanged()
         {
             DisplaySource = GetDisplaySource();
+            PageIndexChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private Int32 GetPageCount()
@@ -215,6 +222,12 @@ namespace PP.Wpf.Controls
         {
             PageIndex = Int32.Parse(e.Parameter.ToString());
         }
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler PageIndexChanged;
 
         #endregion
     }

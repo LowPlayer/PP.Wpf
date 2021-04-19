@@ -23,8 +23,6 @@ namespace PP.Wpf.Demo.Views
         public Test()
         {
             InitializeComponent();
-
-            pager.Source = Enumerable.Range(1, 100);
         }
     }
 }
