@@ -15,8 +15,8 @@
     <Style x:Key="PP.Styles.ComboBoxItem" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="MinHeight" Value="{DynamicResource ComboBoxItem.MinHeight}" />
         <Setter Property="Padding" Value="{Binding Padding,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}}" />
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}}" />
-        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ItemsControl}}" />
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ItemsControl}}}"/>
         <Setter Property="Background" Value="{DynamicResource ComboBoxItem.Background}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Focusable" Value="False" />
@@ -24,10 +24,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
-                                Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels }">
-                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

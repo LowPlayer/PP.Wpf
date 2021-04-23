@@ -7,22 +7,5 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White" FontSize="15">
-    <StackPanel Margin="10">
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock VerticalAlignment="Center" Width="60" TextAlignment="Right">只选：</TextBlock>
-            <ComboBox Height="32" Width="200" pp:TextElement.Placeholder="这是水印">
-                <ComboBoxItem>选项一</ComboBoxItem>
-                <ComboBoxItem>选项二</ComboBoxItem>
-                <ComboBoxItem>选项三</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBlock VerticalAlignment="Center" Width="60" TextAlignment="Right">可编辑：</TextBlock>
-            <ComboBox Height="32" Width="200" IsEditable="True" pp:TextElement.Placeholder="这是水印" IsTextSearchEnabled="True" StaysOpenOnEdit="True">
-                <ComboBoxItem>选项一</ComboBoxItem>
-                <ComboBoxItem>选项二</ComboBoxItem>
-                <ComboBoxItem>选项三</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-    </StackPanel>
+    
 </UserControl>

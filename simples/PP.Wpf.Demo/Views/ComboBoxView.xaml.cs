@@ -23,6 +23,17 @@ namespace PP.Wpf.Demo.Views
         public ComboBoxView()
         {
             InitializeComponent();
+
+            var typeDic = new Dictionary<int, string>
+            {
+                [1] = "打包工具",
+                [2] = "客服系统",
+                [3] = "应用服务器信息"
+            };
+
+            cb1.DisplayMemberPath = "Value";
+            cb1.SelectedValuePath = "Key";
+            cb1.ItemsSource = typeDic;
         }
     }
 }
