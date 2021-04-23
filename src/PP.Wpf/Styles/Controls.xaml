@@ -4,6 +4,7 @@
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Geometry.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.Calendar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.TextBox.xaml" />

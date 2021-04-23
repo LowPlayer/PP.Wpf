@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace PP.Wpf.Controls
 {
-    public sealed class ScrollViewer : System.Windows.Controls.ScrollViewer
+    public sealed class ScrollViewerEx : ScrollViewer
     {
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {

@@ -106,7 +106,7 @@ namespace PP.Wpf.Controls
             scrollViewer = this.Template.FindName("PART_ScrollViewer", this) as ScrollViewer;
             canvas = this.Template.FindName("PART_Canvas", this) as Canvas;
 
-            if (canvas != null)
+            if (scrollViewer != null && canvas != null)
                 canvas.MouseLeftButtonDown += OnCanvasMouseLeftButtonDown;
         }
 

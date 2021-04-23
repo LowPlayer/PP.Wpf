@@ -8,26 +8,26 @@
     <Color x:Key="PP.Colors.Foreground" >#333333</Color>
 
     <Color x:Key="PP.Colors.Black" >#000000</Color>
-    <Color x:Key="PP.Colors.Black90" >#E6000000</Color>
-    <Color x:Key="PP.Colors.Black80" >#CC000000</Color>
-    <Color x:Key="PP.Colors.Black70" >#B3000000</Color>
-    <Color x:Key="PP.Colors.Black60" >#99000000</Color>
-    <Color x:Key="PP.Colors.Black50" >#80000000</Color>
-    <Color x:Key="PP.Colors.Black40" >#66000000</Color>
-    <Color x:Key="PP.Colors.Black30" >#4D000000</Color>
-    <Color x:Key="PP.Colors.Black20" >#33000000</Color>
-    <Color x:Key="PP.Colors.Black10" >#1A000000</Color>
+    <Color x:Key="PP.Colors.Black90" >#1A1A1A</Color>
+    <Color x:Key="PP.Colors.Black80" >#333333</Color>
+    <Color x:Key="PP.Colors.Black70" >#4D4D4D</Color>
+    <Color x:Key="PP.Colors.Black60" >#666666</Color>
+    <Color x:Key="PP.Colors.Black50" >#808080</Color>
+    <Color x:Key="PP.Colors.Black40" >#999999</Color>
+    <Color x:Key="PP.Colors.Black30" >#B3B3B3</Color>
+    <Color x:Key="PP.Colors.Black20" >#CCCCCC</Color>
+    <Color x:Key="PP.Colors.Black10" >#E5E5E5</Color>
 
     <Color x:Key="PP.Colors.White" >#FFFFFF</Color>
-    <Color x:Key="PP.Colors.White90" >#E6FFFFFF</Color>
-    <Color x:Key="PP.Colors.White80" >#CCFFFFFF</Color>
-    <Color x:Key="PP.Colors.White70" >#B3FFFFFF</Color>
-    <Color x:Key="PP.Colors.White60" >#99FFFFFF</Color>
-    <Color x:Key="PP.Colors.White50" >#80FFFFFF</Color>
-    <Color x:Key="PP.Colors.White40" >#66FFFFFF</Color>
-    <Color x:Key="PP.Colors.White30" >#4DFFFFFF</Color>
-    <Color x:Key="PP.Colors.White20" >#33FFFFFF</Color>
-    <Color x:Key="PP.Colors.White10" >#1AFFFFFF</Color>
+    <Color x:Key="PP.Colors.White90" >#E5E5E5</Color>
+    <Color x:Key="PP.Colors.White80" >#CCCCCC</Color>
+    <Color x:Key="PP.Colors.White70" >#B3B3B3</Color>
+    <Color x:Key="PP.Colors.White60" >#999999</Color>
+    <Color x:Key="PP.Colors.White50" >#808080</Color>
+    <Color x:Key="PP.Colors.White40" >#666666</Color>
+    <Color x:Key="PP.Colors.White30" >#4D4D4D</Color>
+    <Color x:Key="PP.Colors.White20" >#333333</Color>
+    <Color x:Key="PP.Colors.White10" >#1A1A1A</Color>
 
     <SolidColorBrush x:Key="PP.Brushes.Background" Color="{StaticResource PP.Colors.Background}" options:Freeze="True" />
     <SolidColorBrush x:Key="PP.Brushes.Foreground" Color="{StaticResource PP.Colors.Foreground}" options:Freeze="True" />
