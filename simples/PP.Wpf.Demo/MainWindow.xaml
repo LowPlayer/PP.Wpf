@@ -30,6 +30,9 @@
         <TabItem Header="Button">
             <views:ButtonView />
         </TabItem>
+        <TabItem Header="ComboBox">
+            <views:ComboBoxView />
+        </TabItem>
         <TabItem Header="TextBox">
             <views:TextBoxView />
         </TabItem>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="PP.Wpf.Demo.Views.ComboBoxView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pp="https://www.cnblogs.com/pumbaa"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+             mc:Ignorable="d options" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White" FontSize="15">
+    <UserControl.Resources>
+        <Style x:Key="Page.Styles.ComboBox.Primary" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource PP.Styles.ComboBox}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="ComboBox.Popup.Background" Color="{StaticResource PP.Colors.Themes80}" options:Freeze="True" />
+                <SolidColorBrush x:Key="ComboBox.Popup.BorderBrush" Color="{StaticResource PP.Colors.Themes}" options:Freeze="True" />
+                <CornerRadius x:Key="ComboBox.Popup.CornerRadius">0</CornerRadius>
+                <sys:Double x:Key="ComboBoxItem.MinHeight">30</sys:Double>
+                <SolidColorBrush x:Key="ComboBoxItem.Background" Color="Transparent" options:Freeze="True" />
+                <SolidColorBrush x:Key="ComboBoxItem.Background.Hover" Color="{StaticResource PP.Colors.Themes}" options:Freeze="True" />
+                <SolidColorBrush x:Key="ComboBoxItem.Background.Select" Color="{StaticResource PP.Colors.Themes.Highlight}" options:Freeze="True" />
+            </Style.Resources>
+            <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes80}" />
+            <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+            <Setter Property="pp:BorderElement.HoverBorderBrush" Value="{DynamicResource PP.Brushes.Themes70}" />
+            <Setter Property="pp:BorderElement.FocusBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
+            <Setter Property="pp:IconElement.Brush" Value="{DynamicResource PP.Brushes.Themes.Foreground}" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock VerticalAlignment="Center" Width="60" TextAlignment="Right">只选：</TextBlock>
+            <ComboBox Height="32" Width="200" pp:TextElement.Placeholder="这是水印">
+                <ComboBoxItem>选项一</ComboBoxItem>
+                <ComboBoxItem>选项二</ComboBoxItem>
+                <ComboBoxItem>选项三</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Style="{StaticResource Page.Styles.ComboBox.Primary}" Height="32" Width="200" pp:TextElement.Placeholder="这是水印" Margin="30 0 0 0">
+                <ComboBoxItem>选项一</ComboBoxItem>
+                <ComboBoxItem>选项二</ComboBoxItem>
+                <ComboBoxItem>选项三</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock VerticalAlignment="Center" Width="60" TextAlignment="Right">可编辑：</TextBlock>
+            <ComboBox Height="32" Width="200" IsEditable="True" pp:TextElement.Placeholder="这是水印" IsTextSearchEnabled="True" StaysOpenOnEdit="True">
+                <ComboBoxItem>选项一</ComboBoxItem>
+                <ComboBoxItem>选项二</ComboBoxItem>
+                <ComboBoxItem>选项三</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Style="{StaticResource Page.Styles.ComboBox.Primary}" Height="32" Width="200" IsEditable="True" pp:TextElement.Placeholder="这是水印"
+                      IsTextSearchEnabled="True" StaysOpenOnEdit="True" Margin="30 0 0 0">
+                <ComboBoxItem>选项一</ComboBoxItem>
+                <ComboBoxItem>选项二</ComboBoxItem>
+                <ComboBoxItem>选项三</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
