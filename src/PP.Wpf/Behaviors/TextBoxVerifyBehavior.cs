@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xaml.Behaviors;
+using PP.Wpf.Controls.Attach;
 using System;
-using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
 namespace PP.Wpf.Behaviors
@@ -34,17 +34,35 @@ namespace PP.Wpf.Behaviors
 
             text = text.Insert(this.AssociatedObject.CaretIndex, e.Text);
 
-            if (!String.IsNullOrEmpty(PrevInputReg) && !Regex.IsMatch(text, PrevInputReg))
+            if (!Verify(text))
             {
-                e.Handled = true;
-                return;
+                if (StopInput)
+                {
+                    e.Handled = true;
+                    return;
+                }
+                else
+                {
+                    TextElement.SetIsError(this.AssociatedObject, true);
+                    TextElement.SetErrorText(this.AssociatedObject, String.IsNullOrEmpty(text) ? EmptyErrorText : ErrorText);
+                }
             }
+            else if (!StopInput)
+                TextElement.SetIsError(this.AssociatedObject, false);
+        }
+
+        private Boolean Verify(String text)
+        {
+            if (!String.IsNullOrEmpty(Regex) && !System.Text.RegularExpressions.Regex.IsMatch(text, Regex))
+                return false;
 
             if (IsNumber)
             {
                 if (!Double.TryParse(text, out Double val) || val < MinValue || val > MaxValue)
-                    e.Handled = true;
+                    return false;
             }
+
+            return true;
         }
 
         #region 属性
@@ -52,7 +70,7 @@ namespace PP.Wpf.Behaviors
         /// <summary>
         /// 预输入正则表达式(筛选不可输入的字符)
         /// </summary>
-        public String PrevInputReg { get; set; }
+        public String Regex { get; set; }
 
         /// <summary>
         /// 是否数字
@@ -68,6 +86,21 @@ namespace PP.Wpf.Behaviors
         /// 数值的最小值
         /// </summary>
         public Double MinValue { get; set; } = Int32.MinValue;
+
+        /// <summary>
+        /// 如果不符合条件，是否阻止输入
+        /// </summary>
+        public Boolean StopInput { get; set; }
+
+        /// <summary>
+        /// 错误提示
+        /// </summary>
+        public String ErrorText { get; set; }
+
+        /// <summary>
+        /// 空文本时错误提示
+        /// </summary>
+        public String EmptyErrorText { get; set; }
 
         #endregion
     }

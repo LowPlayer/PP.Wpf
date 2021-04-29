@@ -61,7 +61,7 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
-                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" IsHitTestVisible="False">
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" IsHitTestVisible="False" CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}">
                 <DockPanel>
                     <Path x:Name="icon" DockPanel.Dock="Right" Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Fill="{TemplateBinding attach:IconElement.Brush}"
                           Width="{TemplateBinding attach:IconElement.Width}" Margin="{TemplateBinding attach:IconElement.Margin}" RenderTransformOrigin="0.5 0.5">
@@ -84,14 +84,12 @@
             <ToggleButton Style="{DynamicResource PP.Styles.Button.TransparentBase}" Focusable="False" IsTabStop="False" ClickMode="Press"
                           IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
             <Popup x:Name="PART_Popup" Placement="Bottom" AllowsTransparency="true" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                   VerticalOffset="2" PopupAnimation="Slide" MinWidth="{TemplateBinding ActualWidth}">
+                   VerticalOffset="2" PopupAnimation="Slide" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
                 <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource ComboBox.Popup.BorderBrush}" BorderThickness="1" 
                         Background="{DynamicResource ComboBox.Popup.Background}" CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
                     <ctrls:CornerClip CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
                         <ScrollViewer x:Name="DropDownScrollViewer" HorizontalScrollBarVisibility="Disabled">
-                            <StackPanel>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </StackPanel>
+                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </ScrollViewer>
                     </ctrls:CornerClip>
                 </Border>
@@ -137,7 +135,7 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
             <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
-                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}">
                 <DockPanel>
                     <ToggleButton DockPanel.Dock="Right" Style="{DynamicResource PP.Styles.Button.TransparentBase}" Focusable="False" IsTabStop="False" ClickMode="Press"
                                   IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
@@ -161,14 +159,12 @@
                 </DockPanel>
             </Border>
             <Popup x:Name="PART_Popup" Placement="Bottom" AllowsTransparency="true" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                   VerticalOffset="2" PopupAnimation="Slide" MinWidth="{TemplateBinding ActualWidth}">
+                   VerticalOffset="2" PopupAnimation="Slide" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
                 <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource ComboBox.Popup.BorderBrush}" BorderThickness="1" 
                         Background="{DynamicResource ComboBox.Popup.Background}" CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
                     <ctrls:CornerClip CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
                         <ScrollViewer x:Name="DropDownScrollViewer" HorizontalScrollBarVisibility="Disabled">
-                            <StackPanel>
-                                <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </StackPanel>
+                           <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </ScrollViewer>
                     </ctrls:CornerClip>
                 </Border>

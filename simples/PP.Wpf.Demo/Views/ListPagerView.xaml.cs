@@ -24,7 +24,18 @@ namespace PP.Wpf.Demo.Views
         {
             InitializeComponent();
 
-            pager.Source = Enumerable.Range(1, 100);
+            var dic = new Dictionary<Int32, String>
+            {
+                [10] = "10条/页",
+                [20] = "20条/页",
+                [30] = "30条/页",
+                [40] = "40条/页",
+            };
+
+            combo.ItemsSource = dic;
+            combo.SelectedValue = 10;
+
+            pager.Source = Enumerable.Range(1, 999);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using PP.Wpf.Commands;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,7 +11,7 @@ namespace PP.Wpf.Controls
     /// <summary>
     /// 列表分页控件
     /// </summary>
-    public sealed class ListPager : Control
+    public sealed class ListPager : ContentControl
     {
         #region DependencyProperties
 
@@ -66,7 +67,7 @@ namespace PP.Wpf.Controls
         /// </summary>
         public Int32 PageIndex { get => (Int32)GetValue(PageIndexProperty); set => SetValue(PageIndexProperty, value); }
 
-        public static readonly DependencyPropertyKey PageCountPropertyKey = DependencyProperty.RegisterReadOnly("PageCountPropertyKey", typeof(Int32), typeof(ListPager), new PropertyMetadata(0));
+        public static readonly DependencyPropertyKey PageCountPropertyKey = DependencyProperty.RegisterReadOnly("PageCount", typeof(Int32), typeof(ListPager), new PropertyMetadata(0));
 
         public static readonly DependencyProperty PageCountProperty = PageCountPropertyKey.DependencyProperty;
         /// <summary>
@@ -74,13 +75,37 @@ namespace PP.Wpf.Controls
         /// </summary>
         public Int32 PageCount { get => (Int32)GetValue(PageCountProperty); private set => SetValue(PageCountPropertyKey, value); }
 
-        public static readonly DependencyPropertyKey DisplaySourcePropertyKey = DependencyProperty.RegisterReadOnly("DisplaySource", typeof(IEnumerable), typeof(ListPager), new PropertyMetadata(default));
+        public static readonly DependencyPropertyKey TotalCountPropertyKey = DependencyProperty.RegisterReadOnly("TotalCount", typeof(Int32), typeof(ListPager), new PropertyMetadata(0));
+
+        public static readonly DependencyProperty TotalCountProperty = TotalCountPropertyKey.DependencyProperty;
+        /// <summary>
+        /// 条目数
+        /// </summary>
+        public Int32 TotalCount { get => (Int32)GetValue(TotalCountProperty); private set => SetValue(TotalCountPropertyKey, value); }
+
+        public static readonly DependencyPropertyKey DisplaySourcePropertyKey = DependencyProperty.RegisterReadOnly("DisplaySource", typeof(IEnumerable), typeof(ListPager), new PropertyMetadata(new PropertyChangedCallback(OnDisplaySourcePropertyChanged)));
 
         public static readonly DependencyProperty DisplaySourceProperty = DisplaySourcePropertyKey.DependencyProperty;
+
+        private static void OnDisplaySourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var pager = (ListPager)d;
+            pager.DisplaySourceChanged?.Invoke(pager, EventArgs.Empty);
+        }
+
         /// <summary>
         /// 展示的数据源
         /// </summary>
         public IEnumerable DisplaySource { get => (IEnumerable)GetValue(DisplaySourceProperty); private set => SetValue(DisplaySourcePropertyKey, value); }
+
+        public static readonly DependencyPropertyKey PageNumbersPropertyKey = DependencyProperty.RegisterReadOnly("PageNumbers", typeof(IEnumerable<PageNumber>), typeof(ListPager), new PropertyMetadata(default));
+
+        public static readonly DependencyProperty PageNumbersProperty = PageNumbersPropertyKey.DependencyProperty;
+
+        /// <summary>
+        /// 页码
+        /// </summary>
+        public IEnumerable<PageNumber> PageNumbers { get => (IEnumerable<PageNumber>)GetValue(PageNumbersProperty); private set => SetValue(PageNumbersPropertyKey, value); }
 
         #endregion
 
@@ -102,7 +127,7 @@ namespace PP.Wpf.Controls
 
         private void OnSourceChanged(IEnumerable source)
         {
-            PageCount = GetPageCount();
+            GetPageCount();
 
             if (PageIndex != 1)
                 PageIndex = 1;
@@ -112,19 +137,27 @@ namespace PP.Wpf.Controls
 
         private void OnPageSizeChanged()
         {
-            DisplaySource = GetDisplaySource();
+            GetPageCount();
+
+            if (PageIndex != 1)
+                PageIndex = 1;
+            else
+                OnPageIndexChanged();
         }
 
         private void OnPageIndexChanged()
         {
             DisplaySource = GetDisplaySource();
+            PageNumbers = GetPageNumbers();
             PageIndexChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private Int32 GetPageCount()
+        private void GetPageCount()
         {
             if (Source == null)
-                return 0;
+            {
+                PageCount = TotalCount = 0;
+            }
 
             var count = 0;
 
@@ -138,7 +171,8 @@ namespace PP.Wpf.Controls
                 }
             }
 
-            return (Int32)Math.Ceiling((Double)count / PageSize);
+            TotalCount = count;
+            PageCount = (Int32)Math.Ceiling((Double)count / PageSize);
         }
 
         private IEnumerable GetDisplaySource()
@@ -172,6 +206,38 @@ namespace PP.Wpf.Controls
                     yield return item;
                 }
             }
+        }
+
+        private IEnumerable<PageNumber> GetPageNumbers()
+        {
+            var count = PageCount;
+
+            if (count == 0)
+                return null;
+
+            var index = PageIndex;
+
+            var list = new List<PageNumber>();
+
+            var from = Math.Max(1, index - 2);
+            var to = Math.Min(count, index + 2);
+
+            if (from != 1)
+                list.Add(new PageNumber(1));
+            if (from > 2)
+                list.Add(new PageNumber(isEllipsis: true));
+
+            for (var i = from; i <= to; i++)
+            {
+                list.Add(new PageNumber(i, i == index));
+            }
+
+            if (to < count - 1)
+                list.Add(new PageNumber(isEllipsis: true));
+            if (to != count)
+                list.Add(new PageNumber(count));
+
+            return list;
         }
 
         private void OnFirstPageCanExecute(Object sender, CanExecuteRoutedEventArgs e)
@@ -227,8 +293,41 @@ namespace PP.Wpf.Controls
 
         #region Events
 
+        public event EventHandler DisplaySourceChanged;
         public event EventHandler PageIndexChanged;
 
         #endregion
+
+        /// <summary>
+        /// 页码
+        /// </summary>
+        public struct PageNumber
+        {
+            /// <summary>
+            /// 页码
+            /// </summary>
+            /// <param name="no">页码</param>
+            /// <param name="isActive">是否当前页</param>
+            /// <param name="isEllipsis">是否省略号</param>
+            public PageNumber(Int32 no = 0, Boolean isActive = false, Boolean isEllipsis = false)
+            {
+                No = no;
+                IsActive = isActive;
+                IsEllipsis = isEllipsis;
+            }
+
+            /// <summary>
+            /// 页码
+            /// </summary>
+            public Int32 No { get; }
+            /// <summary>
+            /// 是否当前页
+            /// </summary>
+            public Boolean IsActive { get; }
+            /// <summary>
+            /// 是否省略号
+            /// </summary>
+            public Boolean IsEllipsis { get; }
+        }
     }
 }

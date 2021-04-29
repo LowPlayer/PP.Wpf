@@ -7,6 +7,7 @@
                  xmlns:views="clr-namespace:PP.Wpf.Demo.Views"
                  mc:Ignorable="d"
                  Title="PP.Wpf Demo Application" Height="450" Width="800"
+                 UseLayoutRounding="True" SnapsToDevicePixels="True"
                  Foreground="{DynamicResource PP.Brushes.Foreground}" FontSize="15">
     <pp:ChromeWindow.TitleContent>
         <TextBlock VerticalAlignment="Center" TextAlignment="Center" IsHitTestVisible="False">支持编辑的标题栏</TextBlock>
