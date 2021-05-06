@@ -44,7 +44,7 @@ namespace PP.Wpf.Extensions
 
             var sourtType = obj.GetType();
 
-            if (sourtType == targetType)
+            if (targetType.IsAssignableFrom(sourtType))
                 return obj;
 
             if (targetType.IsEnum)

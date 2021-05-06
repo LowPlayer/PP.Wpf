@@ -8,8 +8,8 @@
 
     <Geometry x:Key="Pathes.Ellipsis">
         M321.488 546.992a33.488 33.488 0 1 1 0-66.992 33.488 33.488 0 0 1 0 66.992z 
-            m194.784 0a33.488 33.488 0 1 1 0-66.992 33.488 33.488 0 0 1 0 66.992z
-            m194.784 0a33.488 33.488 0 1 1 0-66.992 33.488 33.488 0 0 1 0 66.992z
+        m194.784 0a33.488 33.488 0 1 1 0-66.992 33.488 33.488 0 0 1 0 66.992z
+        m194.784 0a33.488 33.488 0 1 1 0-66.992 33.488 33.488 0 0 1 0 66.992z
     </Geometry>
     <Geometry x:Key="Pathes.PrevPage">
         M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8c-16.4 12.8-16.4 37.5 0 50.3l450.8 352.1c5.3 4.1 12.9 0.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z
@@ -19,26 +19,35 @@
     </Geometry>
     <Geometry x:Key="Pathes.FirstPage">
         M326 164h-64c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h64c4.4 0 8-3.6 8-8V172c0-4.4-3.6-8-8-8zM770 236.4V164c0-6.8-7.9-10.5-13.1-6.1L335 512l421.9 354.1
-            c5.2 4.4 13.1 0.7 13.1-6.1v-72.4c0-9.4-4.2-18.4-11.4-24.5L459.4 512l299.2-251.1c7.2-6.1 11.4-15.1 11.4-24.5z
+        c5.2 4.4 13.1 0.7 13.1-6.1v-72.4c0-9.4-4.2-18.4-11.4-24.5L459.4 512l299.2-251.1c7.2-6.1 11.4-15.1 11.4-24.5z
     </Geometry>
     <Geometry x:Key="Pathes.LastPage">
         M762 164h-64c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h64c4.4 0 8-3.6 8-8V172c0-4.4-3.6-8-8-8zM254 164v72.4c0 9.5 4.2 18.4 11.4 24.5L564.6 512 265.4 763.1
-            c-7.2 6.1-11.4 15-11.4 24.5V860c0 6.8 7.9 10.5 13.1 6.1L689 512 267.1 157.9c-5.2-4.4-13.1-0.7-13.1 6.1z
+        c-7.2 6.1-11.4 15-11.4 24.5V860c0 6.8 7.9 10.5 13.1 6.1L689 512 267.1 157.9c-5.2-4.4-13.1-0.7-13.1 6.1z
     </Geometry>
-    
-    <Style x:Key="Styles.PageButton" TargetType="{x:Type Button}">
+    <Geometry x:Key="Pathes.DoubleLeft">
+        M842.666667 864c-8.533333 0-14.933333-2.133333-21.333334-8.533333l-341.333333-309.333334c-6.4-6.4-10.666667-14.933333-10.666667-23.466666 0-8.533333 4.266667-17.066667 10.666667-23.466667l341.333333-309.333333
+        c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133333 44.8L548.266667 522.666667l315.733333 285.866666c12.8 10.666667 14.933333 32 2.133333 44.8-6.4 6.4-14.933333 10.666667-23.466666 10.666667zM512 864
+        c-8.533333 0-14.933333-2.133333-21.333333-8.533333L149.333333 546.133333c-6.4-6.4-10.666667-14.933333-10.666666-23.466666 0-8.533333 4.266667-17.066667 10.666666-23.466667L490.666667 189.866667
+        c12.8-12.8 34.133333-10.666667 44.8 2.133333 12.8 12.8 10.666667 34.133333-2.133334 44.8L217.6 522.666667 533.333333 808.533333c12.8 12.8 14.933333 32 2.133334 44.8-6.4 6.4-14.933333 10.666667-23.466667 10.666667z
+    </Geometry>
+    <Geometry x:Key="Pathes.DoubleRight">
+        M544 522.666667c0-8.533333-4.266667-17.066667-10.666667-23.466667L192 189.866667c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733334 285.866667
+        L149.333333 808.533333c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466667 10.666667 8.533333 0 14.933333-2.133333 21.333333-8.533333l341.333333-309.333334
+        c6.4-6.4 10.666667-14.933333 10.666667-23.466666zM864 499.2l-341.333333-309.333333c-12.8-12.8-34.133333-10.666667-44.8 2.133333-12.8 12.8-10.666667 34.133333 2.133333 44.8l315.733333 285.866667-315.733333 285.866666
+        c-12.8 12.8-14.933333 32-2.133333 44.8 6.4 6.4 14.933333 10.666667 23.466666 10.666667 8.533333 0 14.933333-2.133333 21.333334-8.533333l341.333333-309.333334c6.4-6.4 10.666667-14.933333 10.666667-23.466666 0-8.533333-4.266667-17.066667-10.666667-23.466667z
+    </Geometry>
+
+    <Style x:Key="Styles.ButtonBase" TargetType="{x:Type ButtonBase}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Background" Value="#F2F2F2" />
-        <Setter Property="Foreground" Value="#333" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="10 4" />
-        <Setter Property="attach:BorderElement.CornerRadius" Value="4" />
-        <Setter Property="Focusable" Value="True" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -50,6 +59,14 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style x:Key="Styles.PageButton" TargetType="{x:Type Button}" BasedOn="{StaticResource Styles.ButtonBase}">
+        <Setter Property="Background" Value="#F2F2F2" />
+        <Setter Property="Foreground" Value="#333" />
+        <Setter Property="Padding" Value="10 4" />
+        <Setter Property="attach:BorderElement.CornerRadius" Value="4" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#E6E6E6" />
@@ -61,6 +78,26 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="Styles.PageButton.Ellipsis" TargetType="{x:Type Button}" BasedOn="{StaticResource Styles.ButtonBase}">
+        <Setter Property="Foreground" Value="#333" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="Transparent" Width="{TemplateBinding FontSize}" Height="{TemplateBinding FontSize}">
+                        <Path Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Fill="{TemplateBinding Foreground}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#409eff" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Foreground" Value="#3497FD" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="Styles.ListBoxItem.PageNumber" TargetType="{x:Type ListBoxItem}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -68,10 +105,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Button x:Name="btn" Style="{StaticResource Styles.PageButton}" Focusable="False" Content="{Binding No}"
+                    <Button x:Name="btn" Style="{StaticResource Styles.PageButton}" Content="{Binding No}"
                             Command="{x:Static cmd:PageCommands.SkipPage}" CommandParameter="{Binding No}"/>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsActive}" Value="True">
+                        <DataTrigger Binding="{Binding Status}" Value="1">
                             <Setter Property="IsEnabled" Value="False" />
                             <Setter TargetName="btn" Property="Background" Value="#409eff" />
                             <Setter TargetName="btn" Property="Foreground" Value="White" />
@@ -81,12 +118,32 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding IsEllipsis}" Value="True">
-                <Setter Property="IsEnabled" Value="False" />
+            <DataTrigger Binding="{Binding Status}" Value="2">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                            <Path Data="{StaticResource Pathes.Ellipsis}" Stretch="Uniform" Fill="{TemplateBinding Foreground}" Height="2" />
+                            <Button x:Name="btn" Style="{StaticResource Styles.PageButton.Ellipsis}" attach:IconElement.Geometry="{StaticResource Pathes.Ellipsis}"
+                                    Command="{x:Static cmd:PageCommands.PrevMorePage}" />
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="btn" Property="attach:IconElement.Geometry" Value="{StaticResource Pathes.DoubleLeft}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Status}" Value="3">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <Button x:Name="btn" Style="{StaticResource Styles.PageButton.Ellipsis}" attach:IconElement.Geometry="{StaticResource Pathes.Ellipsis}"
+                                    Command="{x:Static cmd:PageCommands.NextMorePage}" />
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="btn" Property="attach:IconElement.Geometry" Value="{StaticResource Pathes.DoubleRight}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -109,7 +166,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ctrls:ListPager}">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="0 0 10 0">共<Run Text="{Binding TotalCount,Mode=OneTime,RelativeSource={RelativeSource TemplatedParent}}" />条</TextBlock>
+                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="0 0 10 0">共<Run Text="{Binding TotalCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />条</TextBlock>
                         <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.FirstPage}">
                             <Path Data="{StaticResource Pathes.FirstPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
                         </Button>
@@ -124,7 +181,48 @@
                             <Path Data="{StaticResource Pathes.LastPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
                         </Button>
                         <ContentPresenter />
-                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 6 0">共<Run Text="{Binding PageCount,Mode=OneTime,RelativeSource={RelativeSource TemplatedParent}}" />页</TextBlock>
+                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 6 0">共<Run Text="{Binding PageCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />页</TextBlock>
+                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 0 0">前往</TextBlock>
+                        <TextBox x:Name="input" Style="{DynamicResource PP.Styles.TextBox}" Foreground="{TemplateBinding Foreground}" MinWidth="50" HorizontalContentAlignment="Center"
+                                 BorderBrush="#D9D9D9" attach:BorderElement.CornerRadius="4" Margin="6 0">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{x:Static cmd:PageCommands.SkipPage}" CommandParameter="{Binding Text,ElementName=input}" />
+                            </TextBox.InputBindings>
+                            <i:Interaction.Behaviors>
+                                <ppi:TextBoxVerifyBehavior Regex="^\d*$" StopInput="True" />
+                            </i:Interaction.Behaviors>
+                        </TextBox>
+                        <TextBlock Foreground="#666" VerticalAlignment="Center">页</TextBlock>
+                        <Button Style="{StaticResource Styles.PageButton}" Margin="16 0 0 0" Command="{x:Static cmd:PageCommands.SkipPage}" CommandParameter="{Binding Text,ElementName=input}">确定</Button>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+    
+    <Style TargetType="{x:Type ctrls:Pager}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ctrls:Pager}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="0 0 10 0">共<Run Text="{Binding TotalCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />条</TextBlock>
+                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.FirstPage}">
+                            <Path Data="{StaticResource Pathes.FirstPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
+                        </Button>
+                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.PrevPage}">
+                            <Path Data="{StaticResource Pathes.PrevPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
+                        </Button>
+                        <ListBox Style="{StaticResource Styles.ListBox.PageNumber}" ItemsSource="{TemplateBinding PageNumbers}" />
+                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.NextPage}">
+                            <Path Data="{StaticResource Pathes.NextPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
+                        </Button>
+                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.LastPage}">
+                            <Path Data="{StaticResource Pathes.LastPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
+                        </Button>
+                        <ContentPresenter />
+                        <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 6 0">共<Run Text="{Binding PageCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />页</TextBlock>
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 0 0">前往</TextBlock>
                         <TextBox x:Name="input" Style="{DynamicResource PP.Styles.TextBox}" Foreground="{TemplateBinding Foreground}" MinWidth="50" HorizontalContentAlignment="Center"
                                  BorderBrush="#D9D9D9" attach:BorderElement.CornerRadius="4" Margin="6 0">

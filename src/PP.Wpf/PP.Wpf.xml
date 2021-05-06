@@ -1361,27 +1361,51 @@
             页码
             </summary>
         </member>
-        <member name="M:PP.Wpf.Controls.ListPager.PageNumber.#ctor(System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:PP.Wpf.Controls.ListPager.PageNumber.#ctor(System.Int32,System.Int32)">
             <summary>
             页码
             </summary>
             <param name="no">页码</param>
-            <param name="isActive">是否当前页</param>
-            <param name="isEllipsis">是否省略号</param>
+            <param name="status">0:普通页|1:当前页|2:向前省略|3:向后省略</param>
         </member>
         <member name="P:PP.Wpf.Controls.ListPager.PageNumber.No">
             <summary>
             页码
             </summary>
         </member>
-        <member name="P:PP.Wpf.Controls.ListPager.PageNumber.IsActive">
+        <member name="P:PP.Wpf.Controls.ListPager.PageNumber.Status">
             <summary>
-            是否当前页
+            0:普通页|1:当前页|2:向前省略|3:向后省略
             </summary>
         </member>
-        <member name="P:PP.Wpf.Controls.ListPager.PageNumber.IsEllipsis">
+        <member name="T:PP.Wpf.Controls.Pager">
             <summary>
-            是否省略号
+            分页控件
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Pager.TotalCount">
+            <summary>
+            条目数
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Pager.PageSize">
+            <summary>
+            一页大小
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Pager.PageIndex">
+            <summary>
+            第几页
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Pager.PageCount">
+            <summary>
+            页数
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Pager.PageNumbers">
+            <summary>
+            页码
             </summary>
         </member>
         <member name="T:PP.Wpf.Controls.ProgressRingWin10">
@@ -1973,6 +1997,7 @@
             <typeparam name="T">类型</typeparam>
             <param name="root">根节点</param>
             <param name="list">查找结果</param>
+            <param name="filter">筛选条件</param>
         </member>
         <member name="M:PP.Wpf.Extensions.UIElementExtension.FindChildByType``1(System.Windows.DependencyObject,System.Func{``0,System.Boolean})">
             <summary>
@@ -1980,6 +2005,7 @@
             </summary>
             <typeparam name="T">类型</typeparam>
             <param name="root">根节点</param>
+            <param name="filter">筛选条件</param>
             <returns>查找结果</returns>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

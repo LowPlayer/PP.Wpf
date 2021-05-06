@@ -55,6 +55,9 @@
         <TabItem Header="ListPager">
             <views:ListPagerView />
         </TabItem>
+        <TabItem Header="Pager">
+            <views:PagerView />
+        </TabItem>
         <TabItem Header="Test">
             <views:Test />
         </TabItem>

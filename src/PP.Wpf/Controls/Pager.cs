@@ -1,33 +1,33 @@
 ﻿using PP.Wpf.Commands;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static PP.Wpf.Controls.ListPager;
 
 namespace PP.Wpf.Controls
 {
     /// <summary>
-    /// 列表分页控件
+    /// 分页控件
     /// </summary>
-    public sealed class ListPager : ContentControl
+    public sealed class Pager : ContentControl
     {
         #region DependencyProperties
 
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(IEnumerable), typeof(ListPager), new PropertyMetadata(OnSourcePropertyChanged));
+        public static readonly DependencyProperty TotalCountProperty = DependencyProperty.Register("TotalCount", typeof(Int32), typeof(Pager), new PropertyMetadata(OnTotalCountPropertyChanged));
 
-        private static void OnSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnTotalCountPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((ListPager)d).OnSourceChanged((IEnumerable)e.NewValue);
+            ((Pager)d).OnTotalCountChanged();
         }
 
         /// <summary>
-        /// 数据源
+        /// 条目数
         /// </summary>
-        public IEnumerable Source { get => (IEnumerable)GetValue(SourceProperty); set => SetValue(SourceProperty, value); }
+        public Int32 TotalCount { get => (Int32)GetValue(TotalCountProperty); set => SetValue(TotalCountProperty, value); }
 
-        public static readonly DependencyProperty PageSizeProperty = DependencyProperty.Register("PageSize", typeof(Int32), typeof(ListPager), new PropertyMetadata(10, new PropertyChangedCallback(OnPageSizePropertyChanged), new CoerceValueCallback(OnPageSizePropertyCoerceValueCallback)), new ValidateValueCallback(OnPageSizePropertyValidateValueCallback));
+        public static readonly DependencyProperty PageSizeProperty = DependencyProperty.Register("PageSize", typeof(Int32), typeof(Pager), new PropertyMetadata(10, new PropertyChangedCallback(OnPageSizePropertyChanged), new CoerceValueCallback(OnPageSizePropertyCoerceValueCallback)), new ValidateValueCallback(OnPageSizePropertyValidateValueCallback));
 
         private static Boolean OnPageSizePropertyValidateValueCallback(Object value)
         {
@@ -47,7 +47,7 @@ namespace PP.Wpf.Controls
 
         private static void OnPageSizePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((ListPager)d).OnPageSizeChanged();
+            ((Pager)d).OnPageSizeChanged();
         }
 
         /// <summary>
@@ -55,11 +55,11 @@ namespace PP.Wpf.Controls
         /// </summary>
         public Int32 PageSize { get => (Int32)GetValue(PageSizeProperty); set => SetValue(PageSizeProperty, value); }
 
-        public static readonly DependencyProperty PageIndexProperty = DependencyProperty.Register("PageIndex", typeof(Int32), typeof(ListPager), new PropertyMetadata(1, new PropertyChangedCallback(OnPageIndexPropertyChanged)));
+        public static readonly DependencyProperty PageIndexProperty = DependencyProperty.Register("PageIndex", typeof(Int32), typeof(Pager), new PropertyMetadata(1, new PropertyChangedCallback(OnPageIndexPropertyChanged)));
 
         private static void OnPageIndexPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((ListPager)d).OnPageIndexChanged();
+            ((Pager)d).OnPageIndexChanged();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace PP.Wpf.Controls
         /// </summary>
         public Int32 PageIndex { get => (Int32)GetValue(PageIndexProperty); set => SetValue(PageIndexProperty, value); }
 
-        public static readonly DependencyPropertyKey PageCountPropertyKey = DependencyProperty.RegisterReadOnly("PageCount", typeof(Int32), typeof(ListPager), new PropertyMetadata(0));
+        public static readonly DependencyPropertyKey PageCountPropertyKey = DependencyProperty.RegisterReadOnly("PageCount", typeof(Int32), typeof(Pager), new PropertyMetadata(0));
 
         public static readonly DependencyProperty PageCountProperty = PageCountPropertyKey.DependencyProperty;
         /// <summary>
@@ -75,30 +75,7 @@ namespace PP.Wpf.Controls
         /// </summary>
         public Int32 PageCount { get => (Int32)GetValue(PageCountProperty); private set => SetValue(PageCountPropertyKey, value); }
 
-        public static readonly DependencyPropertyKey TotalCountPropertyKey = DependencyProperty.RegisterReadOnly("TotalCount", typeof(Int32), typeof(ListPager), new PropertyMetadata(0));
-
-        public static readonly DependencyProperty TotalCountProperty = TotalCountPropertyKey.DependencyProperty;
-        /// <summary>
-        /// 条目数
-        /// </summary>
-        public Int32 TotalCount { get => (Int32)GetValue(TotalCountProperty); private set => SetValue(TotalCountPropertyKey, value); }
-
-        public static readonly DependencyPropertyKey DisplaySourcePropertyKey = DependencyProperty.RegisterReadOnly("DisplaySource", typeof(IEnumerable), typeof(ListPager), new PropertyMetadata(new PropertyChangedCallback(OnDisplaySourcePropertyChanged)));
-
-        public static readonly DependencyProperty DisplaySourceProperty = DisplaySourcePropertyKey.DependencyProperty;
-
-        private static void OnDisplaySourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var pager = (ListPager)d;
-            pager.DisplaySourceChanged?.Invoke(pager, EventArgs.Empty);
-        }
-
-        /// <summary>
-        /// 展示的数据源
-        /// </summary>
-        public IEnumerable DisplaySource { get => (IEnumerable)GetValue(DisplaySourceProperty); private set => SetValue(DisplaySourcePropertyKey, value); }
-
-        public static readonly DependencyPropertyKey PageNumbersPropertyKey = DependencyProperty.RegisterReadOnly("PageNumbers", typeof(IEnumerable<PageNumber>), typeof(ListPager), new PropertyMetadata(default));
+        public static readonly DependencyPropertyKey PageNumbersPropertyKey = DependencyProperty.RegisterReadOnly("PageNumbers", typeof(IEnumerable<PageNumber>), typeof(Pager), new PropertyMetadata(default));
 
         public static readonly DependencyProperty PageNumbersProperty = PageNumbersPropertyKey.DependencyProperty;
 
@@ -109,12 +86,12 @@ namespace PP.Wpf.Controls
 
         #endregion
 
-        static ListPager()
+        static Pager()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ListPager), new FrameworkPropertyMetadata(typeof(ListPager)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Pager), new FrameworkPropertyMetadata(typeof(Pager)));
         }
 
-        public ListPager()
+        public Pager()
         {
             CommandBindings.Add(new CommandBinding(PageCommands.FirstPage, OnFirstPageExecute, OnFirstPageCanExecute));
             CommandBindings.Add(new CommandBinding(PageCommands.LastPage, OnLastPageExecute, OnLastPageCanExecute));
@@ -125,11 +102,11 @@ namespace PP.Wpf.Controls
             CommandBindings.Add(new CommandBinding(PageCommands.NextMorePage, OnNextMoreExecute, OnNextPageCanExecute));
         }
 
-        #region Private Methods
+        #region Private Method
 
-        private void OnSourceChanged(IEnumerable source)
+        private void OnTotalCountChanged()
         {
-            GetPageCount();
+            PageCount = GetPageCount();
 
             if (PageIndex != 1)
                 PageIndex = 1;
@@ -139,7 +116,7 @@ namespace PP.Wpf.Controls
 
         private void OnPageSizeChanged()
         {
-            GetPageCount();
+            PageCount = GetPageCount();
 
             if (PageIndex != 1)
                 PageIndex = 1;
@@ -149,66 +126,13 @@ namespace PP.Wpf.Controls
 
         private void OnPageIndexChanged()
         {
-            DisplaySource = GetDisplaySource();
             PageNumbers = GetPageNumbers();
             PageIndexChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private void GetPageCount()
+        private int GetPageCount()
         {
-            if (Source == null)
-            {
-                PageCount = TotalCount = 0;
-                return;
-            }
-
-            var count = 0;
-
-            if (Source is ICollection collection)
-                count = collection.Count;
-            else
-            {
-                foreach (var i in Source)
-                {
-                    count++;
-                }
-            }
-
-            TotalCount = count;
-            PageCount = (Int32)Math.Ceiling((Double)count / PageSize);
-        }
-
-        private IEnumerable GetDisplaySource()
-        {
-            var start = (PageIndex - 1) * PageSize;
-            var end = start + PageSize;
-
-            if (Source is IList list)
-            {
-                var max = Math.Min(list.Count - 1, end);
-
-                for (var i = start; i <= max; i++)
-                {
-                    yield return list[i];
-                }
-            }
-            else
-            {
-                var i = -1;
-
-                foreach (var item in Source)
-                {
-                    i++;
-
-                    if (i < start)
-                        continue;
-
-                    if (i > end)
-                        break;
-
-                    yield return item;
-                }
-            }
+            return (Int32)Math.Ceiling((Double)TotalCount / PageSize);
         }
 
         private IEnumerable<PageNumber> GetPageNumbers()
@@ -323,35 +247,8 @@ namespace PP.Wpf.Controls
 
         #region Events
 
-        public event EventHandler DisplaySourceChanged;
         public event EventHandler PageIndexChanged;
 
         #endregion
-
-        /// <summary>
-        /// 页码
-        /// </summary>
-        public struct PageNumber
-        {
-            /// <summary>
-            /// 页码
-            /// </summary>
-            /// <param name="no">页码</param>
-            /// <param name="status">0:普通页|1:当前页|2:向前省略|3:向后省略</param>
-            public PageNumber(Int32 no, Int32 status)
-            {
-                No = no;
-                Status = status;
-            }
-
-            /// <summary>
-            /// 页码
-            /// </summary>
-            public Int32 No { get; }
-            /// <summary>
-            /// 0:普通页|1:当前页|2:向前省略|3:向后省略
-            /// </summary>
-            public Int32 Status { get; }
-        }
     }
 }

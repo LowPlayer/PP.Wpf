@@ -94,6 +94,7 @@ namespace PP.Wpf.Extensions
         /// <typeparam name="T">类型</typeparam>
         /// <param name="root">根节点</param>
         /// <param name="list">查找结果</param>
+        /// <param name="filter">筛选条件</param>
         public static void FindChildrenByType<T>(this DependencyObject root, ref List<T> list, Func<T, Boolean> filter = null) where T : Visual
         {
             if (list == null)
@@ -120,6 +121,7 @@ namespace PP.Wpf.Extensions
         /// </summary>
         /// <typeparam name="T">类型</typeparam>
         /// <param name="root">根节点</param>
+        /// <param name="filter">筛选条件</param>
         /// <returns>查找结果</returns>
         public static T FindChildByType<T>(this DependencyObject root, Func<T, Boolean> filter = null) where T : Visual
         {
