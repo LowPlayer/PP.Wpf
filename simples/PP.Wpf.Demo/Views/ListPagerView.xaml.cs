@@ -35,7 +35,7 @@ namespace PP.Wpf.Demo.Views
             combo.ItemsSource = dic;
             combo.SelectedValue = 10;
 
-            pager.Source = Enumerable.Range(1, 999);
+            pager.Source = Enumerable.Range(1, 55);
         }
     }
 }

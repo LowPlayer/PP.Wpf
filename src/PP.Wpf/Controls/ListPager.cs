@@ -185,9 +185,9 @@ namespace PP.Wpf.Controls
 
             if (Source is IList list)
             {
-                var max = Math.Min(list.Count - 1, end);
+                var max = Math.Min(list.Count, end);
 
-                for (var i = start; i <= max; i++)
+                for (var i = start; i < max; i++)
                 {
                     yield return list[i];
                 }
@@ -228,7 +228,12 @@ namespace PP.Wpf.Controls
             if (from != 1)
                 list.Add(new PageNumber(1, 0));
             if (from > 2)
-                list.Add(new PageNumber(0, 2));
+            {
+                if (from == 3)
+                    list.Add(new PageNumber(2, 0));
+                else
+                    list.Add(new PageNumber(0, 2));
+            }
 
             for (var i = from; i <= to; i++)
             {
@@ -236,7 +241,12 @@ namespace PP.Wpf.Controls
             }
 
             if (to < count - 1)
-                list.Add(new PageNumber(0, 3));
+            {
+                if (to == count - 2)
+                    list.Add(new PageNumber(count - 1, 0));
+                else
+                    list.Add(new PageNumber(0, 3));
+            }
             if (to != count)
                 list.Add(new PageNumber(count, 0));
 
