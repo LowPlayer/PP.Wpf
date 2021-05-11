@@ -88,7 +88,7 @@
                 <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource ComboBox.Popup.BorderBrush}" BorderThickness="1" 
                         Background="{DynamicResource ComboBox.Popup.Background}" CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
                     <ctrls:CornerClip CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
-                        <ScrollViewer x:Name="DropDownScrollViewer" HorizontalScrollBarVisibility="Disabled">
+                        <ScrollViewer x:Name="DropDownScrollViewer" HorizontalScrollBarVisibility="Disabled" CanContentScroll="False">
                             <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </ScrollViewer>
                     </ctrls:CornerClip>
@@ -149,10 +149,10 @@
                     </ToggleButton>
                     <ctrls:SimplePanel Margin="{TemplateBinding Padding}">
                         <TextBlock x:Name="placeholder" Text="{TemplateBinding attach:TextElement.Placeholder}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                    Visibility="{Binding Text,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static cvts:StringToVisibilityConverter.EmptyToVisible}}"
                                    Opacity="0.6" IsHitTestVisible="False" />
-                        <TextBox x:Name="PART_EditableTextBox" BorderThickness="0" Background="Transparent" Padding="0" Foreground="{TemplateBinding Foreground}" CaretBrush="{TemplateBinding Foreground}"
+                        <TextBox x:Name="PART_EditableTextBox" Style="{x:Null}" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" Padding="0" Foreground="{TemplateBinding Foreground}" CaretBrush="{TemplateBinding Foreground}"
                                  IsReadOnly="{TemplateBinding IsReadOnly}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </ctrls:SimplePanel>
@@ -163,7 +163,7 @@
                 <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource ComboBox.Popup.BorderBrush}" BorderThickness="1" 
                         Background="{DynamicResource ComboBox.Popup.Background}" CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
                     <ctrls:CornerClip CornerRadius="{DynamicResource ComboBox.Popup.CornerRadius}">
-                        <ScrollViewer x:Name="DropDownScrollViewer" HorizontalScrollBarVisibility="Disabled">
+                        <ScrollViewer x:Name="DropDownScrollViewer" HorizontalScrollBarVisibility="Disabled" CanContentScroll="False">
                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </ScrollViewer>
                     </ctrls:CornerClip>

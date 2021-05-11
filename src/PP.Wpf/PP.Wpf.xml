@@ -79,6 +79,26 @@
             结束弧度
             </summary>
         </member>
+        <member name="T:PP.Wpf.Controls.AspectScale">
+            <summary>
+            纵横比
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AspectScale.X">
+            <summary>
+            宽比例
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AspectScale.Y">
+            <summary>
+            高比例
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.AspectScale.Mode">
+            <summary>
+            测量模式
+            </summary>
+        </member>
         <member name="T:PP.Wpf.Controls.Attach.BackgroundElement">
             <summary>
             背景元素
