@@ -11,6 +11,25 @@ namespace PP.Wpf.Controls.Attach
         /// <summary>
         /// 鼠标悬浮时背景颜色
         /// </summary>
+        public static readonly DependencyProperty BackgroundProperty = DependencyProperty.RegisterAttached("Background", typeof(Brush), typeof(BackgroundElement));
+        /// <summary>
+        /// 获取鼠标悬浮时背景颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetBackground(DependencyObject element) => (Brush)element.GetValue(BackgroundProperty);
+        /// <summary>
+        /// 设置鼠标悬浮时背景颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetBackground(DependencyObject element, Brush value) => element.SetValue(BackgroundProperty, value);
+
+
+
+        /// <summary>
+        /// 鼠标悬浮时背景颜色
+        /// </summary>
         public static readonly DependencyProperty HoverBackgroundProperty = DependencyProperty.RegisterAttached("HoverBackground", typeof(Brush), typeof(BackgroundElement));
         /// <summary>
         /// 获取鼠标悬浮时背景颜色

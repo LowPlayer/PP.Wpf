@@ -31,9 +31,9 @@ namespace PP.Wpf.Demo.Views
                 [3] = "应用服务器信息"
             };
 
-            cb1.DisplayMemberPath = "Value";
-            cb1.SelectedValuePath = "Key";
-            cb1.ItemsSource = typeDic;
+            cb1.DisplayMemberPath = cb2.DisplayMemberPath = "Value";
+            cb1.SelectedValuePath = cb2.SelectedValuePath = "Key";
+            cb1.ItemsSource = cb2.ItemsSource = typeDic;
         }
     }
 }

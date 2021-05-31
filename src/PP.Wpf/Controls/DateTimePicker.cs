@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using Calendar = System.Windows.Controls.Calendar;
 
 namespace PP.Wpf.Controls
 {
@@ -49,7 +51,7 @@ namespace PP.Wpf.Controls
             var picker = (DateTimePicker)d;
             var txt = (String)e.NewValue;
 
-            if (DateTime.TryParseExact(txt, picker.DateTimeFormat, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime time))
+            if (DateTime.TryParseExact(txt, picker.DateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime time))
                 picker.SelectedDate = time;
         }
 
@@ -192,11 +194,8 @@ namespace PP.Wpf.Controls
         /// </summary>
         public DateTimePicker()
         {
-
             Hours = Enumerable.Range(0, 24);
             Minutes = Seconds = Enumerable.Range(0, 60);
-
-            SelectedDate = SelectedDate ?? DateTime.Now;
         }
 
         #region Public Methods
@@ -251,12 +250,13 @@ namespace PP.Wpf.Controls
 
             if (input != null && popup != null && calendar != null)
             {
+                OnSelectedDateChanged(SelectedDate);
+
                 input.PreviewMouseLeftButtonUp += OnInputPreviewMouseLeftButtonUp;
                 input.LostFocus += OnInputLostFocus;
 
                 calendar.SelectionMode = CalendarSelectionMode.SingleDate;
                 calendar.SelectedDatesChanged += OnCalendarSelectedDatesChanged;
-                calendar.SelectedDate = SelectedDate;
 
                 btn_icon = this.Template.FindName("PART_IconButton", this) as Button;
                 btn_confirm = this.Template.FindName("PART_ConfirmButton", this) as Button;
@@ -314,7 +314,7 @@ namespace PP.Wpf.Controls
             if (date.HasValue)
             {
                 time = date.Value;
-                Text = time.ToString(DateTimeFormat, System.Globalization.CultureInfo.InvariantCulture);
+                Text = time.ToString(DateTimeFormat, CultureInfo.InvariantCulture);
             }
             else
             {
@@ -340,7 +340,10 @@ namespace PP.Wpf.Controls
 
         private void OnClearButtonClick(Object sender, RoutedEventArgs e)
         {
-            SelectedDate = null;
+            if (SelectedDate == null)
+                OnSelectedDateChanged(null);
+            else
+                SelectedDate = null;
         }
 
         private void OnNowButtonClick(Object sender, RoutedEventArgs e)

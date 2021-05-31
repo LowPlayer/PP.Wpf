@@ -297,8 +297,6 @@ namespace PP.Wpf.Controls
             Months = Enumerable.Range(1, 12);
             Hours = Enumerable.Range(0, 24);
             Minutes = Seconds = Enumerable.Range(0, 60);
-
-            SelectedDate = SelectedDate ?? DateTime.Now;
         }
 
         #region Public Methods
@@ -350,6 +348,8 @@ namespace PP.Wpf.Controls
 
             if (input != null && popup != null)
             {
+                OnSelectedDateChanged(SelectedDate);
+
                 input.PreviewMouseLeftButtonUp += OnInputPreviewMouseLeftButtonUp;
                 input.LostFocus += OnInputLostFocus;
 
@@ -442,7 +442,10 @@ namespace PP.Wpf.Controls
 
         private void OnClearButtonClick(Object sender, RoutedEventArgs e)
         {
-            SelectedDate = null;
+            if (SelectedDate == null)
+                OnSelectedDateChanged(null);
+            else
+                SelectedDate = null;
         }
 
         private void OnNowButtonClick(Object sender, RoutedEventArgs e)

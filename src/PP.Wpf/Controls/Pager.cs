@@ -106,10 +106,15 @@ namespace PP.Wpf.Controls
 
         private void OnTotalCountChanged()
         {
-            PageCount = GetPageCount();
-
-            if (PageIndex != 1)
-                PageIndex = 1;
+            if (PageCount == 0)
+            {
+                if (PageIndex != 1)
+                    PageIndex = 1;
+                else
+                    OnPageIndexChanged();
+            }
+            else if (PageIndex > PageCount)
+                PageIndex = PageCount;
             else
                 OnPageIndexChanged();
         }

@@ -131,8 +131,15 @@ namespace PP.Wpf.Controls
         {
             GetPageCount();
 
-            if (PageIndex != 1)
-                PageIndex = 1;
+            if (PageCount == 0)
+            {
+                if (PageIndex != 1)
+                    PageIndex = 1;
+                else
+                    OnPageIndexChanged();
+            }
+            else if (PageIndex > PageCount)
+                PageIndex = PageCount;
             else
                 OnPageIndexChanged();
         }
@@ -180,6 +187,9 @@ namespace PP.Wpf.Controls
 
         private IEnumerable GetDisplaySource()
         {
+            if (Source == null)
+                yield return null;
+
             var start = (PageIndex - 1) * PageSize;
             var end = start + PageSize;
 

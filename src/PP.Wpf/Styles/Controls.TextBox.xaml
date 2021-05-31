@@ -36,13 +36,28 @@
                         </ctrls:SimplePanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsReadOnly" Value="False" />
+                            </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.HoverBorderBrush),RelativeSource={RelativeSource Self}}" />
                             <Setter TargetName="placeholder" Property="Opacity" Value="0.3" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocusWithin" Value="True" />
+                                <Condition Property="IsReadOnly" Value="False" />
+                            </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.FocusBorderBrush),RelativeSource={RelativeSource Self}}" />
                             <Setter TargetName="placeholder" Property="Visibility" Value="Collapsed" />
+                        </MultiTrigger>
+                        <Trigger Property="attach:TextElement.IsError" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource Gnt.Brushes.Warning}" />
+                            <Setter TargetName="placeholder" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="placeholder" Property="Opacity" Value="0.6" />
+                            <Setter TargetName="placeholder" Property="Foreground" Value="{DynamicResource Gnt.Brushes.Warning}" />
+                            <Setter TargetName="placeholder" Property="Text" Value="{Binding Path=(attach:TextElement.ErrorText),RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -59,6 +74,40 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
                     <AdornerDecorator x:Name="PART_ContentHost" Focusable="False" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="PP.Styles.TextBox.SelectedOnly.ScrollAble" TargetType="{x:Type TextBox}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Cursor" Value="IBeam" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <ScrollViewer x:Name="PART_ContentHost" Style="{x:Null}" Focusable="False" HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="PP.Styles.TextBox.SelectedOnly.ScrollAble.ToolTip" TargetType="{x:Type TextBox}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Cursor" Value="IBeam" />
+        <Setter Property="ToolTip" Value="{Binding Text,RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <ScrollViewer x:Name="PART_ContentHost" Style="{x:Null}" Focusable="False" HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}" VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}" />
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ScrollableWidth,ElementName=PART_ContentHost}" Value="0" />
+                                <Condition Binding="{Binding ScrollableHeight,ElementName=PART_ContentHost}" Value="0" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="ToolTip" Value="{x:Null}" />
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

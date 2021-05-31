@@ -12,6 +12,7 @@
         <TextBox Margin="10" Height="32" Width="300" HorizontalAlignment="Left" />
         <pp:SimpleDateTimePicker Height="32" Width="300" HorizontalAlignment="Left" Margin="10" />
         <pp:DateTimePicker Height="32" Width="300" HorizontalAlignment="Left" Margin="10" />
+        <pp:DateTimeScopePicker Height="32" Width="300" HorizontalAlignment="Left" Margin="10" />
         <TextBox Margin="10" Height="32" Width="300" HorizontalAlignment="Left" />
     </StackPanel>
 </UserControl>

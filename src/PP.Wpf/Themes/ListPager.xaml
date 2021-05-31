@@ -78,6 +78,28 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="Styles.PageButton.Path" TargetType="{x:Type Button}" BasedOn="{StaticResource Styles.PageButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                            Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}">
+                        <Path Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#E6E6E6" />
+                <Setter Property="Foreground" Value="#409eff" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#DCDCDC" />
+                <Setter Property="Foreground" Value="#3497FD" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="Styles.PageButton.Ellipsis" TargetType="{x:Type Button}" BasedOn="{StaticResource Styles.ButtonBase}">
         <Setter Property="Foreground" Value="#333" />
         <Setter Property="Template">
@@ -167,19 +189,11 @@
                 <ControlTemplate TargetType="{x:Type ctrls:ListPager}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="0 0 10 0">共<Run Text="{Binding TotalCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />条</TextBlock>
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.FirstPage}">
-                            <Path Data="{StaticResource Pathes.FirstPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.PrevPage}">
-                            <Path Data="{StaticResource Pathes.PrevPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.FirstPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.FirstPage}" />
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.PrevPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.PrevPage}" />
                         <ListBox Style="{StaticResource Styles.ListBox.PageNumber}" ItemsSource="{TemplateBinding PageNumbers}" />
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.NextPage}">
-                            <Path Data="{StaticResource Pathes.NextPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.LastPage}">
-                            <Path Data="{StaticResource Pathes.LastPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.NextPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.NextPage}" />
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.LastPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.LastPage}" />
                         <ContentPresenter />
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 6 0">共<Run Text="{Binding PageCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />页</TextBlock>
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 0 0">前往</TextBlock>
@@ -208,19 +222,11 @@
                 <ControlTemplate TargetType="{x:Type ctrls:Pager}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="0 0 10 0">共<Run Text="{Binding TotalCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />条</TextBlock>
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.FirstPage}">
-                            <Path Data="{StaticResource Pathes.FirstPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.PrevPage}">
-                            <Path Data="{StaticResource Pathes.PrevPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.FirstPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.FirstPage}" />
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.PrevPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.PrevPage}" />
                         <ListBox Style="{StaticResource Styles.ListBox.PageNumber}" ItemsSource="{TemplateBinding PageNumbers}" />
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.NextPage}">
-                            <Path Data="{StaticResource Pathes.NextPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
-                        <Button Style="{StaticResource Styles.PageButton}" Margin="6 0" Command="{x:Static cmd:PageCommands.LastPage}">
-                            <Path Data="{StaticResource Pathes.LastPage}" Stretch="Uniform" Width="12" Height="12" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" />
-                        </Button>
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.NextPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.NextPage}" />
+                        <Button Style="{StaticResource Styles.PageButton.Path}" attach:IconElement.Geometry="{StaticResource Pathes.LastPage}" Margin="6 0" Command="{x:Static cmd:PageCommands.LastPage}" />
                         <ContentPresenter />
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 6 0">共<Run Text="{Binding PageCount,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}" />页</TextBlock>
                         <TextBlock Foreground="#666" VerticalAlignment="Center" Margin="10 0 0 0">前往</TextBlock>

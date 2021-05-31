@@ -9,6 +9,25 @@ namespace PP.Wpf.Controls.Attach
     public static class ForegroundElement
     {
         /// <summary>
+        /// 字体颜色
+        /// </summary>
+        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.RegisterAttached("Foreground", typeof(Brush), typeof(ForegroundElement));
+        /// <summary>
+        /// 获取字体颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetForeground(DependencyObject element) => (Brush)element.GetValue(ForegroundProperty);
+        /// <summary>
+        /// 设置字体颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetForeground(DependencyObject element, Brush value) => element.SetValue(ForegroundProperty, value);
+
+
+
+        /// <summary>
         /// 鼠标悬浮时字体颜色
         /// </summary>
         public static readonly DependencyProperty HoverForegroundProperty = DependencyProperty.RegisterAttached("HoverForeground", typeof(Brush), typeof(ForegroundElement));

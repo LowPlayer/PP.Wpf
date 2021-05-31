@@ -104,6 +104,25 @@
             背景元素
             </summary>
         </member>
+        <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.BackgroundProperty">
+            <summary>
+            鼠标悬浮时背景颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.GetBackground(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标悬浮时背景颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BackgroundElement.SetBackground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标悬浮时背景颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
+        </member>
         <member name="F:PP.Wpf.Controls.Attach.BackgroundElement.HoverBackgroundProperty">
             <summary>
             鼠标悬浮时背景颜色
@@ -184,6 +203,25 @@
             <summary>
             边框元素
             </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.BorderElement.BorderBrushProperty">
+            <summary>
+            鼠标悬停时边框颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.GetBorderBrush(System.Windows.DependencyObject)">
+            <summary>
+            获取鼠标悬停时边框颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.BorderElement.SetBorderBrush(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置鼠标悬停时边框颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
         </member>
         <member name="F:PP.Wpf.Controls.Attach.BorderElement.HoverBorderBrushProperty">
             <summary>
@@ -284,6 +322,25 @@
             <summary>
             字体元素
             </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.Attach.ForegroundElement.ForegroundProperty">
+            <summary>
+            字体颜色
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.GetForeground(System.Windows.DependencyObject)">
+            <summary>
+            获取字体颜色
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PP.Wpf.Controls.Attach.ForegroundElement.SetForeground(System.Windows.DependencyObject,System.Windows.Media.Brush)">
+            <summary>
+            设置字体颜色
+            </summary>
+            <param name="element"></param>
+            <param name="value"></param>
         </member>
         <member name="F:PP.Wpf.Controls.Attach.ForegroundElement.HoverForegroundProperty">
             <summary>
@@ -1264,6 +1321,176 @@
         <member name="M:PP.Wpf.Controls.DateTimePicker.#ctor">
             <summary>
             时间日期选择器
+            </summary>
+        </member>
+        <member name="T:PP.Wpf.Controls.DateTimeScopePicker">
+            <summary>
+            时间日期范围选择控件
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.BeginTimeProperty">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.BeginTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.EndTimeProperty">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.TextProperty">
+            <summary>
+            显示文本
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.Text">
+            <summary>
+            显示文本
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.DateTimeFormatProperty">
+            <summary>
+            日期时间显示格式
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.DateTimeFormat">
+            <summary>
+            日期时间显示格式
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.HoursPropertyKey">
+            <summary>
+            小时列表
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.HoursProperty">
+            <summary>
+            小时列表
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.Hours">
+            <summary>
+            小时列表
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.MinutesPropertyKey">
+            <summary>
+            分钟列表
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.MinutesProperty">
+            <summary>
+            分钟列表
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.Minutes">
+            <summary>
+            分钟列表
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.SecondsPropertyKey">
+            <summary>
+            秒列表
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.SecondsProperty">
+            <summary>
+            秒列表
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.Seconds">
+            <summary>
+            秒列表
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.BeginHourProperty">
+            <summary>
+            小时（开始时间）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.BeginHour">
+            <summary>
+            小时（开始时间）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.BeginMinuteProperty">
+            <summary>
+            分钟（开始时间）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.BeginMinute">
+            <summary>
+            分钟（开始时间）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.BeginSecondProperty">
+            <summary>
+            秒（开始时间）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.BeginSecond">
+            <summary>
+            秒（开始时间）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.EndHourProperty">
+            <summary>
+            小时（结束时间）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.EndHour">
+            <summary>
+            小时（结束时间）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.EndMinuteProperty">
+            <summary>
+            分钟（结束时间）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.EndMinute">
+            <summary>
+            分钟（结束时间）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.EndSecondProperty">
+            <summary>
+            秒（结束时间）
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.EndSecond">
+            <summary>
+            秒（结束时间）
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.PrevTextPropertyKey">
+            <summary>
+            日期预览
+            </summary>
+        </member>
+        <member name="F:PP.Wpf.Controls.DateTimeScopePicker.PrevTextProperty">
+            <summary>
+            日期预览
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.PrevText">
+            <summary>
+            日期预览
+            </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.DateTimeScopePicker.#ctor">
+            <summary>
+            时间日期范围选择器
             </summary>
         </member>
         <member name="T:PP.Wpf.Controls.ListBoxDragSelectViewer">

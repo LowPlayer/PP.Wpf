@@ -11,6 +11,25 @@ namespace PP.Wpf.Controls.Attach
         /// <summary>
         /// 鼠标悬停时边框颜色
         /// </summary>
+        public static readonly DependencyProperty BorderBrushProperty = DependencyProperty.RegisterAttached("BorderBrush", typeof(Brush), typeof(BorderElement));
+        /// <summary>
+        /// 获取鼠标悬停时边框颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static Brush GetBorderBrush(DependencyObject element) => (Brush)element.GetValue(BorderBrushProperty);
+        /// <summary>
+        /// 设置鼠标悬停时边框颜色
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        public static void SetBorderBrush(DependencyObject element, Brush value) => element.SetValue(BorderBrushProperty, value);
+
+
+
+        /// <summary>
+        /// 鼠标悬停时边框颜色
+        /// </summary>
         public static readonly DependencyProperty HoverBorderBrushProperty = DependencyProperty.RegisterAttached("HoverBorderBrush", typeof(Brush), typeof(BorderElement));
         /// <summary>
         /// 获取鼠标悬停时边框颜色
