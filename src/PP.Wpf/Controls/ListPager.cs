@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,7 +20,7 @@ namespace PP.Wpf.Controls
 
         private static void OnSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((ListPager)d).OnSourceChanged((IEnumerable)e.NewValue);
+            ((ListPager)d).OnSourceChanged(e.OldValue, e.NewValue);
         }
 
         /// <summary>
@@ -127,7 +128,17 @@ namespace PP.Wpf.Controls
 
         #region Private Methods
 
-        private void OnSourceChanged(IEnumerable source)
+        private void OnSourceChanged(Object oldVal, Object newVal)
+        {
+            if (oldVal is INotifyCollectionChanged oldNotify)
+                oldNotify.CollectionChanged -= OnCollectionChanged;
+            if (newVal is INotifyCollectionChanged newNotify)
+                newNotify.CollectionChanged += OnCollectionChanged;
+
+            OnSourceChanged();
+        }
+
+        private void OnSourceChanged()
         {
             GetPageCount();
 
@@ -142,6 +153,11 @@ namespace PP.Wpf.Controls
                 PageIndex = PageCount;
             else
                 OnPageIndexChanged();
+        }
+
+        private void OnCollectionChanged(Object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnSourceChanged();
         }
 
         private void OnPageSizeChanged()
@@ -189,34 +205,36 @@ namespace PP.Wpf.Controls
         {
             if (Source == null)
                 yield return null;
-
-            var start = (PageIndex - 1) * PageSize;
-            var end = start + PageSize;
-
-            if (Source is IList list)
-            {
-                var max = Math.Min(list.Count, end);
-
-                for (var i = start; i < max; i++)
-                {
-                    yield return list[i];
-                }
-            }
             else
             {
-                var i = -1;
+                var start = (PageIndex - 1) * PageSize;
+                var end = start + PageSize;
 
-                foreach (var item in Source)
+                if (Source is IList list)
                 {
-                    i++;
+                    var max = Math.Min(list.Count, end);
 
-                    if (i < start)
-                        continue;
+                    for (var i = start; i < max; i++)
+                    {
+                        yield return list[i];
+                    }
+                }
+                else
+                {
+                    var i = -1;
 
-                    if (i > end)
-                        break;
+                    foreach (var item in Source)
+                    {
+                        i++;
 
-                    yield return item;
+                        if (i < start)
+                            continue;
+
+                        if (i > end)
+                            break;
+
+                        yield return item;
+                    }
                 }
             }
         }

@@ -80,7 +80,8 @@
                                            Opacity="0.6" IsHitTestVisible="False" />
                                 <TextBox x:Name="PART_TextBox" Background="Transparent" BorderThickness="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}"
-                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False" />
+                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}" />
                             </ctrls:SimplePanel>
                         </Border>
                         <Button x:Name="PART_IconButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" IsTabStop="False" HorizontalAlignment="Right"
@@ -233,7 +234,8 @@
                                            Opacity="0.6" IsHitTestVisible="False" />
                                 <TextBox x:Name="PART_TextBox" Background="Transparent" BorderThickness="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}"
-                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False" />
+                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}"/>
                             </ctrls:SimplePanel>
                         </Border>
                         <Button x:Name="PART_IconButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" IsTabStop="False" HorizontalAlignment="Right"
@@ -289,6 +291,9 @@
                         </Popup>
                     </ctrls:SimplePanel>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="PART_IconButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                         <DataTrigger Binding="{Binding Path=(attach:TextElement.Placeholder),RelativeSource={RelativeSource TemplatedParent},Converter={x:Static cvts:StirngToBooleanConverter.IsNullOrEmpty}}" Value="True">
                             <Setter TargetName="placeholder" Property="Text" Value="{Binding DateTimeFormat,RelativeSource={RelativeSource TemplatedParent}}" />
                         </DataTrigger>
@@ -339,7 +344,6 @@
                             <Setter Property="Cursor" Value="Hand" />
                             <Setter Property="SnapsToDevicePixels" Value="True" />
                             <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ButtonBase}">
@@ -414,7 +418,8 @@
                                            Opacity="0.6" IsHitTestVisible="False" />
                                 <TextBox x:Name="PART_TextBox" Background="Transparent" BorderThickness="0" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Foreground="{TemplateBinding Foreground}"
-                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False" />
+                                         Text="{Binding Text,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource TemplatedParent}}" InputMethod.IsInputMethodEnabled="False"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}"/>
                             </ctrls:SimplePanel>
                         </Border>
                         <Button x:Name="PART_IconButton" Style="{DynamicResource PP.Styles.Button.Opacity}" Focusable="False" IsTabStop="False" HorizontalAlignment="Right"
@@ -422,7 +427,7 @@
                             <Path Data="{TemplateBinding attach:IconElement.Geometry}" Stretch="Uniform" Fill="{TemplateBinding attach:IconElement.Brush}" />
                         </Button>
                         <Popup x:Name="PART_Popup" StaysOpen="False" Placement="Bottom" VerticalOffset="2" AllowsTransparency="True" MinWidth="{TemplateBinding ActualWidth}">
-                            <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" MinHeight="280" MinWidth="450"
+                            <Border Background="White" BorderThickness="1" BorderBrush="#c9c9c9" MinHeight="280" MinWidth="460"
                                     CornerRadius="{TemplateBinding attach:BorderElement.CornerRadius}">
                                 <DockPanel>
                                     <DockPanel DockPanel.Dock="Bottom" Height="40" Margin="10 0">
@@ -433,7 +438,15 @@
                                         <ToggleButton x:Name="toggle" Style="{StaticResource ToggleButtonStyle}" />
                                         <TextBlock VerticalAlignment="Center" Margin="10 0" Text="{Binding PrevText,RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" />
                                     </DockPanel>
-                                    <Line DockPanel.Dock="Bottom" X1="1" Stretch="Uniform" Stroke="{TemplateBinding BorderBrush}" IsHitTestVisible="False" />
+                                    <Line DockPanel.Dock="Bottom" X1="1" Stretch="Uniform" Stroke="#c9c9c9" IsHitTestVisible="False" />
+                                    <StackPanel DockPanel.Dock="Right" Width="90">
+                                        <Button x:Name="PART_TodayButton" Style="{StaticResource ButtonStyle}" BorderThickness="0 0 0 1" attach:BorderElement.CornerRadius="0">今天</Button>
+                                        <Button x:Name="PART_WeekButton" Style="{StaticResource ButtonStyle}" BorderThickness="0 0 0 1" attach:BorderElement.CornerRadius="0">一周</Button>
+                                        <Button x:Name="PART_MonthButton" Style="{StaticResource ButtonStyle}" BorderThickness="0 0 0 1" attach:BorderElement.CornerRadius="0">一个月</Button>
+                                        <Button x:Name="PART_HalfYearButton" Style="{StaticResource ButtonStyle}" BorderThickness="0 0 0 1" attach:BorderElement.CornerRadius="0">半年</Button>
+                                        <Button x:Name="PART_OneYearButton" Style="{StaticResource ButtonStyle}" BorderThickness="0 0 0 1" attach:BorderElement.CornerRadius="0">一年</Button>
+                                    </StackPanel>
+                                    <Line DockPanel.Dock="Right" Y2="1" Stretch="Uniform" Stroke="#c9c9c9" IsHitTestVisible="False" />
                                     <ctrls:SimplePanel>
                                         <UniformGrid x:Name="panel_calendar" Columns="2">
                                             <Calendar x:Name="PART_CalendarBegin" Margin="10" />
@@ -497,6 +510,9 @@
                         </Popup>
                     </ctrls:SimplePanel>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="PART_IconButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                         <DataTrigger Binding="{Binding Path=(attach:TextElement.Placeholder),RelativeSource={RelativeSource TemplatedParent},Converter={x:Static cvts:StirngToBooleanConverter.IsNullOrEmpty}}" Value="True">
                             <Setter TargetName="placeholder" Property="Text" Value="{Binding DateTimeFormat,RelativeSource={RelativeSource TemplatedParent}}" />
                         </DataTrigger>

@@ -22,9 +22,10 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetName="arc" Storyboard.TargetProperty="RadianEnd">
-                                            <LinearDoubleKeyFrame KeyTime="0" Value="-90" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.5" Value="270" />
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetName="arc" Storyboard.TargetProperty="Radian">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.5" Value="360" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetName="arc" Storyboard.TargetProperty="RadianStart">
                                             <LinearDoubleKeyFrame KeyTime="0" Value="-90" />
@@ -36,7 +37,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ctrls:SimplePanel>
-                            <ctrls:Arc RadianEnd="270" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding StrokeThickness}" />
+                            <ctrls:Arc Radian="360" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding StrokeThickness}" />
                             <ctrls:Arc x:Name="arc" Stroke="{TemplateBinding Foreground}" StrokeThickness="{TemplateBinding StrokeThickness}"
                                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                    Stretch="None" Visibility="Hidden" />

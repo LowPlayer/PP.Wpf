@@ -27,17 +27,17 @@
                                             <LinearDoubleKeyFrame KeyTime="0:0:1.6" Value="360" />
                                             <LinearDoubleKeyFrame KeyTime="0:0:3" Value="1080" />
                                         </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arc" Storyboard.TargetProperty="RadianEnd">
-                                            <LinearDoubleKeyFrame KeyTime="0" Value="-90" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:1.6" Value="180" />
-                                            <LinearDoubleKeyFrame KeyTime="0:0:3" Value="-90" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="arc" Storyboard.TargetProperty="Radian">
+                                            <LinearDoubleKeyFrame KeyTime="0" Value="0" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:1.6" Value="270" />
+                                            <LinearDoubleKeyFrame KeyTime="0:0:3" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ctrls:SimplePanel>
-                            <ctrls:Arc RadianEnd="270" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding StrokeThickness}" />
+                            <ctrls:Arc Radian="360" Stroke="{TemplateBinding Background}" StrokeThickness="{TemplateBinding StrokeThickness}" />
                             <ctrls:Arc x:Name="arc" Stroke="{TemplateBinding Foreground}" StrokeThickness="{TemplateBinding StrokeThickness}"
                                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"
                                    Stretch="None" Visibility="Hidden" RenderTransformOrigin="0.5 0.5">

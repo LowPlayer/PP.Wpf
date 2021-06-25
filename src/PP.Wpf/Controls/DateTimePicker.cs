@@ -182,6 +182,12 @@ namespace PP.Wpf.Controls
         /// </summary>
         public String PrevText { get => (String)GetValue(PrevTextProperty); private set => SetValue(PrevTextPropertyKey, value); }
 
+        public static readonly DependencyProperty IsReadOnlyProperty = TextBox.IsReadOnlyProperty.AddOwner(typeof(DateTimePicker));
+        /// <summary>
+        /// 只读
+        /// </summary>
+        public Boolean IsReadOnly { get => (Boolean)GetValue(IsReadOnlyProperty); set => SetValue(IsReadOnlyProperty, value); }
+
         #endregion
 
         static DateTimePicker()

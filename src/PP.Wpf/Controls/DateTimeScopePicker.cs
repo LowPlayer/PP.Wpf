@@ -227,6 +227,12 @@ namespace PP.Wpf.Controls
         /// </summary>
         public String PrevText { get => (String)GetValue(PrevTextProperty); private set => SetValue(PrevTextPropertyKey, value); }
 
+        public static readonly DependencyProperty IsReadOnlyProperty = TextBox.IsReadOnlyProperty.AddOwner(typeof(DateTimeScopePicker));
+        /// <summary>
+        /// 只读
+        /// </summary>
+        public Boolean IsReadOnly { get => (Boolean)GetValue(IsReadOnlyProperty); set => SetValue(IsReadOnlyProperty, value); }
+
         #endregion
 
         static DateTimeScopePicker()
@@ -575,8 +581,8 @@ namespace PP.Wpf.Controls
             else if (sender == btn_one_year)
                 start = today.AddMonths(-12);
 
-            OnBeginTimeChanged(start);
-            OnEndTimeChanged(end);
+            BeginTime = start;
+            EndTime = end;
         }
 
         #endregion

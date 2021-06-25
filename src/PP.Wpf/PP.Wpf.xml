@@ -74,9 +74,19 @@
             开始弧度
             </summary>
         </member>
-        <member name="P:PP.Wpf.Controls.Arc.RadianEnd">
+        <member name="P:PP.Wpf.Controls.Arc.Radian">
             <summary>
             结束弧度
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Arc.IsSector">
+            <summary>
+            是否扇形
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.Arc.IsAutoAnimate">
+            <summary>
+            自动使用动画
             </summary>
         </member>
         <member name="T:PP.Wpf.Controls.AspectScale">
@@ -1318,6 +1328,11 @@
             日期预览
             </summary>
         </member>
+        <member name="P:PP.Wpf.Controls.DateTimePicker.IsReadOnly">
+            <summary>
+            只读
+            </summary>
+        </member>
         <member name="M:PP.Wpf.Controls.DateTimePicker.#ctor">
             <summary>
             时间日期选择器
@@ -1486,6 +1501,11 @@
         <member name="P:PP.Wpf.Controls.DateTimeScopePicker.PrevText">
             <summary>
             日期预览
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.DateTimeScopePicker.IsReadOnly">
+            <summary>
+            只读
             </summary>
         </member>
         <member name="M:PP.Wpf.Controls.DateTimeScopePicker.#ctor">
@@ -1983,6 +2003,11 @@
         <member name="P:PP.Wpf.Controls.SimpleDateTimePicker.PrevText">
             <summary>
             日期预览
+            </summary>
+        </member>
+        <member name="P:PP.Wpf.Controls.SimpleDateTimePicker.IsReadOnly">
+            <summary>
+            只读
             </summary>
         </member>
         <member name="M:PP.Wpf.Controls.SimpleDateTimePicker.#ctor">
