@@ -9,14 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White" FontSize="15">
-    <ctrls:SimplePanel Width="100" Height="100">
-        <ctrls:Arc StrokeThickness="12.5" Stroke="#ffcf6b" Radian="90" RenderTransformOrigin="0.5 0.5">
-            <ctrls:Arc.RenderTransform>
-                <ScaleTransform ScaleX="1.05" ScaleY="1.05" />
-            </ctrls:Arc.RenderTransform>
-        </ctrls:Arc>
-        <ctrls:Arc StrokeThickness="10" Stroke="#5baeff" IsAutoAnimate="True" Radian="90" RadianStart="0" />
-        <ctrls:Arc StrokeThickness="10" Stroke="#ffb29d" Radian="90" RadianStart="90" />
-        <ctrls:Arc StrokeThickness="10" Stroke="#cbd0d7" Radian="90" RadianStart="180" />
-    </ctrls:SimplePanel>
+    <ctrls:DateTimePicker Width="300" Height="38">
+        
+    </ctrls:DateTimePicker>
 </UserControl>

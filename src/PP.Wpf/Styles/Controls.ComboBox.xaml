@@ -100,18 +100,16 @@
                 <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Gnt.Brushes.Themes70}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource PP.Brushes.Themes70}" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.HoverBorderBrush),RelativeSource={RelativeSource Self}}" />
-                <Setter TargetName="placeholder" Property="Opacity" Value="0.3" />
             </Trigger>
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
                 <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.FocusBorderBrush),RelativeSource={RelativeSource Self}}" />
-                <Setter TargetName="placeholder" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="attach:TextElement.IsError" Value="True">
-                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Gnt.Brushes.Warning}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource PP.Brushes.Warning}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -176,14 +174,12 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.HoverBorderBrush),RelativeSource={RelativeSource Self}}" />
-                <Setter TargetName="placeholder" Property="Opacity" Value="0.3" />
             </Trigger>
             <Trigger Property="IsKeyboardFocusWithin" Value="True">
                 <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.FocusBorderBrush),RelativeSource={RelativeSource Self}}" />
-                <Setter TargetName="placeholder" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="attach:TextElement.IsError" Value="True">
-                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Gnt.Brushes.Warning}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource PP.Brushes.Warning}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

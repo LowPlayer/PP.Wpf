@@ -42,7 +42,6 @@
                                 <Condition Property="IsReadOnly" Value="False" />
                             </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.HoverBorderBrush),RelativeSource={RelativeSource Self}}" />
-                            <Setter TargetName="placeholder" Property="Opacity" Value="0.3" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -50,13 +49,12 @@
                                 <Condition Property="IsReadOnly" Value="False" />
                             </MultiTrigger.Conditions>
                             <Setter Property="BorderBrush" Value="{Binding Path=(attach:BorderElement.FocusBorderBrush),RelativeSource={RelativeSource Self}}" />
-                            <Setter TargetName="placeholder" Property="Visibility" Value="Collapsed" />
                         </MultiTrigger>
                         <Trigger Property="attach:TextElement.IsError" Value="True">
-                            <Setter Property="BorderBrush" Value="{DynamicResource Gnt.Brushes.Warning}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Warning}" />
                             <Setter TargetName="placeholder" Property="Visibility" Value="Visible" />
                             <Setter TargetName="placeholder" Property="Opacity" Value="0.6" />
-                            <Setter TargetName="placeholder" Property="Foreground" Value="{DynamicResource Gnt.Brushes.Warning}" />
+                            <Setter TargetName="placeholder" Property="Foreground" Value="{DynamicResource PP.Brushes.Warning}" />
                             <Setter TargetName="placeholder" Property="Text" Value="{Binding Path=(attach:TextElement.ErrorText),RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
