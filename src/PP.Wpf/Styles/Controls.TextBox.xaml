@@ -14,7 +14,7 @@
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
         <Setter Property="CaretBrush" Value="{Binding Foreground,RelativeSource={RelativeSource Self}}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />

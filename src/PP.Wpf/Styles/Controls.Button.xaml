@@ -182,7 +182,7 @@
         <Setter Property="attach:IconElement.Brush" Value="{DynamicResource PP.Brushes.Themes}" />
         <Setter Property="attach:IconElement.Margin" Value="0 0 5 0" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>

@@ -191,7 +191,7 @@
         <Setter Property="attach:BorderElement.FocusBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -299,7 +299,7 @@
         <Setter Property="attach:BorderElement.FocusBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -408,7 +408,7 @@
         <Setter Property="attach:BorderElement.FocusBorderBrush" Value="{DynamicResource PP.Brushes.Themes}" />
         <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />

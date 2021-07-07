@@ -14,18 +14,18 @@
                 <WrapPanel>
                     <Button Style="{StaticResource PP.Styles.Button.Scale}" Margin="5" Height="32">
                         <pp:SimplePanel>
-                            <Image Source="/Res/btn_first_normal.png" IsEnabled="False" />
+                            <Image Source="../Res/btn_first_normal.png" IsEnabled="False" />
                             <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">缩放按钮</TextBlock>
                         </pp:SimplePanel>
                     </Button>
                     <Button Style="{StaticResource PP.Styles.Button.Opacity}" Margin="5" Height="32">
                         <pp:SimplePanel>
-                            <Image Source="/Res/btn_first_normal.png" IsEnabled="False" />
+                            <Image Source="../Res/btn_first_normal.png" IsEnabled="False" />
                             <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">透明按钮</TextBlock>
                         </pp:SimplePanel>
                     </Button>
                     <Button Style="{StaticResource PP.Styles.Button.ImageSwitch}" Margin="5" Height="32" Foreground="White"
-                        pp:IconElement.Image="/Res/btn_first_normal.png" pp:IconElement.HoverImage="/Res/btn_first_hover.png" pp:IconElement.PressedImage="/Res/btn_first_press.png">切图按钮</Button>
+                        pp:IconElement.Image="../Res/btn_first_normal.png" pp:IconElement.HoverImage="../Res/btn_first_hover.png" pp:IconElement.PressedImage="../Res/btn_first_press.png">切图按钮</Button>
                 </WrapPanel>
                 <TextBlock Foreground="{DynamicResource PP.Brushes.Danger}" Margin="5">Tips：缩放按钮表示根据鼠标状态缩放；透明按钮表示根据鼠标状态设置透明度；切图按钮表示根据鼠标状态切换底图</TextBlock>
             </StackPanel>

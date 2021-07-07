@@ -8,14 +8,59 @@
                  mc:Ignorable="d"
                  Title="PP.Wpf Demo Application" Height="450" Width="800"
                  UseLayoutRounding="True" SnapsToDevicePixels="True"
-                 Foreground="{DynamicResource PP.Brushes.Foreground}" FontSize="15">
+                 Background="{DynamicResource PP.Brushes.Background}" Foreground="{DynamicResource PP.Brushes.Foreground}" FontSize="15">
     <pp:ChromeWindow.TitleContent>
         <TextBlock VerticalAlignment="Center" TextAlignment="Center" IsHitTestVisible="False">支持编辑的标题栏</TextBlock>
     </pp:ChromeWindow.TitleContent>
     <Window.Resources>
-        
+        <Style x:Key="Page.Styles.TabItem" TargetType="{x:Type TabItem}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="{DynamicResource PP.Brushes.Background}" />
+            <Setter Property="Foreground" Value="{DynamicResource PP.Brushes.Foreground}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource PP.Brushes.Black30}" />
+            <Setter Property="BorderThickness" Value="0 0 0 1" />
+            <Setter Property="Padding" Value="12 6" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <pp:SimplePanel Background="{TemplateBinding Background}">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter x:Name="contentPresenter" ContentSource="Header" Focusable="False" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                            </Border>
+                            <Line x:Name="line" Y2="1" Stroke="{DynamicResource PP.Brushes.Themes}" StrokeThickness="3" Stretch="Uniform" HorizontalAlignment="Right" Opacity="0" IsHitTestVisible="False" />
+                        </pp:SimplePanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource PP.Brushes.Themes10}" />
+                                <Setter TargetName="line" Property="Opacity" Value="0.8" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="line" Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Page.Styles.TabControl" TargetType="{x:Type TabControl}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="TabStripPlacement" Value="Left" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <DockPanel>
+                            <StackPanel IsItemsHost="True" />
+                            <Line Y2="1" Stroke="{DynamicResource PP.Brushes.Black30}" Stretch="Uniform" />
+                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource Page.Styles.TabItem}" />
+        </Style>
     </Window.Resources>
-    <TabControl TabStripPlacement="Left">
+    <TabControl Style="{StaticResource Page.Styles.TabControl}">
         <TabItem Header="RunningText">
             <views:RunningTextView />
         </TabItem>
