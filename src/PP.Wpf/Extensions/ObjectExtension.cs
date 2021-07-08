@@ -11,38 +11,39 @@ namespace PP.Wpf.Extensions
         /// 尝试转换类型，若失败，则返回默认值
         /// 警告:因包含try catch,且考虑类型多,效率极低
         /// </summary>
-        /// <typeparam name="T">目标类型</typeparam>
-        /// <param name="obj">转换对象</param>
-        /// <param name="t">目标对象</param>
-        /// <returns></returns>
-        public static Boolean TryChangeType<T>(this Object obj, out T t)
+        public static Boolean TryChangeType<T>(this Object obj, out T t, T defaultValue = default)
         {
             var type = typeof(T);
 
             try
             {
-                t = (T)obj.ChangeType(type);
+                obj = obj.ChangeType(type);
+
+                if (obj == null)
+                {
+                    t = defaultValue;
+                    return false;
+                }
+
+                t = (T)obj;
                 return true;
             }
             catch
             {
-                t = default;
+                t = defaultValue;
                 return false;
             }
         }
 
-        /// <summary>
-        /// 转换类型
-        /// </summary>
-        /// <param name="obj">转换对象</param>
-        /// <param name="targetType">目标类型</param>
-        /// <returns></returns>
         public static Object ChangeType(this Object obj, Type targetType)
         {
             if (obj == null)
                 return null;
 
             var sourtType = obj.GetType();
+
+            if (obj is String str && String.IsNullOrEmpty(str) && targetType != typeof(String))
+                return null;
 
             if (targetType.IsAssignableFrom(sourtType))
                 return obj;
@@ -56,20 +57,16 @@ namespace PP.Wpf.Extensions
             return Convert.ChangeType(obj, targetType);
         }
 
-        /// <summary>
-        /// 转换类型
-        /// </summary>
-        /// <typeparam name="T">目标类型</typeparam>
-        /// <param name="obj">转换对象</param>
-        /// <returns></returns>
         public static T ChangeType<T>(this Object obj)
         {
             var type = typeof(T);
 
+            obj = ChangeType(obj, type);
+
             if (obj == null)
                 return default;
 
-            return (T)ChangeType(obj, type);
+            return (T)obj;
         }
     }
 }

@@ -50,9 +50,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabControl}">
                         <DockPanel>
-                            <StackPanel IsItemsHost="True" />
+                            <ScrollViewer Style="{StaticResource PP.Styles.ScrollViewer.Overlay}" HorizontalScrollBarVisibility="Disabled" KeyboardNavigation.TabIndex="1">
+                                <StackPanel IsItemsHost="True" />
+                            </ScrollViewer>
                             <Line Y2="1" Stroke="{DynamicResource PP.Brushes.Black30}" Stretch="Uniform" />
-                            <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <ContentPresenter ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local"/>
                         </DockPanel>
                     </ControlTemplate>
                 </Setter.Value>

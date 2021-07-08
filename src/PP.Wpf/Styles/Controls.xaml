@@ -9,5 +9,6 @@
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.TextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.ToolTip.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PP.Wpf;component/Styles/Controls.ProgressBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
