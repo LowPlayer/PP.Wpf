@@ -9,7 +9,5 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White" FontSize="15">
-    <Grid>
-        <ProgressBar Style="{StaticResource PP.Styles.ProgressBar}" Height="20" Margin="10" Value="50" attach:BorderElement.CornerRadius="10" />
-    </Grid>
+
 </UserControl>

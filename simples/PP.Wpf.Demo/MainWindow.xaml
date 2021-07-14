@@ -6,7 +6,7 @@
                  xmlns:pp="https://www.cnblogs.com/pumbaa"
                  xmlns:views="clr-namespace:PP.Wpf.Demo.Views"
                  mc:Ignorable="d"
-                 Title="PP.Wpf Demo Application" Height="450" Width="800"
+                 Title="PP.Wpf Demo Application" Height="720" Width="1024"
                  UseLayoutRounding="True" SnapsToDevicePixels="True"
                  Background="{DynamicResource PP.Brushes.Background}" Foreground="{DynamicResource PP.Brushes.Foreground}" FontSize="15">
     <pp:ChromeWindow.TitleContent>
@@ -105,6 +105,12 @@
         </TabItem>
         <TabItem Header="Pager">
             <views:PagerView />
+        </TabItem>
+        <TabItem Header="Arc">
+            <views:ArcView />
+        </TabItem>
+        <TabItem Header="ProgressBar">
+            <views:ProgressBarView />
         </TabItem>
         <TabItem Header="Test">
             <views:Test />

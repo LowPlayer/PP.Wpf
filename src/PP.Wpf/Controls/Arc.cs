@@ -34,7 +34,7 @@ namespace PP.Wpf.Controls
             new PropertyChangedCallback(OnAutoAnimatablePropertyChangedCallback)));
 
         /// <summary>
-        /// 结束弧度
+        /// 弧度
         /// </summary>
         public Double Radian { get => (Double)GetValue(RadianProperty); set => SetValue(RadianProperty, value); }
 
@@ -82,12 +82,14 @@ namespace PP.Wpf.Controls
             var cx = RenderSize.Width / 2;
             var cy = RenderSize.Height / 2;
 
+            // 若控件大小为0，或弧度为0，则不绘制
             if (cx == 0 || cy == 0 || Radian == 0)
                 return Geometry.Empty;
 
             var r = Math.Min(cx, cy) - StrokeThickness / 2;  // 半径
             var d = 2 * r; // 直径
 
+            // 若弧度恰好为一个整圆，则绘制两个半圆
             if (Radian % 360 == 0)
             {
                 // 计算开始、结束弧度坐标点
@@ -106,10 +108,12 @@ namespace PP.Wpf.Controls
                 var s = CoordMap(cx, cy, r, RadianStart);
                 var e = CoordMap(cx, cy, r, RadianStart + Radian);
 
+                // 判断是否为大圆
                 var lenghty = Radian % 360 > 180 ? 1 : 0;
 
                 string desc = null;
 
+                // 判断是否扇形
                 if (IsSector)
                     desc = $"M0 0 M{d} {d} M{cx} {cy} L{s.X} {s.Y} A{r} {r} 0 {lenghty} 1 {e.X} {e.Y} Z";
                 else
@@ -121,7 +125,14 @@ namespace PP.Wpf.Controls
                 return geometry;
             }
         }
-
+        /// <summary>
+        /// 极坐标转换
+        /// </summary>
+        /// <param name="x">圆心x</param>
+        /// <param name="y">圆心y</param>
+        /// <param name="r">半径</param>
+        /// <param name="a">弧度</param>
+        /// <returns></returns>
         private Point CoordMap(Double x, Double y, Double r, Double a)
         {
             var ta = (360 - a) * Math.PI / 180;

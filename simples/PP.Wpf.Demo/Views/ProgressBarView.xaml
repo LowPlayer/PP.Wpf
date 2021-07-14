@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="PP.Wpf.Demo.Views.ProgressBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pp="https://www.cnblogs.com/pumbaa"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource PP.Brushes.Background}"
+             Foreground="{DynamicResource PP.Brushes.Foreground}">
+    <UserControl.Resources>
+        <Style x:Key="Page.Styles.ProgressBar" TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource PP.Styles.ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="TemplateRoot">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Determinate">
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="transX1" Storyboard.TargetProperty="X">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <SplineDoubleKeyFrame KeyTime="00:00:.35" Value="20" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="transX2" Storyboard.TargetProperty="X">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0" />
+                                                <SplineDoubleKeyFrame KeyTime="00:00:.35" Value="20" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding pp:BorderElement.CornerRadius}" />
+                            <Rectangle x:Name="PART_Track"/>
+                            <pp:CornerClip CornerRadius="{TemplateBinding pp:BorderElement.CornerRadius}">
+                                <pp:SimplePanel x:Name="PART_Indicator" ClipToBounds="True" HorizontalAlignment="Left">
+                                    <pp:SimplePanel.OpacityMask>
+                                        <LinearGradientBrush EndPoint="0 1">
+                                            <GradientStop Offset="1" Color="#FF1359FA" />
+                                            <GradientStop Offset="0.7" Color="#FF1359FA" />
+                                            <GradientStop Offset="0" Color="#661359FA" />
+                                        </LinearGradientBrush>
+                                    </pp:SimplePanel.OpacityMask>
+                                    <Rectangle x:Name="DeterminateRoot">
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush MappingMode="Absolute" SpreadMethod="Repeat" EndPoint="20 0">
+                                                <LinearGradientBrush.Transform>
+                                                    <TransformGroup>
+                                                        <TranslateTransform x:Name="transX1" />
+                                                        <SkewTransform AngleX="-30" />
+                                                    </TransformGroup>
+                                                </LinearGradientBrush.Transform>
+                                                <GradientStop Offset="0" Color="#1359FA" />
+                                                <GradientStop Offset="0.2" Color="#1359FA" />
+                                                <GradientStop Offset="0.2" Color="#D41359FA" />
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <Rectangle x:Name="IndeterminateRoot" Visibility="Collapsed">
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush MappingMode="Absolute" SpreadMethod="Repeat" EndPoint="20 0">
+                                                <LinearGradientBrush.Transform>
+                                                    <TransformGroup>
+                                                        <TranslateTransform x:Name="transX2" />
+                                                        <SkewTransform AngleX="-30" />
+                                                    </TransformGroup>
+                                                </LinearGradientBrush.Transform>
+                                                <GradientStop Offset="0" Color="#1359FA" />
+                                                <GradientStop Offset="0.2" Color="#1359FA" />
+                                                <GradientStop Offset="0.2" Color="#D41359FA" />
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </pp:SimplePanel>
+                            </pp:CornerClip>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsIndeterminate" Value="True">
+                                <Setter TargetName="IndeterminateRoot" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="DeterminateRoot" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Margin="10">
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">进度：</TextBlock>
+            <TextBox DockPanel.Dock="Right" Text="{Binding Value,Mode=OneWay,StringFormat={}{0:F0}%,ElementName=progress1}" />
+            <Slider Minimum="0" Maximum="100" Value="{Binding Value,ElementName=progress1}" />
+        </DockPanel>
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">圆角：</TextBlock>
+            <TextBox TextWrapping="Wrap" Text="{Binding Path=(pp:BorderElement.CornerRadius),ElementName=progress1}" />
+        </DockPanel>
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">IsIndeterminate：</TextBlock>
+            <CheckBox IsChecked="{Binding IsIndeterminate,ElementName=progress1}" />
+        </DockPanel>
+        <ProgressBar x:Name="progress1" Style="{StaticResource PP.Styles.ProgressBar}" Margin="10" Height="20" pp:BorderElement.CornerRadius="10" Value="50" />
+        <ProgressBar x:Name="progress2" Style="{StaticResource Page.Styles.ProgressBar}" Margin="10" Height="20" pp:BorderElement.CornerRadius="{Binding Path=(pp:BorderElement.CornerRadius),ElementName=progress1}" 
+                     Value="{Binding Value,ElementName=progress1}" IsIndeterminate="{Binding IsIndeterminate,ElementName=progress1}" />
+    </StackPanel>
+</UserControl>

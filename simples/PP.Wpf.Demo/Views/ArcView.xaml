@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="PP.Wpf.Demo.Views.ArcView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:pp="https://www.cnblogs.com/pumbaa"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource PP.Brushes.Background}"
+             Foreground="{DynamicResource PP.Brushes.Foreground}">
+    <StackPanel Margin="10">
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">开始角度：</TextBlock>
+            <TextBox TextWrapping="Wrap" Text="{Binding RadianStart,ElementName=arc1}" />
+        </DockPanel>
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">弧度：</TextBlock>
+            <TextBox TextWrapping="Wrap" Text="{Binding Radian,ElementName=arc1}" />
+        </DockPanel>
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">宽度：</TextBlock>
+            <TextBox TextWrapping="Wrap" Text="{Binding StrokeThickness,ElementName=arc1}" />
+        </DockPanel>
+        <DockPanel Margin="6">
+            <TextBlock VerticalAlignment="Center">自动使用动画：</TextBlock>
+            <CheckBox IsChecked="{Binding IsAutoAnimate,ElementName=arc1}" />
+        </DockPanel>
+        <StackPanel Orientation="Horizontal">
+            <pp:Arc x:Name="arc1" Width="200" Height="200" Stroke="{DynamicResource PP.Brushes.Themes}" StrokeThickness="10" Radian="90" Margin="6" IsAutoAnimate="True"  />
+            <pp:Arc x:Name="arc2" Width="200" Height="200" IsSector="True"
+                    Fill="{Binding Stroke,ElementName=arc1}" Radian="{Binding Radian,ElementName=arc1}" RadianStart="{Binding RadianStart,ElementName=arc1}" Margin="6" IsAutoAnimate="{Binding IsAutoAnimate,ElementName=arc1}"  />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

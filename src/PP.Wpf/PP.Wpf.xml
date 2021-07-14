@@ -76,7 +76,7 @@
         </member>
         <member name="P:PP.Wpf.Controls.Arc.Radian">
             <summary>
-            结束弧度
+            弧度
             </summary>
         </member>
         <member name="P:PP.Wpf.Controls.Arc.IsSector">
@@ -88,6 +88,16 @@
             <summary>
             自动使用动画
             </summary>
+        </member>
+        <member name="M:PP.Wpf.Controls.Arc.CoordMap(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            极坐标转换
+            </summary>
+            <param name="x">圆心x</param>
+            <param name="y">圆心y</param>
+            <param name="r">半径</param>
+            <param name="a">弧度</param>
+            <returns></returns>
         </member>
         <member name="T:PP.Wpf.Controls.AspectScale">
             <summary>
