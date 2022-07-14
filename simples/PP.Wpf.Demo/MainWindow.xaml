@@ -73,6 +73,9 @@
         <TabItem Header="CornerClip">
             <views:CornerClipView />
         </TabItem>
+        <TabItem Header="CornerClip（演示裁剪 DataGrid）">
+            <views:CornerClipViewForDataGrid />
+        </TabItem>
         <TabItem Header="ListBoxDragSelectViewer">
             <views:ListBoxDragSelectViewerView />
         </TabItem>

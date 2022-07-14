@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\CornerClipViewForDataGrid.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Views\PagerView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
